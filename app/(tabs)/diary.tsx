@@ -32,7 +32,7 @@ export default function DiaryScreen() {
   const results = searchFoods(query).slice(0, 8);
   const energyTarget = target?.targetKcal ?? tdee;
   const selected = foods.find((item) => item.id === foodId) ?? null;
-  const common = commonMealFoods(meal);
+  const common = commonMealFoods(meal, profile.dietType);
   const commonHintKey =
     meal === 'breakfast'
       ? 'diary.commonHint.breakfast'
@@ -123,6 +123,9 @@ export default function DiaryScreen() {
         <TextInput value={grams} onChangeText={setGrams} keyboardType="numeric" placeholder={t('diary.amount')} placeholderTextColor={colors.muted} style={[styles.input, { color: colors.text, borderColor: colors.border }]} />
         <Pressable style={[styles.save, { backgroundColor: colors.primary }]} onPress={() => addSelected()}>
           <Text style={styles.saveText}>{t('diary.add')}</Text>
+        </Pressable>
+        <Pressable onPress={() => router.push('/(tabs)/scan')}>
+          <Text style={{ color: colors.primary, fontWeight: '700' }}>{t('scan.open')}</Text>
         </Pressable>
       </Card>
 

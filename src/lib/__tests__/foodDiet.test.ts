@@ -1,0 +1,14 @@
+import { isVegetarianFood } from '../foodDiet';
+import { foods, getFoodById } from '@/src/data/foods';
+
+describe('food diet', () => {
+  test('marks meat, egg, and mixed dishes as non-vegetarian', () => {
+    expect(isVegetarianFood(getFoodById('idli')!)).toBe(true);
+    expect(isVegetarianFood(getFoodById('dal')!)).toBe(true);
+    expect(isVegetarianFood(getFoodById('yogurt-plain-whole')!)).toBe(true);
+    expect(isVegetarianFood(getFoodById('chicken-curry')!)).toBe(false);
+    expect(isVegetarianFood(getFoodById('egg-boiled')!)).toBe(false);
+    expect(isVegetarianFood(getFoodById('hamburger')!)).toBe(false);
+    expect(foods.some((food) => food.id === 'chicken-biryani' && !isVegetarianFood(food))).toBe(true);
+  });
+});

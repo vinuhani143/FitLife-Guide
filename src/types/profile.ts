@@ -22,6 +22,8 @@ export type UnitPreference = {
 
 export type LanguageCode = 'en' | 'te';
 
+export type DietType = 'vegetarian' | 'non_vegetarian';
+
 export type LifeStage = 'child' | 'adolescent' | 'adult' | 'older_adult';
 
 export type UserProfile = {
@@ -34,6 +36,7 @@ export type UserProfile = {
   waistCm: number | null;
   activityLevel: ActivityLevel;
   goal: Goal;
+  dietType: DietType;
   unitPreference: UnitPreference;
   language: LanguageCode;
   waterGoalMl: number;

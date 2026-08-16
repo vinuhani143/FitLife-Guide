@@ -10,18 +10,34 @@ import { translate } from '@/src/lib/i18n';
 import { WHO_PROTEIN_SOURCE, WISHNOFSKY_SOURCE } from '@/src/lib/calculations/weightPlan';
 import { useBodyMetrics } from '@/src/lib/useBodyMetrics';
 import { useApp } from '@/src/store/AppProvider';
+import type { DietType } from '@/src/types/profile';
+
+const DIETS: DietType[] = ['vegetarian', 'non_vegetarian'];
 
 export default function PlanScreen() {
-  const { language, colors, profile } = useApp();
+  const { language, colors, profile, setProfile } = useApp();
   const { bmi, bmr, tdee, target, plan, proteinTargetG, healthy } = useBodyMetrics();
   const t = (key: string, vars?: Record<string, string | number>) => translate(language, key, vars);
-  const suggestions = suggestFoodsForGoal(profile.goal);
+  const suggestions = suggestFoodsForGoal(profile.goal, 6, profile.dietType);
+  const dayCount = plan.status === 'estimated' && plan.estimatedDays != null ? plan.estimatedDays : 7;
 
   return (
     <Screen>
       <Card eyebrow={t('plan.eyebrow')} title={t('plan.title')}>
         <Text style={{ color: colors.text }}>{t(`goal.${profile.goal}`)}</Text>
         <Text style={{ color: colors.muted }}>{t('plan.purpose')}</Text>
+        <Text style={{ color: colors.muted }}>{t('body.diet')}</Text>
+        <View style={styles.wrap}>
+          {DIETS.map((diet) => (
+            <Pressable
+              key={diet}
+              onPress={() => void setProfile({ ...profile, dietType: diet })}
+              style={[styles.chip, { borderColor: colors.border, backgroundColor: profile.dietType === diet ? colors.primarySoft : 'transparent' }]}
+            >
+              <Text style={{ color: colors.text }}>{t(`diet.${diet}`)}</Text>
+            </Pressable>
+          ))}
+        </View>
         <Link href="/profile" asChild>
           <Pressable><Text style={styles.link}>{t('body.edit')}</Text></Pressable>
         </Link>
@@ -67,6 +83,15 @@ export default function PlanScreen() {
         <Text style={{ color: colors.muted }}>{plan.caution}</Text>
         <Text style={styles.src}>{WISHNOFSKY_SOURCE.sourceReference}</Text>
         {target?.caution ? <Text style={{ color: colors.warning }}>{target.caution}</Text> : null}
+        <Link href="/plan-days" asChild>
+          <Pressable style={[styles.cta, { backgroundColor: colors.primary }]}>
+            <Text style={styles.ctaText}>
+              {plan.status === 'estimated'
+                ? t('plan.openDaysCount', { days: dayCount, diet: t(`diet.${profile.dietType}`) })
+                : t('plan.openSampleDays', { diet: t(`diet.${profile.dietType}`) })}
+            </Text>
+          </Pressable>
+        </Link>
       </Card>
 
       <Card title={t('plan.whatToEat')}>
@@ -89,6 +114,9 @@ export default function PlanScreen() {
         <Link href="/(tabs)/diary" asChild>
           <Pressable><Text style={styles.link}>{t('plan.logToday')}</Text></Pressable>
         </Link>
+        <Link href="/(tabs)/scan" asChild>
+          <Pressable><Text style={styles.link}>{t('scan.open')}</Text></Pressable>
+        </Link>
       </Card>
       <Disclaimer />
     </Screen>
@@ -108,7 +136,11 @@ function Row({ label, value }: { label: string; value: string }) {
 const styles = StyleSheet.create({
   big: { fontSize: 28, fontWeight: '800' },
   row: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
+  wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  chip: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 },
   food: { borderWidth: 1, borderRadius: 12, padding: 10, gap: 4 },
   link: { color: '#0F766E', fontWeight: '700' },
   src: { fontSize: 12, color: '#5B6B66' },
+  cta: { borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12, alignItems: 'center' },
+  ctaText: { color: '#fff', fontWeight: '700', textAlign: 'center' },
 });

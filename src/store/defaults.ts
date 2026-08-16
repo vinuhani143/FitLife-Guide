@@ -10,6 +10,7 @@ export const defaultProfile: UserProfile = {
   waistCm: null,
   activityLevel: 'lightly_active',
   goal: 'weight_maintenance',
+  dietType: 'vegetarian',
   unitPreference: {
     mass: 'kg',
     length: 'cm',

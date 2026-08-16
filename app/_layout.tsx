@@ -20,6 +20,7 @@ function NavigationTree() {
         <Stack.Screen name="education/[slug]" options={{ title: 'Article' }} />
         <Stack.Screen name="sources" options={{ title: 'Sources' }} />
         <Stack.Screen name="profile" options={{ title: 'Profile' }} />
+        <Stack.Screen name="plan-days" options={{ title: 'Day list' }} />
         <Stack.Screen name="progress" options={{ title: 'Progress' }} />
         <Stack.Screen name="water" options={{ title: 'Water' }} />
         <Stack.Screen name="search" options={{ title: 'Search' }} />

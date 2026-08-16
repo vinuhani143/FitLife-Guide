@@ -7,6 +7,7 @@ import {
   lifeStageFromAge,
   normalizeDateOfBirth,
   parseLocaleNumber,
+  addDaysIso,
 } from '../units';
 
 describe('units', () => {
@@ -46,5 +47,10 @@ describe('units', () => {
     expect(parseLocaleNumber('58.2')).toBe(58.2);
     expect(parseLocaleNumber('')).toBeNull();
     expect(parseLocaleNumber('abc')).toBeNull();
+  });
+
+  test('adds calendar days to an ISO date', () => {
+    expect(addDaysIso('2026-08-16', 9)).toBe('2026-08-25');
+    expect(addDaysIso('2026-01-30', 2)).toBe('2026-02-01');
   });
 });

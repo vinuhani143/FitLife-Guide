@@ -11,6 +11,7 @@ export type ProfileFormState = {
   waistCm: string;
   activityLevel: UserProfile['activityLevel'];
   goal: UserProfile['goal'];
+  dietType: UserProfile['dietType'];
   waterGoalMl: string;
   language: UserProfile['language'];
 };
@@ -30,6 +31,7 @@ export function profileToFormState(profile: UserProfile): ProfileFormState {
     waistCm: profile.waistCm == null ? '' : String(profile.waistCm),
     activityLevel: profile.activityLevel,
     goal: profile.goal,
+    dietType: profile.dietType ?? 'vegetarian',
     waterGoalMl: String(profile.waterGoalMl),
     language: profile.language,
   };
@@ -81,6 +83,7 @@ export function buildProfileFromForm(form: ProfileFormState, base: UserProfile):
       waistCm: waist.value,
       activityLevel: form.activityLevel,
       goal: form.goal,
+      dietType: form.dietType,
       language: form.language,
       waterGoalMl,
     },

@@ -12,7 +12,7 @@ import { COMPENDIUM_SOURCE } from '@/src/lib/calculations/fitness';
 import { translate } from '@/src/lib/i18n';
 import { useApp } from '@/src/store/AppProvider';
 
-const GROUPS = ['who', 'fao', 'usda', 'indian', 'equation', 'activity'] as const;
+const GROUPS = ['who', 'fao', 'usda', 'indian', 'equation', 'activity', 'packaged'] as const;
 
 export default function SourcesScreen() {
   const { language, colors } = useApp();

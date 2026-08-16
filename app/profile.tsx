@@ -8,11 +8,12 @@ import { Screen } from '@/src/components/Screen';
 import { translate } from '@/src/lib/i18n';
 import { buildProfileFromForm, profileToFormState, type ProfileFormState } from '@/src/lib/profileForm';
 import { useApp } from '@/src/store/AppProvider';
-import type { ActivityLevel, Goal, Sex } from '@/src/types/profile';
+import type { ActivityLevel, DietType, Goal, Sex } from '@/src/types/profile';
 
 const SEXES: Sex[] = ['female', 'male', 'unspecified'];
 const ACTIVITIES: ActivityLevel[] = ['sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'];
 const GOALS: Goal[] = ['weight_loss', 'weight_gain', 'weight_maintenance'];
+const DIETS: DietType[] = ['vegetarian', 'non_vegetarian'];
 
 export default function ProfileScreen() {
   const { language, colors, profile, setProfile, addWeight, addWaist, ready } = useApp();
@@ -106,6 +107,8 @@ export default function ProfileScreen() {
         <Chips values={ACTIVITIES} selected={form.activityLevel} onSelect={(activityLevel) => setField('activityLevel', activityLevel)} label={(v) => t(`activity.${v}`)} />
         <Label text={t('body.goal')} />
         <Chips values={GOALS} selected={form.goal} onSelect={(goal) => setField('goal', goal)} label={(v) => t(`goal.${v}`)} />
+        <Label text={t('body.diet')} />
+        <Chips values={DIETS} selected={form.dietType} onSelect={(dietType) => setField('dietType', dietType)} label={(v) => t(`diet.${v}`)} />
         <Label text={`${t('water.goal')} (ml)`} />
         <TextInput value={form.waterGoalMl} onChangeText={(v) => setField('waterGoalMl', v)} keyboardType="number-pad" style={input(colors)} />
       </Card>

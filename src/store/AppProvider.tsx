@@ -64,7 +64,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         storage.readJson(storage.keys.compare, [] as string[]),
       ]);
       if (cancelled) return;
-      setProfileState({ ...defaultProfile, ...p });
+      setProfileState({
+        ...defaultProfile,
+        ...p,
+        dietType: p.dietType === 'non_vegetarian' ? 'non_vegetarian' : 'vegetarian',
+      });
       setFitnessState({ ...defaultFitnessInputs, ...f });
       setDiary(d);
       setWater(w);

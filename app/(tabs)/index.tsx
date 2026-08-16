@@ -24,8 +24,8 @@ export default function HomeScreen() {
   const t = (key: string, vars?: Record<string, string | number>) => translate(language, key, vars);
   const today = todayIsoDate();
   const energyTarget = target?.targetKcal ?? tdee;
-  const suggestions = suggestFoodsForGoal(profile.goal, 4);
-  const common = commonMealFoods().filter((food) => food.nutritionAvailable);
+  const suggestions = suggestFoodsForGoal(profile.goal, 4, profile.dietType);
+  const common = commonMealFoods(undefined, profile.dietType).filter((food) => food.nutritionAvailable);
 
   const todayNutrition = useMemo(() => {
     return diary
@@ -87,6 +87,9 @@ export default function HomeScreen() {
           <Text style={{ color: colors.text }}>{t(`plan.status.${plan.status}`)}</Text>
         )}
         <Text style={{ color: colors.muted }}>{t('goal.estimatedTarget')}: {formatKcal(energyTarget)}</Text>
+        <Link href="/plan-days" asChild>
+          <Pressable><Text style={styles.link}>{t('plan.openDays')}</Text></Pressable>
+        </Link>
         <Link href="/(tabs)/plan" asChild>
           <Pressable><Text style={styles.link}>{t('plan.open')}</Text></Pressable>
         </Link>

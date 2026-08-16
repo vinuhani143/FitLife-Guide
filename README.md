@@ -8,10 +8,10 @@ This app provides educational information and estimates. It is not a substitute 
 
 FitLife Guide is a **goal + food education** app, not a fitness coach.
 
-1. Enter body measurements and a goal (lose, gain, or maintain weight).
+1. Enter body measurements, a goal (lose, gain, or maintain weight), and veg or non-veg.
 2. See estimated BMI, BMR, daily energy, and a cautious timeline to a target weight.
-3. Log what you actually ate — idli, dosa, roti, dal, fruit, and other catalog foods — with an approximate cooked weight.
-4. Compare that day’s nutrients with the estimated need, then decide the next meal with verified food values.
+3. Open the day-to-day list for that many days (veg list or non-veg list).
+4. Log what you actually ate, or scan a packaged barcode and match it to catalog nutrition.
 
 The app does **not** invent nutrition numbers. Everyday items such as idli, dosa, upma, vada, poori, roti, chutney, dal, vegetable curry, chicken curry, biryani, ghee, oats, eggs, bakery, and snack foods use official USDA FNDDS or SR Legacy records. Homemade recipes vary. Pesarattu, ragi java, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry are listed for search but stay unverified until an official IFCT import exists.
 
@@ -45,9 +45,9 @@ yarn web
 
 ## Android APK
 
-Download: [FitLife-Guide-1.1.1.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.1-preview/FitLife-Guide-1.1.1.apk)
+Download: [FitLife-Guide-1.1.2.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.2-preview/FitLife-Guide-1.1.2.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.1-preview
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.2-preview
 
 Local rebuild for this version (sideload / preview):
 
@@ -57,13 +57,13 @@ export ANDROID_HOME="$HOME/android-sdk"
 yarn apk
 ```
 
-The APK is written to `dist/FitLife-Guide-1.1.1.apk`.
+The APK is written to `dist/FitLife-Guide-1.1.2.apk`.
 
 Install on a phone:
 
 1. Copy the APK to the phone.
 2. Allow install from unknown sources for your file app.
-3. Open `FitLife-Guide-1.1.1.apk`.
+3. Open `FitLife-Guide-1.1.2.apk`.
 4. Package name: `com.fitlifeguide.app`
 
 This local APK is for preview/sideload. A Play Store upload needs your own release keystore.

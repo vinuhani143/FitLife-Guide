@@ -1,8 +1,9 @@
 import { foods } from '@/src/data/foods';
 import { canUseInDefaultCalculations } from '@/src/lib/dataQuality';
+import { foodMatchesDiet } from '@/src/lib/foodDiet';
 import type { MealSlot } from '@/src/types/diary';
 import type { FoodRecord } from '@/src/types/food';
-import type { Goal } from '@/src/types/profile';
+import type { DietType, Goal } from '@/src/types/profile';
 
 export type FoodSuggestion = {
   food: FoodRecord;
@@ -18,9 +19,13 @@ function energyDensity(food: FoodRecord): number | null {
   return food.nutrition.energyKcal;
 }
 
-export function suggestFoodsForGoal(goal: Goal, limit = 6): FoodSuggestion[] {
+export function suggestFoodsForGoal(goal: Goal, limit = 6, dietType: DietType = 'vegetarian'): FoodSuggestion[] {
   const verified = foods.filter(
-    (food) => canUseInDefaultCalculations(food) && !SKIP_CATEGORIES.has(food.category) && energyDensity(food) != null,
+    (food) =>
+      canUseInDefaultCalculations(food) &&
+      !SKIP_CATEGORIES.has(food.category) &&
+      energyDensity(food) != null &&
+      foodMatchesDiet(food, dietType),
   );
 
   const scored = verified.map((food) => {
@@ -131,9 +136,11 @@ function foodsForIds(ids: readonly string[]): FoodRecord[] {
   return ids.map((id) => foods.find((food) => food.id === id)).filter((food): food is FoodRecord => Boolean(food));
 }
 
-export function commonMealFoods(meal?: MealSlot): FoodRecord[] {
-  if (meal === 'breakfast') return foodsForIds(BREAKFAST_FOOD_IDS);
-  if (meal === 'lunch' || meal === 'dinner') return foodsForIds(LUNCH_FOOD_IDS);
-  if (meal === 'morning_snack' || meal === 'evening_snack') return foodsForIds(SNACK_FOOD_IDS);
-  return foodsForIds(COMMON_MEAL_FOOD_IDS);
+export function commonMealFoods(meal?: MealSlot, dietType: DietType = 'vegetarian'): FoodRecord[] {
+  if (meal === 'breakfast') return foodsForIds(BREAKFAST_FOOD_IDS).filter((food) => foodMatchesDiet(food, dietType));
+  if (meal === 'lunch' || meal === 'dinner') return foodsForIds(LUNCH_FOOD_IDS).filter((food) => foodMatchesDiet(food, dietType));
+  if (meal === 'morning_snack' || meal === 'evening_snack') {
+    return foodsForIds(SNACK_FOOD_IDS).filter((food) => foodMatchesDiet(food, dietType));
+  }
+  return foodsForIds(COMMON_MEAL_FOOD_IDS).filter((food) => foodMatchesDiet(food, dietType));
 }

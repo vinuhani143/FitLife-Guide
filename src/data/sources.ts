@@ -1,6 +1,6 @@
 export type SourceEntry = {
   id: string;
-  category: 'who' | 'fao' | 'usda' | 'indian' | 'equation' | 'activity';
+  category: 'who' | 'fao' | 'usda' | 'indian' | 'equation' | 'activity' | 'packaged';
   name: string;
   organization: string;
   reference: string;
@@ -113,6 +113,17 @@ export const SOURCES: SourceEntry[] = [
     url: 'https://www.nin.res.in/',
     usedFor:
       'Preferred source for Indian-specific foods such as ragi, bajra, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry. Those values are not invented here; catalog items stay unavailable until an official IFCT import is added.',
+  },
+  {
+    id: 'open-food-facts',
+    category: 'packaged',
+    name: 'Open Food Facts',
+    organization: 'Open Food Facts',
+    reference:
+      'Open Food Facts packaged-food database. Values shown after a barcode scan are copied from that product record when present. Missing nutrients stay blank. This source is not mixed into the USDA catalog used for diary calculations.',
+    year: null,
+    url: 'https://world.openfoodfacts.org/',
+    usedFor: 'Barcode scan of packaged foods only. Homemade meals should be matched to the USDA catalog.',
   },
   {
     id: 'mifflin-1990',
