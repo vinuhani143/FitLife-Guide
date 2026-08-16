@@ -1,4 +1,4 @@
-import { isVegetarianFood } from '../foodDiet';
+import { foodFitsDietPreference, isVegetarianFood } from '../foodDiet';
 import { foods, getFoodById } from '@/src/data/foods';
 
 describe('food diet', () => {
@@ -12,5 +12,12 @@ describe('food diet', () => {
     expect(isVegetarianFood(getFoodById('prawns-cooked')!)).toBe(false);
     expect(isVegetarianFood(getFoodById('fish-cooked')!)).toBe(false);
     expect(foods.some((food) => food.id === 'chicken-biryani' && !isVegetarianFood(food))).toBe(true);
+  });
+
+  test('goal lists are veg-only or non-veg-only', () => {
+    expect(foodFitsDietPreference(getFoodById('dal')!, 'vegetarian')).toBe(true);
+    expect(foodFitsDietPreference(getFoodById('chicken-curry')!, 'vegetarian')).toBe(false);
+    expect(foodFitsDietPreference(getFoodById('chicken-curry')!, 'non_vegetarian')).toBe(true);
+    expect(foodFitsDietPreference(getFoodById('dal')!, 'non_vegetarian')).toBe(false);
   });
 });

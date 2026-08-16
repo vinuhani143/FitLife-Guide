@@ -1,6 +1,6 @@
 import { foods } from '@/src/data/foods';
 import { canUseInDefaultCalculations } from '@/src/lib/dataQuality';
-import { foodMatchesDiet } from '@/src/lib/foodDiet';
+import { foodFitsDietPreference, foodMatchesDiet } from '@/src/lib/foodDiet';
 import type { MealSlot } from '@/src/types/diary';
 import type { FoodRecord } from '@/src/types/food';
 import type { DietType, Goal } from '@/src/types/profile';
@@ -13,20 +13,23 @@ export type FoodSuggestion = {
   fiberPer100: number | null;
 };
 
-const SKIP_CATEGORIES = new Set(['oils-fats']);
+const SKIP_CATEGORIES = new Set(['oils-fats', 'snacks', 'bakery']);
+const RAW_OK_CATEGORIES = new Set(['vegetables', 'fruits', 'nuts-seeds', 'millets']);
 
 function energyDensity(food: FoodRecord): number | null {
   return food.nutrition.energyKcal;
 }
 
+function usableForGoalList(food: FoodRecord, dietType: DietType): boolean {
+  if (!canUseInDefaultCalculations(food)) return false;
+  if (SKIP_CATEGORIES.has(food.category)) return false;
+  if (energyDensity(food) == null) return false;
+  if (food.state === 'raw' && !RAW_OK_CATEGORIES.has(food.category)) return false;
+  return foodFitsDietPreference(food, dietType);
+}
+
 export function suggestFoodsForGoal(goal: Goal, limit = 6, dietType: DietType = 'vegetarian'): FoodSuggestion[] {
-  const verified = foods.filter(
-    (food) =>
-      canUseInDefaultCalculations(food) &&
-      !SKIP_CATEGORIES.has(food.category) &&
-      energyDensity(food) != null &&
-      foodMatchesDiet(food, dietType),
-  );
+  const verified = foods.filter((food) => usableForGoalList(food, dietType));
 
   const scored = verified.map((food) => {
     const energy = food.nutrition.energyKcal ?? 0;

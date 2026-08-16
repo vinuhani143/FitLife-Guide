@@ -279,7 +279,7 @@
   "plan.week": "week",
   "plan.dailyEnergy": "Estimated daily energy target",
   "plan.whatToEat": "Foods that often fit this goal",
-  "plan.suggestIntro": "These are verified catalog foods, not a meal prescription. Homemade recipes vary. Open a food to see the source and scale the amount.",
+  "plan.suggestIntro": "These are verified catalog foods for the selected veg or non-veg setting, not a meal prescription. Homemade recipes vary. Open a food to see the source and scale the amount.",
   "plan.logToday": "Log what you ate today",
   "plan.open": "Open goal plan",
   "plan.proteinTarget": "Educational protein comparison",
@@ -368,5 +368,9 @@
   "diary.dietHint": "Switch here if today's meal is veg or non-veg. This also updates Goal and Scan lists.",
   "foods.nonveg": "Non-veg",
   "foods.nonvegHint": "Chicken, mutton, fish, prawns, eggs, and mixed dishes. Values are USDA copies, not homemade recipes.",
-  "foods.dietHint": "Choose veg or non-veg to jump to that list. Non-veg is the first chip."
+  "foods.dietHint": "Choose veg or non-veg to jump to that list. Non-veg is the first chip.",
+  "scan.customSearch": "Not in the list? Type the food name in English or Telugu.",
+  "scan.customHint": "The app looks up the USDA catalog. It does not invent calories for unknown homemade dishes.",
+  "scan.customNone": "No catalog match. Try rice, dal, banana, chicken, fish, or another catalog name.",
+  "plan.suggestEmpty": "No verified catalog foods match this diet yet."
 }

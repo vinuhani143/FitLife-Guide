@@ -18,7 +18,7 @@ export default function PlanScreen() {
   const { language, colors, profile, setProfile } = useApp();
   const { bmi, bmr, tdee, target, plan, proteinTargetG, healthy } = useBodyMetrics();
   const t = (key: string, vars?: Record<string, string | number>) => translate(language, key, vars);
-  const suggestions = suggestFoodsForGoal(profile.goal, 6, profile.dietType);
+  const suggestions = suggestFoodsForGoal(profile.goal, 8, profile.dietType);
   const dayCount = plan.status === 'estimated' && plan.estimatedDays != null ? plan.estimatedDays : 7;
 
   return (
@@ -96,7 +96,11 @@ export default function PlanScreen() {
 
       <Card title={t('plan.whatToEat')}>
         <Text style={{ color: colors.muted }}>{t('plan.suggestIntro')}</Text>
-        {suggestions.map((item) => (
+        <Text style={{ color: colors.text, fontWeight: '700' }}>{t(`diet.${profile.dietType}`)}</Text>
+        {suggestions.length === 0 ? (
+          <Text style={{ color: colors.muted }}>{t('plan.suggestEmpty')}</Text>
+        ) : (
+          suggestions.map((item) => (
           <Link key={item.food.id} href={`/food/${item.food.id}`} asChild>
             <Pressable style={[styles.food, { borderColor: colors.border }]}>
               <Text style={{ color: colors.text, fontWeight: '700' }}>
@@ -109,7 +113,8 @@ export default function PlanScreen() {
               <Text style={{ color: colors.muted }}>{t(item.reasonKey)}</Text>
             </Pressable>
           </Link>
-        ))}
+          ))
+        )}
         <Text style={styles.src}>{WHO_PROTEIN_SOURCE.sourceReference}</Text>
         <Link href="/(tabs)/diary" asChild>
           <Pressable><Text style={styles.link}>{t('plan.logToday')}</Text></Pressable>

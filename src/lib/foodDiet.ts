@@ -32,6 +32,12 @@ export function foodMatchesDiet(food: FoodRecord, dietType: DietType): boolean {
   return true;
 }
 
+/** Goal and Foods lists: veg shows only veg, non-veg shows only non-veg. */
+export function foodFitsDietPreference(food: FoodRecord, dietType: DietType): boolean {
+  const vegetarian = isVegetarianFood(food);
+  return dietType === 'vegetarian' ? vegetarian : !vegetarian;
+}
+
 export function filterFoodsByDiet(foods: FoodRecord[], dietType: DietType): FoodRecord[] {
   return foods.filter((food) => foodMatchesDiet(food, dietType));
 }

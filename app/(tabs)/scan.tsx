@@ -1,10 +1,10 @@
 import { CameraView, useCameraPermissions, type BarcodeScanningResult } from 'expo-camera';
 import { Link, useRouter } from 'expo-router';
 import React, { useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Screen } from '@/src/components/Screen';
-import { getFoodById } from '@/src/data/foods';
+import { getFoodById, searchFoods } from '@/src/data/foods';
 import { MACRO_KEYS } from '@/src/lib/calculations/nutrition';
 import { todayIsoDate } from '@/src/lib/calculations/units';
 import { formatNumber } from '@/src/lib/format';
@@ -50,10 +50,13 @@ export default function ScanScreen() {
   const [packaged, setPackaged] = useState<PackagedProductNutrition | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [logged, setLogged] = useState(false);
+  const [query, setQuery] = useState('');
   const lastBarcode = useRef<string | null>(null);
 
   const candidates = plateCandidateIds(profile.dietType);
-  const visibleIds = selectedIds.filter((foodId) => candidates.includes(foodId));
+  const chipIds = [...candidates, ...selectedIds.filter((id) => !candidates.includes(id))];
+  const visibleIds = selectedIds.filter((foodId) => Boolean(getFoodById(foodId)));
+  const searchHits = query.trim() ? searchFoods(query).slice(0, 8) : [];
   const totals = useMemo(
     () => plateTotals(visibleIds.map((foodId) => ({ foodId, size: sizes[foodId] ?? null }))),
     [selectedIds, sizes, profile.dietType],
@@ -108,6 +111,12 @@ export default function ScanScreen() {
     } finally {
       setBusy(false);
     }
+  };
+
+  const addCustom = (foodId: string) => {
+    setSelectedIds((prev) => (prev.includes(foodId) ? prev : [...prev, foodId]));
+    setQuery('');
+    setLogged(false);
   };
 
   const toggleItem = (foodId: string) => {
@@ -216,7 +225,7 @@ export default function ScanScreen() {
       <Card title={t('scan.plateItems')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateItemsHint')}</Text>
         <View style={styles.wrap}>
-          {candidates.map((foodId) => {
+          {chipIds.map((foodId) => {
             const food = getFoodById(foodId);
             if (!food) return null;
             const on = visibleIds.includes(foodId);
@@ -231,6 +240,26 @@ export default function ScanScreen() {
             );
           })}
         </View>
+        <Text style={{ color: colors.muted }}>{t('scan.customSearch')}</Text>
+        <TextInput
+          value={query}
+          onChangeText={setQuery}
+          placeholder={t('foods.search')}
+          placeholderTextColor={colors.muted}
+          style={[styles.input, { color: colors.text, borderColor: colors.border }]}
+        />
+        {query.trim() && searchHits.length === 0 ? (
+          <Text style={{ color: colors.warning }}>{t('scan.customNone')}</Text>
+        ) : null}
+        {searchHits.map((food) => (
+          <Pressable key={`search-${food.id}`} onPress={() => addCustom(food.id)}>
+            <Text style={{ color: visibleIds.includes(food.id) ? colors.primary : colors.text, fontWeight: visibleIds.includes(food.id) ? '700' : '400' }}>
+              {language === 'te' ? food.nameTe : food.nameEn}
+              {food.nutritionAvailable ? ` · ${food.nutrition.energyKcal} kcal/100 g` : ` · ${t('foods.unavailable')}`}
+            </Text>
+          </Pressable>
+        ))}
+        <Text style={{ color: colors.muted }}>{t('scan.customHint')}</Text>
       </Card>
 
       {visibleIds.map((foodId) => {
@@ -309,4 +338,5 @@ const styles = StyleSheet.create({
   buttonText: { color: '#fff', fontWeight: '700' },
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: { borderWidth: 1, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 8, minWidth: 96 },
+  input: { borderWidth: 1, borderRadius: 10, padding: 10 },
 });
