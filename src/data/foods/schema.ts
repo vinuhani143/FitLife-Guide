@@ -1,0 +1,75 @@
+import type { NutrientKey, NutritionValues } from '@/src/types/food';
+
+export const FOOD_DATABASE_VERSION = '2026.1';
+
+export const NUTRIENT_KEYS: NutrientKey[] = [
+  'energyKcal',
+  'proteinG',
+  'carbohydrateG',
+  'fatG',
+  'fiberG',
+  'sugarG',
+  'calciumMg',
+  'ironMg',
+  'magnesiumMg',
+  'phosphorusMg',
+  'potassiumMg',
+  'sodiumMg',
+  'zincMg',
+  'vitaminAMcg',
+  'vitaminCMg',
+  'vitaminDMcg',
+  'vitaminEMg',
+  'vitaminKMcg',
+  'thiaminMg',
+  'riboflavinMg',
+  'niacinMg',
+  'vitaminB6Mg',
+  'folateMcg',
+  'vitaminB12Mcg',
+];
+
+export const EMPTY_NUTRITION: NutritionValues = {
+  energyKcal: null,
+  proteinG: null,
+  carbohydrateG: null,
+  fatG: null,
+  fiberG: null,
+  sugarG: null,
+  calciumMg: null,
+  ironMg: null,
+  magnesiumMg: null,
+  phosphorusMg: null,
+  potassiumMg: null,
+  sodiumMg: null,
+  zincMg: null,
+  vitaminAMcg: null,
+  vitaminCMg: null,
+  vitaminDMcg: null,
+  vitaminEMg: null,
+  vitaminKMcg: null,
+  thiaminMg: null,
+  riboflavinMg: null,
+  niacinMg: null,
+  vitaminB6Mg: null,
+  folateMcg: null,
+  vitaminB12Mcg: null,
+};
+
+export const FOOD_CATEGORIES = [
+  'vegetables',
+  'fruits',
+  'grains',
+  'millets',
+  'pulses',
+  'legumes',
+  'nuts-seeds',
+  'eggs',
+  'chicken',
+  'fish',
+  'meat',
+  'milk-dairy',
+  'oils-fats',
+] as const;
+
+export const FOOD_STATES = ['raw', 'boiled', 'cooked', 'steamed', 'roasted', 'fried', 'dry'] as const;
