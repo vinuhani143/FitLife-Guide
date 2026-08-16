@@ -13,7 +13,7 @@ FitLife Guide is a **goal + food education** app, not a fitness coach.
 3. Log what you actually ate — idli, dosa, roti, dal, fruit, and other catalog foods — with an approximate cooked weight.
 4. Compare that day’s nutrients with the estimated need, then decide the next meal with verified food values.
 
-The app does **not** invent nutrition numbers. Indian breakfast items such as idli, dosa, upma, vada, poori, and roti use official USDA FNDDS records. Homemade recipes vary. Pesarattu and ragi java are listed for search but stay unverified until an official IFCT import exists.
+The app does **not** invent nutrition numbers. Everyday items such as idli, dosa, upma, vada, poori, roti, chutney, dal, vegetable curry, chicken curry, biryani, ghee, oats, eggs, bakery, and snack foods use official USDA FNDDS or SR Legacy records. Homemade recipes vary. Pesarattu, ragi java, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry are listed for search but stay unverified until an official IFCT import exists.
 
 ## Principles
 
@@ -45,11 +45,11 @@ yarn web
 
 ## Android APK
 
-Download: [FitLife-Guide-1.1.0.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.0-preview/FitLife-Guide-1.1.0.apk)
+Previous published preview: [FitLife-Guide-1.1.0.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.0-preview/FitLife-Guide-1.1.0.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.0-preview
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases
 
-Local rebuild (sideload / preview):
+Local rebuild for this version (sideload / preview):
 
 ```bash
 # Requires Android SDK 36, NDK 27.1.12297006, JDK 21
@@ -57,13 +57,13 @@ export ANDROID_HOME="$HOME/android-sdk"
 yarn apk
 ```
 
-The APK is written to `dist/FitLife-Guide-1.1.0.apk`.
+The APK is written to `dist/FitLife-Guide-1.1.1.apk`.
 
 Install on a phone:
 
 1. Copy the APK to the phone.
 2. Allow install from unknown sources for your file app.
-3. Open `FitLife-Guide-1.1.0.apk`.
+3. Open `FitLife-Guide-1.1.1.apk`.
 4. Package name: `com.fitlifeguide.app`
 
 This local APK is for preview/sideload. A Play Store upload needs your own release keystore.
@@ -76,14 +76,14 @@ npx eas-cli build --platform android --profile preview
 
 ## Food database
 
-- Version: `2026.2`
+- Version: `2026.3`
 - File: `src/data/foods/usda-sr-legacy-seed.json`
 - Import helper: `scripts/import-usda-sr-legacy.py`
 - Official USDA download: https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_json_2018-04.zip
 
 ## Known limitations
 
-- Indian Food Composition Tables (NIN/ICMR, 2017) are cited but not bundled, so several Indian millets have no numeric values yet.
+- Indian Food Composition Tables (NIN/ICMR, 2017) are cited but not bundled, so several Indian millets and homemade recipes such as sambar, rasam, pongal, lemon rice, korma, and vegetable fry have no numeric values yet.
 - Child BMI-for-age percentile tables are not bundled, so the app refuses adult BMI categories for under-18 users.
 - Activity calorie numbers are estimates from published MET values (Ainsworth et al., 2011), not measured expenditure.
 - Water tracking uses a personal goal, not a universal medical requirement.

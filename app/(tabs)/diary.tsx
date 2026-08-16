@@ -32,7 +32,13 @@ export default function DiaryScreen() {
   const results = searchFoods(query).slice(0, 8);
   const energyTarget = target?.targetKcal ?? tdee;
   const selected = foods.find((item) => item.id === foodId) ?? null;
-  const common = commonMealFoods();
+  const common = commonMealFoods(meal);
+  const commonHintKey =
+    meal === 'breakfast'
+      ? 'diary.commonHint.breakfast'
+      : meal === 'lunch' || meal === 'dinner'
+        ? 'diary.commonHint.lunch'
+        : 'diary.commonHint.snack';
 
   const todays = diary.filter((entry) => entry.date === today);
   const totals = useMemo(() => {
@@ -79,7 +85,7 @@ export default function DiaryScreen() {
             </Pressable>
           ))}
         </View>
-        <Text style={{ color: colors.muted }}>{t('diary.commonHint')}</Text>
+        <Text style={{ color: colors.muted }}>{t(commonHintKey)}</Text>
         <View style={styles.wrap}>
           {common.map((food) => (
             <Pressable

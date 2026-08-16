@@ -1,6 +1,6 @@
 import type { NutrientKey, NutritionValues } from '@/src/types/food';
 
-export const FOOD_DATABASE_VERSION = '2026.2';
+export const FOOD_DATABASE_VERSION = '2026.3';
 
 export const NUTRIENT_KEYS: NutrientKey[] = [
   'energyKcal',
@@ -72,6 +72,17 @@ export const FOOD_CATEGORIES = [
   'oils-fats',
   'prepared',
   'bakery',
+  'snacks',
 ] as const;
 
-export const FOOD_STATES = ['raw', 'boiled', 'cooked', 'steamed', 'roasted', 'fried', 'dry'] as const;
+export const FOOD_STATES = [
+  'raw',
+  'boiled',
+  'cooked',
+  'steamed',
+  'roasted',
+  'fried',
+  'dry',
+  'ready',
+  'baked',
+] as const;

@@ -13,7 +13,8 @@ export type FoodCategory =
   | 'milk-dairy'
   | 'oils-fats'
   | 'prepared'
-  | 'bakery';
+  | 'bakery'
+  | 'snacks';
 
 export type FoodState =
   | 'raw'
@@ -22,7 +23,9 @@ export type FoodState =
   | 'steamed'
   | 'roasted'
   | 'fried'
-  | 'dry';
+  | 'dry'
+  | 'ready'
+  | 'baked';
 
 export type DataConfidence = 'HIGH' | 'MEDIUM' | 'UNVERIFIED';
 

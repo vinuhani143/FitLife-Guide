@@ -1,5 +1,5 @@
 {
-  "foodDatabaseVersion": "2026.2",
+  "foodDatabaseVersion": "2026.3",
   "importedAt": "2026-08-16",
   "dataset": "USDA FoodData Central SR Legacy (April 2018) and Survey FNDDS records accessed 2026-08-16",
   "datasetFile": "FoodData_Central_sr_legacy_food_json_2018-04.json",
@@ -1963,7 +1963,8 @@
       "state": "cooked",
       "searchTerms": [
         "annam",
-        "cooked rice"
+        "cooked rice",
+        "rice"
       ],
       "usdaDescription": "Rice, white, long-grain, regular, unenriched, cooked without salt",
       "scientificName": null,
@@ -2170,7 +2171,10 @@
       "category": "grains",
       "subcategory": "oats",
       "state": "dry",
-      "searchTerms": [],
+      "searchTerms": [
+        "oats",
+        "oatmeal"
+      ],
       "usdaDescription": "Oats (Includes foods for USDA's Food Distribution Program)",
       "scientificName": "Avena sativa L.",
       "fdcId": 169705,
@@ -3268,7 +3272,9 @@
       "subcategory": "chicken-egg",
       "state": "raw",
       "searchTerms": [
-        "guddu"
+        "guddu",
+        "gudlu",
+        "egg"
       ],
       "usdaDescription": "Egg, whole, raw, fresh",
       "scientificName": null,
@@ -3602,7 +3608,9 @@
       "subcategory": "milk",
       "state": "raw",
       "searchTerms": [
-        "paalu"
+        "paalu",
+        "palu",
+        "milk"
       ],
       "usdaDescription": "Milk, whole, 3.25% milkfat, with added vitamin D",
       "scientificName": null,
@@ -5206,7 +5214,8 @@
       "subcategory": "snack",
       "state": "fried",
       "searchTerms": [
-        "samosa"
+        "samosa",
+        "junk food"
       ],
       "usdaDescription": "Samosa",
       "scientificName": null,
@@ -5545,6 +5554,2710 @@
         "verifiedDate": null,
         "url": "https://www.nin.res.in/",
         "importStatus": "No official USDA prepared-food record was found. Finger millet grain is catalogued separately without invented values."
+      }
+    },
+    {
+      "id": "chutney",
+      "nameEn": "Chutney",
+      "nameTe": "చట్నీ",
+      "category": "prepared",
+      "subcategory": "condiment",
+      "state": "cooked",
+      "searchTerms": [
+        "chutney",
+        "chatni",
+        "pachadi",
+        "coconut chutney"
+      ],
+      "usdaDescription": "Chutney",
+      "scientificName": null,
+      "fdcId": 2709309,
+      "ndbNumber": "63409020",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Mustard and other condiments",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 246,
+        "proteinG": 0.33,
+        "carbohydrateG": 60.6,
+        "fatG": 0.06,
+        "fiberG": 1.0,
+        "sugarG": 42.7,
+        "calciumMg": 19.0,
+        "ironMg": 0.43,
+        "magnesiumMg": 4.0,
+        "phosphorusMg": 17.0,
+        "potassiumMg": 68.0,
+        "sodiumMg": 802,
+        "zincMg": 0.05,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 7.7,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.11,
+        "vitaminKMcg": 0.0,
+        "thiaminMg": 0.014,
+        "riboflavinMg": 0.067,
+        "niacinMg": 0.032,
+        "vitaminB6Mg": 0.018,
+        "folateMcg": 10.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "1 tablespoon",
+          "grams": 16,
+          "amount": 1.0,
+          "modifier": "21000"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 16,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 tablespoon"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2709309",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2709309/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "ghee",
+      "nameEn": "Ghee (clarified butter)",
+      "nameTe": "నెయ్యి",
+      "category": "oils-fats",
+      "subcategory": "ghee",
+      "state": "ready",
+      "searchTerms": [
+        "neyyi",
+        "ghee",
+        "clarified butter"
+      ],
+      "usdaDescription": "Ghee, clarified butter",
+      "scientificName": null,
+      "fdcId": 2710168,
+      "ndbNumber": "81204000",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Butter and animal fats",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 876,
+        "proteinG": 0.28,
+        "carbohydrateG": 0.0,
+        "fatG": 99.5,
+        "fiberG": 0.0,
+        "sugarG": 0.0,
+        "calciumMg": 4.0,
+        "ironMg": 0.0,
+        "magnesiumMg": 0.0,
+        "phosphorusMg": 3.0,
+        "potassiumMg": 5.0,
+        "sodiumMg": 2.0,
+        "zincMg": 0.01,
+        "vitaminAMcg": 840,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 2.8,
+        "vitaminKMcg": 8.6,
+        "thiaminMg": 0.001,
+        "riboflavinMg": 0.005,
+        "niacinMg": 0.003,
+        "vitaminB6Mg": 0.001,
+        "folateMcg": 0.0,
+        "vitaminB12Mcg": 0.01
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 224,
+          "amount": 1.0,
+          "modifier": "10205"
+        },
+        {
+          "labelEn": "1 tablespoon",
+          "grams": 14,
+          "amount": 1.0,
+          "modifier": "21000"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 224,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2710168",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2710168/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "chicken-curry",
+      "nameEn": "Chicken curry",
+      "nameTe": "కోడి కర్రి",
+      "category": "prepared",
+      "subcategory": "curry",
+      "state": "cooked",
+      "searchTerms": [
+        "chicken curry",
+        "kodi kura"
+      ],
+      "usdaDescription": "Chicken curry",
+      "scientificName": null,
+      "fdcId": 2706437,
+      "ndbNumber": "27146150",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Poultry mixed dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 107,
+        "proteinG": 6.48,
+        "carbohydrateG": 6.54,
+        "fatG": 6.48,
+        "fiberG": 1.4,
+        "sugarG": 2.56,
+        "calciumMg": 20.0,
+        "ironMg": 0.71,
+        "magnesiumMg": 18.0,
+        "phosphorusMg": 78.0,
+        "potassiumMg": 280,
+        "sodiumMg": 376,
+        "zincMg": 0.52,
+        "vitaminAMcg": 48.0,
+        "vitaminCMg": 8.9,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 1.44,
+        "vitaminKMcg": 8.7,
+        "thiaminMg": 0.048,
+        "riboflavinMg": 0.083,
+        "niacinMg": 2.14,
+        "vitaminB6Mg": 0.151,
+        "folateMcg": 16.0,
+        "vitaminB12Mcg": 0.08
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 240,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 240,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2706437",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2706437/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "chicken-biryani",
+      "nameEn": "Chicken biryani",
+      "nameTe": "కోడి బిర్యానీ",
+      "category": "prepared",
+      "subcategory": "rice-dish",
+      "state": "cooked",
+      "searchTerms": [
+        "chicken biryani"
+      ],
+      "usdaDescription": "Biryani with chicken",
+      "scientificName": null,
+      "fdcId": 2706538,
+      "ndbNumber": "27243100",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Rice mixed dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 104,
+        "proteinG": 7.15,
+        "carbohydrateG": 13.6,
+        "fatG": 2.38,
+        "fiberG": 1.1,
+        "sugarG": 1.88,
+        "calciumMg": 34.0,
+        "ironMg": 0.84,
+        "magnesiumMg": 19.0,
+        "phosphorusMg": 93.0,
+        "potassiumMg": 256,
+        "sodiumMg": 161,
+        "zincMg": 0.63,
+        "vitaminAMcg": 19.0,
+        "vitaminCMg": 6.2,
+        "vitaminDMcg": 0.1,
+        "vitaminEMg": 0.3,
+        "vitaminKMcg": 5.5,
+        "thiaminMg": 0.073,
+        "riboflavinMg": 0.079,
+        "niacinMg": 2.21,
+        "vitaminB6Mg": 0.177,
+        "folateMcg": 30.0,
+        "vitaminB12Mcg": 0.12
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 196,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 196,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2706538",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2706538/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "meat-biryani",
+      "nameEn": "Meat biryani",
+      "nameTe": "మాంసం బిర్యానీ",
+      "category": "prepared",
+      "subcategory": "rice-dish",
+      "state": "cooked",
+      "searchTerms": [
+        "mutton biryani",
+        "meat biryani"
+      ],
+      "usdaDescription": "Biryani with meat",
+      "scientificName": null,
+      "fdcId": 2706490,
+      "ndbNumber": "27213010",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Rice mixed dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 145,
+        "proteinG": 8.5,
+        "carbohydrateG": 12.2,
+        "fatG": 6.79,
+        "fiberG": 1.0,
+        "sugarG": 1.69,
+        "calciumMg": 33.0,
+        "ironMg": 1.12,
+        "magnesiumMg": 17.0,
+        "phosphorusMg": 76.0,
+        "potassiumMg": 229,
+        "sodiumMg": 98.0,
+        "zincMg": 1.45,
+        "vitaminAMcg": 16.0,
+        "vitaminCMg": 5.6,
+        "vitaminDMcg": 0.1,
+        "vitaminEMg": 0.23,
+        "vitaminKMcg": 6.2,
+        "thiaminMg": 0.061,
+        "riboflavinMg": 0.08,
+        "niacinMg": 1.76,
+        "vitaminB6Mg": 0.136,
+        "folateMcg": 28.0,
+        "vitaminB12Mcg": 0.47
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 196,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 196,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2706490",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2706490/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "vegetable-curry",
+      "nameEn": "Vegetable curry",
+      "nameTe": "కూరగాయ కూర",
+      "category": "prepared",
+      "subcategory": "curry",
+      "state": "cooked",
+      "searchTerms": [
+        "kura",
+        "koora",
+        "sabzi",
+        "vegetable curry"
+      ],
+      "usdaDescription": "Vegetable curry",
+      "scientificName": null,
+      "fdcId": 2710067,
+      "ndbNumber": "75440600",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Vegetable dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 86.0,
+        "proteinG": 1.6,
+        "carbohydrateG": 8.81,
+        "fatG": 5.27,
+        "fiberG": 1.8,
+        "sugarG": 3.18,
+        "calciumMg": 21.0,
+        "ironMg": 0.68,
+        "magnesiumMg": 16.0,
+        "phosphorusMg": 41.0,
+        "potassiumMg": 286,
+        "sodiumMg": 388,
+        "zincMg": 0.26,
+        "vitaminAMcg": 66.0,
+        "vitaminCMg": 12.3,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 1.41,
+        "vitaminKMcg": 10.4,
+        "thiaminMg": 0.047,
+        "riboflavinMg": 0.058,
+        "niacinMg": 0.815,
+        "vitaminB6Mg": 0.137,
+        "folateMcg": 19.0,
+        "vitaminB12Mcg": 0.01
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 240,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 240,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2710067",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2710067/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "lentil-curry",
+      "nameEn": "Lentil curry",
+      "nameTe": "పప్పు కూర",
+      "category": "prepared",
+      "subcategory": "pulse-dish",
+      "state": "cooked",
+      "searchTerms": [
+        "dal curry",
+        "pappu kura"
+      ],
+      "usdaDescription": "Lentil curry",
+      "scientificName": null,
+      "fdcId": 2707431,
+      "ndbNumber": "41311030",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Bean, pea, legume dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 111,
+        "proteinG": 3.68,
+        "carbohydrateG": 12.3,
+        "fatG": 5.65,
+        "fiberG": 3.4,
+        "sugarG": 3.21,
+        "calciumMg": 25.0,
+        "ironMg": 1.42,
+        "magnesiumMg": 23.0,
+        "phosphorusMg": 78.0,
+        "potassiumMg": 292,
+        "sodiumMg": 383,
+        "zincMg": 0.59,
+        "vitaminAMcg": 37.0,
+        "vitaminCMg": 7.7,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 1.41,
+        "vitaminKMcg": 8.6,
+        "thiaminMg": 0.07,
+        "riboflavinMg": 0.062,
+        "niacinMg": 0.806,
+        "vitaminB6Mg": 0.131,
+        "folateMcg": 63.0,
+        "vitaminB12Mcg": 0.01
+      },
+      "portions": [
+        {
+          "labelEn": "1 cup",
+          "grams": 240,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 240,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2707431",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2707431/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "mutton-gravy",
+      "nameEn": "Lamb or mutton with gravy",
+      "nameTe": "మటన్ గ్రేవీ",
+      "category": "prepared",
+      "subcategory": "meat-dish",
+      "state": "cooked",
+      "searchTerms": [
+        "mutton curry",
+        "lamb gravy"
+      ],
+      "usdaDescription": "Lamb or mutton with gravy",
+      "scientificName": null,
+      "fdcId": 2706413,
+      "ndbNumber": "27130010",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Meat mixed dishes",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 219,
+        "proteinG": 17.3,
+        "carbohydrateG": 1.58,
+        "fatG": 15.4,
+        "fiberG": 0.0,
+        "sugarG": 0.09,
+        "calciumMg": 15.0,
+        "ironMg": 1.34,
+        "magnesiumMg": 17.0,
+        "phosphorusMg": 137,
+        "potassiumMg": 228,
+        "sodiumMg": 359,
+        "zincMg": 3.13,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.1,
+        "vitaminEMg": 0.13,
+        "vitaminKMcg": 3.4,
+        "thiaminMg": 0.077,
+        "riboflavinMg": 0.19,
+        "niacinMg": 4.72,
+        "vitaminB6Mg": 0.098,
+        "folateMcg": 13.0,
+        "vitaminB12Mcg": 1.78
+      },
+      "portions": [
+        {
+          "labelEn": "1 slice with gravy",
+          "grams": 43,
+          "amount": 1.0,
+          "modifier": "62002"
+        },
+        {
+          "labelEn": "1 cup",
+          "grams": 244,
+          "amount": 1.0,
+          "modifier": "10205"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 244,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2706413",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2706413/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "pakora",
+      "nameEn": "Pakora (fried vegetable fritter)",
+      "nameTe": "పకోడా / కూరగాయ వేయించినది",
+      "category": "prepared",
+      "subcategory": "fried",
+      "state": "fried",
+      "searchTerms": [
+        "pakora",
+        "bajji",
+        "bhaji",
+        "bondalu"
+      ],
+      "usdaDescription": "Pakora",
+      "scientificName": null,
+      "fdcId": 2710066,
+      "ndbNumber": "75440400",
+      "publicationDate": "10/31/2024",
+      "usdaCategory": "Fried vegetables",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 125,
+        "proteinG": 4.92,
+        "carbohydrateG": 16.2,
+        "fatG": 4.77,
+        "fiberG": 3.2,
+        "sugarG": 2.97,
+        "calciumMg": 19.0,
+        "ironMg": 1.12,
+        "magnesiumMg": 22.0,
+        "phosphorusMg": 64.0,
+        "potassiumMg": 214,
+        "sodiumMg": 380,
+        "zincMg": 0.67,
+        "vitaminAMcg": 3.0,
+        "vitaminCMg": 3.5,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.87,
+        "vitaminKMcg": 7.3,
+        "thiaminMg": 0.116,
+        "riboflavinMg": 0.056,
+        "niacinMg": 0.451,
+        "vitaminB6Mg": 0.152,
+        "folateMcg": 129,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "1 pakora",
+          "grams": 12,
+          "amount": 1.0,
+          "modifier": "61597"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 12,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "1 pakora"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, Survey (FNDDS)",
+        "reference": "FDC ID 2710066",
+        "year": 2024,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/2710066/nutrients",
+        "importStatus": "Copied from official USDA FNDDS. Homemade recipes vary; values are not invented."
+      }
+    },
+    {
+      "id": "oats-cooked",
+      "nameEn": "Oats, cooked in water",
+      "nameTe": "ఓట్స్ (ఉడికించినది)",
+      "category": "grains",
+      "subcategory": "oats",
+      "state": "cooked",
+      "searchTerms": [
+        "oats",
+        "oatmeal"
+      ],
+      "usdaDescription": "Cereals, oats, regular and quick, unenriched, cooked with water (includes boiling and microwaving), without salt",
+      "scientificName": null,
+      "fdcId": 173905,
+      "ndbNumber": 8121,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Breakfast Cereals",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 71.0,
+        "proteinG": 2.54,
+        "carbohydrateG": 12.0,
+        "fatG": 1.52,
+        "fiberG": 1.7,
+        "sugarG": 0.27,
+        "calciumMg": 9.0,
+        "ironMg": 0.9,
+        "magnesiumMg": 27.0,
+        "phosphorusMg": 77.0,
+        "potassiumMg": 70.0,
+        "sodiumMg": 4.0,
+        "zincMg": 1.0,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.08,
+        "vitaminKMcg": 0.3,
+        "thiaminMg": 0.076,
+        "riboflavinMg": 0.016,
+        "niacinMg": 0.225,
+        "vitaminB6Mg": 0.005,
+        "folateMcg": 6.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "tbsp",
+          "grams": 14.6,
+          "amount": 1.0,
+          "modifier": "tbsp"
+        },
+        {
+          "labelEn": "cup",
+          "grams": 234.0,
+          "amount": 1.0,
+          "modifier": "cup"
+        },
+        {
+          "labelEn": "cup",
+          "grams": 175.0,
+          "amount": 0.75,
+          "modifier": "cup"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 234.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 173905",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/173905/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "egg-boiled",
+      "nameEn": "Egg, hard-boiled",
+      "nameTe": "ఉడికిన గుడ్డు",
+      "category": "eggs",
+      "subcategory": "chicken-egg",
+      "state": "boiled",
+      "searchTerms": [
+        "boiled egg",
+        "guddu"
+      ],
+      "usdaDescription": "Egg, whole, cooked, hard-boiled",
+      "scientificName": null,
+      "fdcId": 173424,
+      "ndbNumber": 1129,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Dairy and Egg Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 155,
+        "proteinG": 12.6,
+        "carbohydrateG": 1.12,
+        "fatG": 10.6,
+        "fiberG": 0.0,
+        "sugarG": 1.12,
+        "calciumMg": 50.0,
+        "ironMg": 1.19,
+        "magnesiumMg": 10.0,
+        "phosphorusMg": 172,
+        "potassiumMg": 126,
+        "sodiumMg": 124,
+        "zincMg": 1.05,
+        "vitaminAMcg": 149,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 2.2,
+        "vitaminEMg": 1.03,
+        "vitaminKMcg": 0.3,
+        "thiaminMg": 0.066,
+        "riboflavinMg": 0.513,
+        "niacinMg": 0.064,
+        "vitaminB6Mg": 0.121,
+        "folateMcg": 44.0,
+        "vitaminB12Mcg": 1.11
+      },
+      "portions": [
+        {
+          "labelEn": "tbsp",
+          "grams": 8.5,
+          "amount": 1.0,
+          "modifier": "tbsp"
+        },
+        {
+          "labelEn": "cup, chopped",
+          "grams": 136.0,
+          "amount": 1.0,
+          "modifier": "cup, chopped"
+        },
+        {
+          "labelEn": "large",
+          "grams": 50.0,
+          "amount": 1.0,
+          "modifier": "large"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 136.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup, chopped"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 173424",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/173424/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "egg-omelet",
+      "nameEn": "Egg omelet",
+      "nameTe": "ఒమ్లెట్",
+      "category": "eggs",
+      "subcategory": "chicken-egg",
+      "state": "cooked",
+      "searchTerms": [
+        "omelette",
+        "omelet"
+      ],
+      "usdaDescription": "Egg, whole, cooked, omelet",
+      "scientificName": null,
+      "fdcId": 172185,
+      "ndbNumber": 1130,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Dairy and Egg Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 154,
+        "proteinG": 10.6,
+        "carbohydrateG": 0.64,
+        "fatG": 11.7,
+        "fiberG": 0.0,
+        "sugarG": 0.31,
+        "calciumMg": 48.0,
+        "ironMg": 1.48,
+        "magnesiumMg": 11.0,
+        "phosphorusMg": 167,
+        "potassiumMg": 117,
+        "sodiumMg": 155,
+        "zincMg": 1.09,
+        "vitaminAMcg": 172,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 1.7,
+        "vitaminEMg": 1.29,
+        "vitaminKMcg": 4.5,
+        "thiaminMg": 0.034,
+        "riboflavinMg": 0.386,
+        "niacinMg": 0.064,
+        "vitaminB6Mg": 0.143,
+        "folateMcg": 39.0,
+        "vitaminB12Mcg": 0.76
+      },
+      "portions": [
+        {
+          "labelEn": "large",
+          "grams": 61.0,
+          "amount": 1.0,
+          "modifier": "large"
+        },
+        {
+          "labelEn": "tbsp",
+          "grams": 15.0,
+          "amount": 1.0,
+          "modifier": "tbsp"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 61.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "large"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 172185",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/172185/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "bread-white",
+      "nameEn": "White bread",
+      "nameTe": "తెల్ల బ్రెడ్",
+      "category": "bakery",
+      "subcategory": "bread",
+      "state": "ready",
+      "searchTerms": [
+        "bread",
+        "sandwich bread"
+      ],
+      "usdaDescription": "Bread, white, commercially prepared (includes soft bread crumbs)",
+      "scientificName": null,
+      "fdcId": 174924,
+      "ndbNumber": 18069,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Baked Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 266,
+        "proteinG": 8.85,
+        "carbohydrateG": 49.4,
+        "fatG": 3.33,
+        "fiberG": 2.7,
+        "sugarG": 5.67,
+        "calciumMg": 144,
+        "ironMg": 3.61,
+        "magnesiumMg": 23.0,
+        "phosphorusMg": 98.0,
+        "potassiumMg": 126,
+        "sodiumMg": 490,
+        "zincMg": 0.74,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.22,
+        "vitaminKMcg": 0.2,
+        "thiaminMg": 0.533,
+        "riboflavinMg": 0.243,
+        "niacinMg": 4.78,
+        "vitaminB6Mg": 0.087,
+        "folateMcg": 111,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "slice",
+          "grams": 29.0,
+          "amount": 1.0,
+          "modifier": "slice"
+        },
+        {
+          "labelEn": "slice crust not eaten",
+          "grams": 12.0,
+          "amount": 1.0,
+          "modifier": "slice crust not eaten"
+        },
+        {
+          "labelEn": "cup, cubes",
+          "grams": 35.0,
+          "amount": 1.0,
+          "modifier": "cup, cubes"
+        },
+        {
+          "labelEn": "cup, crumbs",
+          "grams": 45.0,
+          "amount": 1.0,
+          "modifier": "cup, crumbs"
+        },
+        {
+          "labelEn": "slice, thin",
+          "grams": 20.0,
+          "amount": 1.0,
+          "modifier": "slice, thin"
+        },
+        {
+          "labelEn": "slice, very thin",
+          "grams": 15.0,
+          "amount": 1.0,
+          "modifier": "slice, very thin"
+        },
+        {
+          "labelEn": "slice",
+          "grams": 25.0,
+          "amount": 1.0,
+          "modifier": "slice"
+        },
+        {
+          "labelEn": "slice, large",
+          "grams": 30.0,
+          "amount": 1.0,
+          "modifier": "slice, large"
+        },
+        {
+          "labelEn": "slice thin, crust not eaten",
+          "grams": 9.0,
+          "amount": 1.0,
+          "modifier": "slice thin, crust not eaten"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 35.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup, cubes"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 174924",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/174924/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "potato-chips",
+      "nameEn": "Potato chips, salted",
+      "nameTe": "బంగాళ చిప్స్",
+      "category": "snacks",
+      "subcategory": "chips",
+      "state": "fried",
+      "searchTerms": [
+        "chips",
+        "crisps",
+        "lay's"
+      ],
+      "usdaDescription": "Snacks, potato chips, plain, salted",
+      "scientificName": null,
+      "fdcId": 169677,
+      "ndbNumber": 19411,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Snacks",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 532,
+        "proteinG": 6.39,
+        "carbohydrateG": 53.8,
+        "fatG": 34.0,
+        "fiberG": 3.1,
+        "sugarG": 0.33,
+        "calciumMg": 21.0,
+        "ironMg": 1.28,
+        "magnesiumMg": 63.0,
+        "phosphorusMg": 153,
+        "potassiumMg": 1200.0,
+        "sodiumMg": 527,
+        "zincMg": 1.09,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 21.6,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 10.4,
+        "vitaminKMcg": 22.1,
+        "thiaminMg": 0.213,
+        "riboflavinMg": 0.088,
+        "niacinMg": 4.76,
+        "vitaminB6Mg": 0.531,
+        "folateMcg": 29.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "bag (8 oz)",
+          "grams": 227.0,
+          "amount": 1.0,
+          "modifier": "bag (8 oz)"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.0,
+          "amount": 1.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "chips",
+          "grams": 28.0,
+          "amount": 22.0,
+          "modifier": "chips"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 227.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "bag (8 oz)"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 169677",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/169677/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "french-fries",
+      "nameEn": "French fries, oven-heated",
+      "nameTe": "ఫ్రెంచ్ ఫ్రైస్",
+      "category": "snacks",
+      "subcategory": "fried-potato",
+      "state": "fried",
+      "searchTerms": [
+        "fries",
+        "finger chips"
+      ],
+      "usdaDescription": "Potatoes, french fried, all types, salt added in processing, frozen, home-prepared, oven heated",
+      "scientificName": null,
+      "fdcId": 169264,
+      "ndbNumber": 11403,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Vegetables and Vegetable Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 158,
+        "proteinG": 2.75,
+        "carbohydrateG": 25.6,
+        "fatG": 5.48,
+        "fiberG": 2.0,
+        "sugarG": 0.37,
+        "calciumMg": 12.0,
+        "ironMg": 0.57,
+        "magnesiumMg": 24.0,
+        "phosphorusMg": 87.0,
+        "potassiumMg": 478,
+        "sodiumMg": 324,
+        "zincMg": 0.35,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 8.6,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.39,
+        "vitaminKMcg": 7.4,
+        "thiaminMg": 0.13,
+        "riboflavinMg": 0.032,
+        "niacinMg": 2.08,
+        "vitaminB6Mg": 0.261,
+        "folateMcg": 23.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "package (9 oz), yields",
+          "grams": 198.0,
+          "amount": 1.0,
+          "modifier": "package (9 oz), yields"
+        },
+        {
+          "labelEn": "fries",
+          "grams": 76.0,
+          "amount": 10.0,
+          "modifier": "fries"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 198.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "package (9 oz), yields"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 169264",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/169264/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "ice-cream-vanilla",
+      "nameEn": "Vanilla ice cream",
+      "nameTe": "వనిలా ఐస్ క్రీమ్",
+      "category": "snacks",
+      "subcategory": "dessert",
+      "state": "ready",
+      "searchTerms": [
+        "ice cream"
+      ],
+      "usdaDescription": "Ice creams, vanilla",
+      "scientificName": null,
+      "fdcId": 167575,
+      "ndbNumber": 19095,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Sweets",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 207,
+        "proteinG": 3.5,
+        "carbohydrateG": 23.6,
+        "fatG": 11.0,
+        "fiberG": 0.7,
+        "sugarG": 21.2,
+        "calciumMg": 128,
+        "ironMg": 0.09,
+        "magnesiumMg": 14.0,
+        "phosphorusMg": 105,
+        "potassiumMg": 199,
+        "sodiumMg": 80.0,
+        "zincMg": 0.69,
+        "vitaminAMcg": 118,
+        "vitaminCMg": 0.6,
+        "vitaminDMcg": 0.2,
+        "vitaminEMg": 0.3,
+        "vitaminKMcg": 0.3,
+        "thiaminMg": 0.041,
+        "riboflavinMg": 0.24,
+        "niacinMg": 0.116,
+        "vitaminB6Mg": 0.048,
+        "folateMcg": 5.0,
+        "vitaminB12Mcg": 0.39
+      },
+      "portions": [
+        {
+          "labelEn": "serving 1/2 cup",
+          "grams": 66.0,
+          "amount": 1.0,
+          "modifier": "serving 1/2 cup"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 66.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "serving 1/2 cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 167575",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/167575/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "cola",
+      "nameEn": "Cola, regular",
+      "nameTe": "కోలా",
+      "category": "snacks",
+      "subcategory": "drink",
+      "state": "ready",
+      "searchTerms": [
+        "coke",
+        "pepsi",
+        "soft drink",
+        "soda"
+      ],
+      "usdaDescription": "Beverages, carbonated, cola, regular",
+      "scientificName": null,
+      "fdcId": 174852,
+      "ndbNumber": 14148,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Beverages",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 42.0,
+        "proteinG": 0.0,
+        "carbohydrateG": 10.4,
+        "fatG": 0.25,
+        "fiberG": 0.0,
+        "sugarG": 9.94,
+        "calciumMg": 1.0,
+        "ironMg": 0.02,
+        "magnesiumMg": 0.0,
+        "phosphorusMg": 9.0,
+        "potassiumMg": 5.0,
+        "sodiumMg": 3.0,
+        "zincMg": 0.09,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.0,
+        "vitaminKMcg": 0.0,
+        "thiaminMg": 0.0,
+        "riboflavinMg": 0.0,
+        "niacinMg": 0.0,
+        "vitaminB6Mg": 0.0,
+        "folateMcg": 0.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "drink, small (16 fl oz)",
+          "grams": 492.0,
+          "amount": 1.0,
+          "modifier": "drink, small (16 fl oz)"
+        },
+        {
+          "labelEn": "drink, extra large (44 fl oz)",
+          "grams": 1353.0,
+          "amount": 1.0,
+          "modifier": "drink, extra large (44 fl oz)"
+        },
+        {
+          "labelEn": "fl oz",
+          "grams": 30.7,
+          "amount": 1.0,
+          "modifier": "fl oz"
+        },
+        {
+          "labelEn": "can or bottle (12 fl oz)",
+          "grams": 370.0,
+          "amount": 1.0,
+          "modifier": "can or bottle (12 fl oz)"
+        },
+        {
+          "labelEn": "drink, large (32 fl oz)",
+          "grams": 984.0,
+          "amount": 1.0,
+          "modifier": "drink, large (32 fl oz)"
+        },
+        {
+          "labelEn": "drink, medium (22 fl oz)",
+          "grams": 676.0,
+          "amount": 1.0,
+          "modifier": "drink, medium (22 fl oz)"
+        },
+        {
+          "labelEn": "can or bottle (16 fl oz)",
+          "grams": 492.0,
+          "amount": 1.0,
+          "modifier": "can or bottle (16 fl oz)"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 676.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "drink, medium (22 fl oz)"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 174852",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/174852/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "cookie-chocolate-chip",
+      "nameEn": "Chocolate chip cookie",
+      "nameTe": "చాకొలెట్ చిప్ బిస్కెట్",
+      "category": "bakery",
+      "subcategory": "cookie",
+      "state": "baked",
+      "searchTerms": [
+        "cookie",
+        "biscuit chocolate"
+      ],
+      "usdaDescription": "Cookies, chocolate chip, commercially prepared, regular, higher fat, enriched",
+      "scientificName": null,
+      "fdcId": 172716,
+      "ndbNumber": 18159,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Baked Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 492,
+        "proteinG": 5.1,
+        "carbohydrateG": 65.4,
+        "fatG": 24.7,
+        "fiberG": 2.0,
+        "sugarG": 32.9,
+        "calciumMg": 21.0,
+        "ironMg": 5.58,
+        "magnesiumMg": 41.0,
+        "phosphorusMg": 109,
+        "potassiumMg": 171,
+        "sodiumMg": 311,
+        "zincMg": 0.72,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 2.01,
+        "vitaminKMcg": 33.7,
+        "thiaminMg": 0.292,
+        "riboflavinMg": 0.297,
+        "niacinMg": 2.66,
+        "vitaminB6Mg": 0.058,
+        "folateMcg": 92.0,
+        "vitaminB12Mcg": 0.03
+      },
+      "portions": [
+        {
+          "labelEn": "cookie, large (include Keebler Rich 'n Chips, Pecan Chips Delux)",
+          "grams": 14.0,
+          "amount": 1.0,
+          "modifier": "cookie, large (include Keebler Rich 'n Chips, Pecan Chips Delux)"
+        },
+        {
+          "labelEn": "cookie (average weight of 1 cookie, variety of brands)",
+          "grams": 12.2,
+          "amount": 1.0,
+          "modifier": "cookie (average weight of 1 cookie, variety of brands)"
+        },
+        {
+          "labelEn": "cookie, big (3-1/2\" - 4\" dia) (include Grandma brand)",
+          "grams": 40.0,
+          "amount": 1.0,
+          "modifier": "cookie, big (3-1/2\" - 4\" dia) (include Grandma brand)"
+        },
+        {
+          "labelEn": "cookie, bite size (include Mini Chips Ahoy!)",
+          "grams": 2.2,
+          "amount": 1.0,
+          "modifier": "cookie, bite size (include Mini Chips Ahoy!)"
+        },
+        {
+          "labelEn": "cookie, medium (2-1/4\" dia)",
+          "grams": 10.0,
+          "amount": 1.0,
+          "modifier": "cookie, medium (2-1/4\" dia)"
+        },
+        {
+          "labelEn": "cookie Pepperidge Farm Chocolate Chunk Pecan",
+          "grams": 12.0,
+          "amount": 1.0,
+          "modifier": "cookie Pepperidge Farm Chocolate Chunk Pecan"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "cookie",
+          "grams": 12.9,
+          "amount": 1.0,
+          "modifier": "cookie"
+        },
+        {
+          "labelEn": "cookie Pepperidge Farm Chocolate Chunk Pecan",
+          "grams": 12.0,
+          "amount": 1.0,
+          "modifier": "cookie Pepperidge Farm Chocolate Chunk Pecan"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 10.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cookie, medium (2-1/4\" dia)"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 172716",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/172716/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "doughnut-plain",
+      "nameEn": "Doughnut, plain cake-type",
+      "nameTe": "డోనట్",
+      "category": "bakery",
+      "subcategory": "doughnut",
+      "state": "fried",
+      "searchTerms": [
+        "donut",
+        "doughnut"
+      ],
+      "usdaDescription": "Doughnuts, cake-type, plain (includes unsugared, old-fashioned)",
+      "scientificName": null,
+      "fdcId": 174990,
+      "ndbNumber": 18248,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Baked Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 434,
+        "proteinG": 5.31,
+        "carbohydrateG": 47.1,
+        "fatG": 24.9,
+        "fiberG": 1.7,
+        "sugarG": 18.2,
+        "calciumMg": 40.0,
+        "ironMg": 2.53,
+        "magnesiumMg": 17.0,
+        "phosphorusMg": 260,
+        "potassiumMg": 134,
+        "sodiumMg": 477,
+        "zincMg": 0.5,
+        "vitaminAMcg": 4.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 1.99,
+        "vitaminKMcg": 9.8,
+        "thiaminMg": 0.39,
+        "riboflavinMg": 0.301,
+        "niacinMg": 2.91,
+        "vitaminB6Mg": 0.05,
+        "folateMcg": 145,
+        "vitaminB12Mcg": 0.06
+      },
+      "portions": [
+        {
+          "labelEn": "doughnut, mini (1-1/2\" dia) or doughnut hole",
+          "grams": 14.0,
+          "amount": 1.0,
+          "modifier": "doughnut, mini (1-1/2\" dia) or doughnut hole"
+        },
+        {
+          "labelEn": "doughnut stick",
+          "grams": 52.0,
+          "amount": 1.0,
+          "modifier": "doughnut stick"
+        },
+        {
+          "labelEn": "doughnut, long type (twist) (4-1/2\" long)",
+          "grams": 52.0,
+          "amount": 1.0,
+          "modifier": "doughnut, long type (twist) (4-1/2\" long)"
+        },
+        {
+          "labelEn": "doughnut medium (3-1/4\" dia)",
+          "grams": 54.0,
+          "amount": 1.0,
+          "modifier": "doughnut medium (3-1/4\" dia)"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "donut",
+          "grams": 40.0,
+          "amount": 1.0,
+          "modifier": "donut"
+        },
+        {
+          "labelEn": "doughnut, large (4\" dia)",
+          "grams": 71.0,
+          "amount": 1.0,
+          "modifier": "doughnut, large (4\" dia)"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 54.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "doughnut medium (3-1/4\" dia)"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 174990",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/174990/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "pizza-cheese",
+      "nameEn": "Cheese pizza, regular crust",
+      "nameTe": "చీజ్ పిజ్జా",
+      "category": "snacks",
+      "subcategory": "pizza",
+      "state": "baked",
+      "searchTerms": [
+        "pizza"
+      ],
+      "usdaDescription": "Fast Food, Pizza Chain, 14\" pizza, cheese topping, regular crust",
+      "scientificName": null,
+      "fdcId": 173292,
+      "ndbNumber": 21299,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Fast Foods",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 266,
+        "proteinG": 11.4,
+        "carbohydrateG": 33.3,
+        "fatG": 9.69,
+        "fiberG": 2.3,
+        "sugarG": 3.58,
+        "calciumMg": 188,
+        "ironMg": 2.48,
+        "magnesiumMg": 24.0,
+        "phosphorusMg": 216,
+        "potassiumMg": 172,
+        "sodiumMg": 598,
+        "zincMg": 1.34,
+        "vitaminAMcg": 69.0,
+        "vitaminCMg": 1.4,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.83,
+        "vitaminKMcg": 6.7,
+        "thiaminMg": 0.39,
+        "riboflavinMg": 0.195,
+        "niacinMg": 3.82,
+        "vitaminB6Mg": 0.08,
+        "folateMcg": 129,
+        "vitaminB12Mcg": 0.42
+      },
+      "portions": [
+        {
+          "labelEn": "pizza",
+          "grams": 853.0,
+          "amount": 1.0,
+          "modifier": "pizza"
+        },
+        {
+          "labelEn": "slice",
+          "grams": 107.0,
+          "amount": 1.0,
+          "modifier": "slice"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 853.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "pizza"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 173292",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/173292/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "hamburger",
+      "nameEn": "Hamburger, with condiments",
+      "nameTe": "హామ్బర్గర్",
+      "category": "snacks",
+      "subcategory": "burger",
+      "state": "ready",
+      "searchTerms": [
+        "burger",
+        "hamburger"
+      ],
+      "usdaDescription": "Fast foods, hamburger; single, regular patty; with condiments",
+      "scientificName": null,
+      "fdcId": 170694,
+      "ndbNumber": 21108,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Fast Foods",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 263,
+        "proteinG": 13.3,
+        "carbohydrateG": 29.6,
+        "fatG": 10.2,
+        "fiberG": 1.8,
+        "sugarG": 5.95,
+        "calciumMg": 116,
+        "ironMg": 2.87,
+        "magnesiumMg": 22.0,
+        "phosphorusMg": 110,
+        "potassiumMg": 197,
+        "sodiumMg": 487,
+        "zincMg": 2.03,
+        "vitaminAMcg": 3.0,
+        "vitaminCMg": 0.3,
+        "vitaminDMcg": 0.1,
+        "vitaminEMg": 0.07,
+        "vitaminKMcg": 4.9,
+        "thiaminMg": 0.349,
+        "riboflavinMg": 0.186,
+        "niacinMg": 4.06,
+        "vitaminB6Mg": 0.108,
+        "folateMcg": 66.0,
+        "vitaminB12Mcg": 1.2
+      },
+      "portions": [
+        {
+          "labelEn": "sandwich",
+          "grams": 97.0,
+          "amount": 1.0,
+          "modifier": "sandwich"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 97.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "sandwich"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 170694",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/170694/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "milk-chocolate",
+      "nameEn": "Milk chocolate",
+      "nameTe": "మిల్క్ చాకొలేట్",
+      "category": "snacks",
+      "subcategory": "chocolate",
+      "state": "ready",
+      "searchTerms": [
+        "chocolate",
+        "dairy milk"
+      ],
+      "usdaDescription": "Candies, milk chocolate",
+      "scientificName": null,
+      "fdcId": 167587,
+      "ndbNumber": 19120,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Sweets",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 535,
+        "proteinG": 7.65,
+        "carbohydrateG": 59.4,
+        "fatG": 29.7,
+        "fiberG": 3.4,
+        "sugarG": 51.5,
+        "calciumMg": 189,
+        "ironMg": 2.35,
+        "magnesiumMg": 63.0,
+        "phosphorusMg": 208,
+        "potassiumMg": 372,
+        "sodiumMg": 79.0,
+        "zincMg": 2.3,
+        "vitaminAMcg": 59.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.51,
+        "vitaminKMcg": 5.7,
+        "thiaminMg": 0.112,
+        "riboflavinMg": 0.298,
+        "niacinMg": 0.386,
+        "vitaminB6Mg": 0.036,
+        "folateMcg": 11.0,
+        "vitaminB12Mcg": 0.75
+      },
+      "portions": [
+        {
+          "labelEn": "bar, miniature",
+          "grams": 7.0,
+          "amount": 1.0,
+          "modifier": "bar, miniature"
+        },
+        {
+          "labelEn": "cup chips",
+          "grams": 168.0,
+          "amount": 1.0,
+          "modifier": "cup chips"
+        },
+        {
+          "labelEn": "bar (1.55 oz)",
+          "grams": 44.0,
+          "amount": 1.0,
+          "modifier": "bar (1.55 oz)"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 168.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup chips"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 167587",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/167587/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "popcorn",
+      "nameEn": "Popcorn, air-popped",
+      "nameTe": "పాప్కార్న్",
+      "category": "snacks",
+      "subcategory": "popcorn",
+      "state": "ready",
+      "searchTerms": [
+        "popcorn"
+      ],
+      "usdaDescription": "Snacks, popcorn, air-popped",
+      "scientificName": null,
+      "fdcId": 167959,
+      "ndbNumber": 19034,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Snacks",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 387,
+        "proteinG": 12.9,
+        "carbohydrateG": 77.8,
+        "fatG": 4.54,
+        "fiberG": 14.5,
+        "sugarG": 0.87,
+        "calciumMg": 7.0,
+        "ironMg": 3.19,
+        "magnesiumMg": 144,
+        "phosphorusMg": 358,
+        "potassiumMg": 329,
+        "sodiumMg": 8.0,
+        "zincMg": 3.08,
+        "vitaminAMcg": 10.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.29,
+        "vitaminKMcg": 1.2,
+        "thiaminMg": 0.104,
+        "riboflavinMg": 0.083,
+        "niacinMg": 2.31,
+        "vitaminB6Mg": 0.157,
+        "folateMcg": 31.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "cup",
+          "grams": 8.0,
+          "amount": 1.0,
+          "modifier": "cup"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 8.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 167959",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/167959/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "pound-cake",
+      "nameEn": "Pound cake",
+      "nameTe": "పౌండ్ కేక్",
+      "category": "bakery",
+      "subcategory": "cake",
+      "state": "baked",
+      "searchTerms": [
+        "cake"
+      ],
+      "usdaDescription": "Cake, pound, commercially prepared, butter (includes fresh and frozen)",
+      "scientificName": null,
+      "fdcId": 172704,
+      "ndbNumber": 18120,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Baked Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 353,
+        "proteinG": 5.0,
+        "carbohydrateG": 53.6,
+        "fatG": 14.0,
+        "fiberG": 0.6,
+        "sugarG": 33.4,
+        "calciumMg": 47.0,
+        "ironMg": 1.48,
+        "magnesiumMg": 8.0,
+        "phosphorusMg": 140,
+        "potassiumMg": 149,
+        "sodiumMg": 377,
+        "zincMg": 0.43,
+        "vitaminAMcg": 70.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.8,
+        "vitaminEMg": 0.65,
+        "vitaminKMcg": 1.7,
+        "thiaminMg": 0.173,
+        "riboflavinMg": 0.249,
+        "niacinMg": 1.62,
+        "vitaminB6Mg": 0.036,
+        "folateMcg": 42.0,
+        "vitaminB12Mcg": 0.36
+      },
+      "portions": [
+        {
+          "labelEn": "loaf 1/6 of the loaf",
+          "grams": 61.0,
+          "amount": 0.16,
+          "modifier": "loaf 1/6 of the loaf"
+        },
+        {
+          "labelEn": "piece individually wrapped cake",
+          "grams": 49.0,
+          "amount": 1.0,
+          "modifier": "piece individually wrapped cake"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 61.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "loaf 1/6 of the loaf"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 172704",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/172704/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "mixed-vegetables-cooked",
+      "nameEn": "Mixed vegetables, boiled",
+      "nameTe": "మిశ్రిత కూరగాయలు (ఉడికినది)",
+      "category": "vegetables",
+      "subcategory": "mixed",
+      "state": "boiled",
+      "searchTerms": [
+        "mixed vegetables",
+        "veg mix"
+      ],
+      "usdaDescription": "Vegetables, mixed, frozen, cooked, boiled, drained, without salt",
+      "scientificName": null,
+      "fdcId": 170472,
+      "ndbNumber": 11584,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Vegetables and Vegetable Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 65.0,
+        "proteinG": 2.86,
+        "carbohydrateG": 13.1,
+        "fatG": 0.15,
+        "fiberG": 4.4,
+        "sugarG": 3.12,
+        "calciumMg": 25.0,
+        "ironMg": 0.82,
+        "magnesiumMg": 22.0,
+        "phosphorusMg": 51.0,
+        "potassiumMg": 169,
+        "sodiumMg": 35.0,
+        "zincMg": 0.49,
+        "vitaminAMcg": 214,
+        "vitaminCMg": 3.2,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 0.38,
+        "vitaminKMcg": 23.5,
+        "thiaminMg": 0.071,
+        "riboflavinMg": 0.12,
+        "niacinMg": 0.851,
+        "vitaminB6Mg": 0.074,
+        "folateMcg": 19.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "package (10 oz) yields",
+          "grams": 275.0,
+          "amount": 1.0,
+          "modifier": "package (10 oz) yields"
+        },
+        {
+          "labelEn": "cup",
+          "grams": 91.0,
+          "amount": 0.5,
+          "modifier": "cup"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 91.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 170472",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/170472/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "ramen-dry",
+      "nameEn": "Instant ramen noodles, dry",
+      "nameTe": "ఇంస్టంట్ నూడిల్స్",
+      "category": "snacks",
+      "subcategory": "noodles",
+      "state": "dry",
+      "searchTerms": [
+        "maggi",
+        "ramen",
+        "noodles"
+      ],
+      "usdaDescription": "Soup, ramen noodle, any flavor, dry",
+      "scientificName": null,
+      "fdcId": 171177,
+      "ndbNumber": 6583,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Soups, Sauces, and Gravies",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 440,
+        "proteinG": 10.2,
+        "carbohydrateG": 60.3,
+        "fatG": 17.6,
+        "fiberG": 2.9,
+        "sugarG": 1.98,
+        "calciumMg": 21.0,
+        "ironMg": 4.11,
+        "magnesiumMg": 25.0,
+        "phosphorusMg": 115,
+        "potassiumMg": 181,
+        "sodiumMg": 1860.0,
+        "zincMg": 0.6,
+        "vitaminAMcg": 1.0,
+        "vitaminCMg": 0.3,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 2.44,
+        "vitaminKMcg": 8.9,
+        "thiaminMg": 0.448,
+        "riboflavinMg": 0.255,
+        "niacinMg": 5.4,
+        "vitaminB6Mg": 0.038,
+        "folateMcg": 116,
+        "vitaminB12Mcg": 0.25
+      },
+      "portions": [
+        {
+          "labelEn": "packet",
+          "grams": 5.8,
+          "amount": 1.0,
+          "modifier": "packet"
+        },
+        {
+          "labelEn": "package without flavor packet",
+          "grams": 81.0,
+          "amount": 1.0,
+          "modifier": "package without flavor packet"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 5.8,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "packet"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 171177",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/171177/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "graham-biscuit",
+      "nameEn": "Graham cracker / plain biscuit",
+      "nameTe": "బిస్కెట్",
+      "category": "bakery",
+      "subcategory": "biscuit",
+      "state": "ready",
+      "searchTerms": [
+        "biscuit",
+        "marie",
+        "cracker"
+      ],
+      "usdaDescription": "Cookies, graham crackers, plain or honey (includes cinnamon)",
+      "scientificName": null,
+      "fdcId": 174957,
+      "ndbNumber": 18173,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Baked Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 430,
+        "proteinG": 6.69,
+        "carbohydrateG": 77.7,
+        "fatG": 10.6,
+        "fiberG": 3.4,
+        "sugarG": 24.8,
+        "calciumMg": 77.0,
+        "ironMg": 3.78,
+        "magnesiumMg": 40.0,
+        "phosphorusMg": 185,
+        "potassiumMg": 170,
+        "sodiumMg": 516,
+        "zincMg": 0.96,
+        "vitaminAMcg": 0.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.0,
+        "vitaminEMg": 1.51,
+        "vitaminKMcg": 14.3,
+        "thiaminMg": 0.265,
+        "riboflavinMg": 0.317,
+        "niacinMg": 4.44,
+        "vitaminB6Mg": 0.156,
+        "folateMcg": 91.0,
+        "vitaminB12Mcg": 0.0
+      },
+      "portions": [
+        {
+          "labelEn": "cup, crushed",
+          "grams": 84.0,
+          "amount": 1.0,
+          "modifier": "cup, crushed"
+        },
+        {
+          "labelEn": "cracker",
+          "grams": 15.0,
+          "amount": 1.0,
+          "modifier": "cracker"
+        },
+        {
+          "labelEn": "oz",
+          "grams": 28.35,
+          "amount": 1.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "large rectangular piece or 2 squares or 4 small rectangular pieces",
+          "grams": 14.0,
+          "amount": 1.0,
+          "modifier": "large rectangular piece or 2 squares or 4 small rectangular pieces"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 84.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "cup, crushed"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 174957",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/174957/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "fried-chicken-pieces",
+      "nameEn": "Fried chicken pieces",
+      "nameTe": "వేయించిన కోడి",
+      "category": "snacks",
+      "subcategory": "fried-chicken",
+      "state": "fried",
+      "searchTerms": [
+        "fried chicken",
+        "kfc"
+      ],
+      "usdaDescription": "Fast foods, chicken, breaded and fried, boneless pieces, plain",
+      "scientificName": null,
+      "fdcId": 170718,
+      "ndbNumber": 21229,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Fast Foods",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 307,
+        "proteinG": 15.9,
+        "carbohydrateG": 14.9,
+        "fatG": 20.4,
+        "fiberG": 0.9,
+        "sugarG": 0.08,
+        "calciumMg": 11.0,
+        "ironMg": 0.83,
+        "magnesiumMg": 24.0,
+        "phosphorusMg": 272,
+        "potassiumMg": 251,
+        "sodiumMg": 594,
+        "zincMg": 0.59,
+        "vitaminAMcg": 5.0,
+        "vitaminCMg": 0.6,
+        "vitaminDMcg": 0.2,
+        "vitaminEMg": 1.12,
+        "vitaminKMcg": 7.0,
+        "thiaminMg": 0.092,
+        "riboflavinMg": 0.204,
+        "niacinMg": 5.98,
+        "vitaminB6Mg": 0.148,
+        "folateMcg": 11.0,
+        "vitaminB12Mcg": 0.33
+      },
+      "portions": [
+        {
+          "labelEn": "pieces",
+          "grams": 160.0,
+          "amount": 10.0,
+          "modifier": "pieces"
+        },
+        {
+          "labelEn": "pieces",
+          "grams": 96.0,
+          "amount": 6.0,
+          "modifier": "pieces"
+        },
+        {
+          "labelEn": "pieces",
+          "grams": 64.0,
+          "amount": 4.0,
+          "modifier": "pieces"
+        },
+        {
+          "labelEn": "pieces",
+          "grams": 320.0,
+          "amount": 20.0,
+          "modifier": "pieces"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 160.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "pieces"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 170718",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/170718/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "sambar",
+      "nameEn": "Sambar",
+      "nameTe": "సాంబార్",
+      "category": "prepared",
+      "subcategory": "breakfast",
+      "state": "cooked",
+      "searchTerms": [
+        "sambar",
+        "sambhar"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA prepared-food record was found. Values are not invented. Log dal or lentil curry for a verified pulse estimate."
+      }
+    },
+    {
+      "id": "rasam",
+      "nameEn": "Rasam",
+      "nameTe": "రసం",
+      "category": "prepared",
+      "subcategory": "lunch",
+      "state": "cooked",
+      "searchTerms": [
+        "rasam",
+        "chaaru",
+        "saaru"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA prepared-food record was found. Values are not invented."
+      }
+    },
+    {
+      "id": "pongal",
+      "nameEn": "Pongal rice",
+      "nameTe": "పొంగలి",
+      "category": "prepared",
+      "subcategory": "breakfast",
+      "state": "cooked",
+      "searchTerms": [
+        "pongal",
+        "ven pongal",
+        "khara pongal"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA prepared-food record was found. Values are not invented. Log cooked rice plus dal for a verified estimate."
+      }
+    },
+    {
+      "id": "lemon-rice",
+      "nameEn": "Lemon rice",
+      "nameTe": "నిమ్మకాయ అన్నం",
+      "category": "prepared",
+      "subcategory": "breakfast",
+      "state": "cooked",
+      "searchTerms": [
+        "lemon rice",
+        "chitrannam",
+        "nimmakaya pulihora"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA prepared-food record was found. Values are not invented. Log cooked rice for a verified rice estimate."
+      }
+    },
+    {
+      "id": "vegetable-korma",
+      "nameEn": "Vegetable korma / kurma",
+      "nameTe": "కూరగాయ కుర్మా",
+      "category": "prepared",
+      "subcategory": "lunch",
+      "state": "cooked",
+      "searchTerms": [
+        "kurma",
+        "korma",
+        "poori kurma"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA korma record was found. Values are not invented. Log vegetable curry for a verified curry estimate."
+      }
+    },
+    {
+      "id": "vegetable-fry",
+      "nameEn": "Vegetable fry / vepudu",
+      "nameTe": "కూరగాయ వేపుడు",
+      "category": "prepared",
+      "subcategory": "lunch",
+      "state": "cooked",
+      "searchTerms": [
+        "vepudu",
+        "vegetable fry",
+        "poriyal",
+        "thoran",
+        "koora fry"
+      ],
+      "usdaDescription": null,
+      "scientificName": null,
+      "fdcId": null,
+      "ndbNumber": null,
+      "publicationDate": null,
+      "usdaCategory": null,
+      "nutritionAvailable": false,
+      "confidence": "UNVERIFIED",
+      "nutrition": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fiberG": null,
+        "sugarG": null,
+        "calciumMg": null,
+        "ironMg": null,
+        "magnesiumMg": null,
+        "phosphorusMg": null,
+        "potassiumMg": null,
+        "sodiumMg": null,
+        "zincMg": null,
+        "vitaminAMcg": null,
+        "vitaminCMg": null,
+        "vitaminDMcg": null,
+        "vitaminEMg": null,
+        "vitaminKMcg": null,
+        "thiaminMg": null,
+        "riboflavinMg": null,
+        "niacinMg": null,
+        "vitaminB6Mg": null,
+        "folateMcg": null,
+        "vitaminB12Mcg": null
+      },
+      "portions": [],
+      "serving": {
+        "defaultAmount": 100,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "100 g"
+      },
+      "source": {
+        "organization": "National Institute of Nutrition, Indian Council of Medical Research",
+        "database": "Indian Food Composition Tables (IFCT)",
+        "reference": "Longvah T, Ananthan R, Bhaskarachary K, Venkaiah K. Indian Food Composition Tables. NIN, ICMR, Hyderabad, 2017.",
+        "year": 2017,
+        "country": "India",
+        "dataBasis": "per 100 g",
+        "verifiedDate": null,
+        "url": "https://www.nin.res.in/",
+        "importStatus": "No official USDA dry vegetable-fry record was found. Values are not invented. Log vegetable curry or pakora for a verified cooked/fried vegetable estimate."
       }
     }
   ]

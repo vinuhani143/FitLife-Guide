@@ -70,7 +70,7 @@ export const SOURCES: SourceEntry[] = [
     reference: 'FoodData Central SR Legacy April 2018 release file: FoodData_Central_sr_legacy_food_json_2018-04.json',
     year: 2018,
     url: 'https://fdc.nal.usda.gov/',
-    usedFor: 'Default food nutrient values copied from SR Legacy in seed 2026.1+.',
+    usedFor: 'Default food nutrient values copied from SR Legacy in seed 2026.1+, including cooked oats, eggs, bakery, and snack foods in seed 2026.3.',
   },
   {
     id: 'usda-fndds',
@@ -78,10 +78,10 @@ export const SOURCES: SourceEntry[] = [
     name: 'USDA FoodData Central, Survey (FNDDS)',
     organization: 'U.S. Department of Agriculture, Agricultural Research Service',
     reference:
-      'Food and Nutrient Database for Dietary Studies records accessed from FoodData Central on 2026-08-16, including Idli (FDC 2708346), Dosa plain (2708347), Upma (2709128), Vada (2709130), Puri (2707714), Chapatti/roti (2707713), and Dal (2707427). Homemade recipes vary.',
+      'Food and Nutrient Database for Dietary Studies records accessed from FoodData Central on 2026-08-16, including Idli (FDC 2708346), Dosa plain (2708347), Upma (2709128), Vada (2709130), Puri (2707714), Chapatti/roti (2707713), Dal (2707427), Chutney (2709309), Ghee (2710168), Chicken curry (2706437), Chicken biryani (2706538), Meat biryani (2706490), Vegetable curry (2710067), Lentil curry (2707431), Lamb/mutton with gravy (2706413), and Pakora (2710066). Homemade recipes vary.',
     year: 2024,
     url: 'https://fdc.nal.usda.gov/',
-    usedFor: 'Prepared Indian breakfast and meal items added in seed 2026.2. Values are copied, not invented.',
+    usedFor: 'Prepared Indian breakfast, lunch, and snack items added in seed 2026.2 and 2026.3. Values are copied, not invented.',
   },
   {
     id: 'wishnofsky-1958',
@@ -112,7 +112,7 @@ export const SOURCES: SourceEntry[] = [
     year: 2017,
     url: 'https://www.nin.res.in/',
     usedFor:
-      'Preferred source for Indian-specific foods such as ragi, bajra, and other millets. Those values are not invented here; catalog items stay unavailable until an official IFCT import is added.',
+      'Preferred source for Indian-specific foods such as ragi, bajra, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry. Those values are not invented here; catalog items stay unavailable until an official IFCT import is added.',
   },
   {
     id: 'mifflin-1990',

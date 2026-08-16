@@ -1,5 +1,6 @@
 import { foods } from '@/src/data/foods';
 import { canUseInDefaultCalculations } from '@/src/lib/dataQuality';
+import type { MealSlot } from '@/src/types/diary';
 import type { FoodRecord } from '@/src/types/food';
 import type { Goal } from '@/src/types/profile';
 
@@ -55,6 +56,60 @@ export function suggestFoodsForGoal(goal: Goal, limit = 6): FoodSuggestion[] {
     .map(({ score: _score, ...rest }) => rest);
 }
 
+export const BREAKFAST_FOOD_IDS = [
+  'idli',
+  'vada',
+  'dosa-plain',
+  'upma',
+  'poori',
+  'chutney',
+  'sambar',
+  'pongal',
+  'lemon-rice',
+  'vegetable-korma',
+  'oats-cooked',
+  'milk-whole',
+  'egg-boiled',
+  'banana-raw',
+  'pesarattu',
+  'ragi-java',
+] as const;
+
+export const LUNCH_FOOD_IDS = [
+  'rice-white-cooked',
+  'dal',
+  'sambar',
+  'rasam',
+  'yogurt-plain-whole',
+  'ghee',
+  'chicken-curry',
+  'mutton-gravy',
+  'vegetable-curry',
+  'vegetable-fry',
+  'chicken-biryani',
+  'meat-biryani',
+  'vegetable-biryani',
+  'roti-chapati',
+  'lentil-curry',
+] as const;
+
+export const SNACK_FOOD_IDS = [
+  'samosa',
+  'pakora',
+  'potato-chips',
+  'french-fries',
+  'pizza-cheese',
+  'hamburger',
+  'ice-cream-vanilla',
+  'cola',
+  'cookie-chocolate-chip',
+  'graham-biscuit',
+  'doughnut-plain',
+  'bread-white',
+  'milk-chocolate',
+  'popcorn',
+] as const;
+
 export const COMMON_MEAL_FOOD_IDS = [
   'idli',
   'dosa-plain',
@@ -62,16 +117,23 @@ export const COMMON_MEAL_FOOD_IDS = [
   'vada',
   'roti-chapati',
   'poori',
-  'pesarattu',
-  'ragi-java',
+  'chutney',
   'dal',
   'rice-white-cooked',
   'yogurt-plain-whole',
+  'vegetable-curry',
+  'chicken-curry',
+  'milk-whole',
   'banana-raw',
 ] as const;
 
-export function commonMealFoods(): FoodRecord[] {
-  return COMMON_MEAL_FOOD_IDS.map((id) => foods.find((food) => food.id === id)).filter(
-    (food): food is FoodRecord => Boolean(food),
-  );
+function foodsForIds(ids: readonly string[]): FoodRecord[] {
+  return ids.map((id) => foods.find((food) => food.id === id)).filter((food): food is FoodRecord => Boolean(food));
+}
+
+export function commonMealFoods(meal?: MealSlot): FoodRecord[] {
+  if (meal === 'breakfast') return foodsForIds(BREAKFAST_FOOD_IDS);
+  if (meal === 'lunch' || meal === 'dinner') return foodsForIds(LUNCH_FOOD_IDS);
+  if (meal === 'morning_snack' || meal === 'evening_snack') return foodsForIds(SNACK_FOOD_IDS);
+  return foodsForIds(COMMON_MEAL_FOOD_IDS);
 }

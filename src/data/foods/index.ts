@@ -57,4 +57,5 @@ export const explorerGroups: { key: string; categories: FoodCategory[] }[] = [
   { key: 'oils', categories: ['oils-fats'] },
   { key: 'prepared', categories: ['prepared'] },
   { key: 'bakery', categories: ['bakery'] },
+  { key: 'snacks', categories: ['snacks'] },
 ];

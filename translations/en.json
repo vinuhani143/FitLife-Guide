@@ -302,7 +302,7 @@
   "coach.protein.enough": "Logged protein is near or above the educational 0.83 g/kg comparison.",
   "coach.protein.under": "Logged protein is below the educational 0.83 g/kg comparison so far.",
   "coach.next.logMore": "Keep logging meals so the comparison becomes clearer.",
-  "coach.next.logFoods": "Start with breakfast: idli, dosa, upma, roti, or another food you actually ate.",
+  "coach.next.logFoods": "Start with what you ate: idli, dosa, rice, dal, chutney, or another catalog food.",
   "coach.next.lossOver": "For a weight-loss goal, the next meal can be a lower-energy verified food such as dal, yogurt, fruit, or vegetables. This is education, not a ban.",
   "coach.next.gainUnder": "For a weight-gain goal, the next meal can include a higher-energy verified food such as rice, roti, yogurt, nuts, or dal.",
   "coach.next.keepPattern": "If this matches a usual day, keep the pattern and watch the weekly weight trend, not one day.",
@@ -310,5 +310,9 @@
   "suggest.lossLight": "Lower energy per 100 g in the verified catalog.",
   "suggest.lossProtein": "More protein relative to energy in the verified catalog.",
   "suggest.gainProtein": "Higher energy with useful protein in the verified catalog.",
-  "suggest.gainEnergy": "Higher energy per 100 g in the verified catalog."
+  "suggest.gainEnergy": "Higher energy per 100 g in the verified catalog.",
+  "foods.snacks": "Snacks & junk food",
+  "diary.commonHint.breakfast": "Common breakfast items. Sambar, pongal, lemon rice, and kurma are listed for search; they have no invented calories.",
+  "diary.commonHint.lunch": "Common lunch and dinner items. Rasam, sambar, and vegetable fry stay unverified until an official Indian table is imported.",
+  "diary.commonHint.snack": "Common snacks, bakery, and packaged foods. Values are USDA survey or SR Legacy copies, not homemade recipes."
 }
