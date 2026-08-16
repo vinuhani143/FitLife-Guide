@@ -34,7 +34,11 @@ yarn web
 
 ## Android APK
 
-Local release APK (sideload / preview):
+Download: [FitLife-Guide-1.0.0.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.0.0-preview/FitLife-Guide-1.0.0.apk)
+
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.0.0-preview
+
+Local rebuild (sideload / preview):
 
 ```bash
 # Requires Android SDK 36, NDK 27.1.12297006, JDK 21
