@@ -14,6 +14,7 @@ describe('data quality', () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(foods.some((food) => food.id === 'ragi-raw' && !food.nutritionAvailable)).toBe(true);
     expect(foods.some((food) => food.id === 'banana-raw' && food.nutrition.energyKcal === 89)).toBe(true);
+    expect(foods.some((food) => food.id === 'idli' && food.nutrition.energyKcal === 128)).toBe(true);
   });
 
   test('detects missing source, negative values, and raw/cooked ambiguity', () => {

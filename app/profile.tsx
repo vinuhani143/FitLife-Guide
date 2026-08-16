@@ -12,7 +12,7 @@ import type { ActivityLevel, Goal, Sex } from '@/src/types/profile';
 
 const SEXES: Sex[] = ['female', 'male', 'unspecified'];
 const ACTIVITIES: ActivityLevel[] = ['sedentary', 'lightly_active', 'moderately_active', 'very_active', 'extra_active'];
-const GOALS: Goal[] = ['weight_loss', 'weight_maintenance', 'weight_gain', 'muscle_strength', 'general_fitness'];
+const GOALS: Goal[] = ['weight_loss', 'weight_gain', 'weight_maintenance'];
 
 export default function ProfileScreen() {
   const { language, colors, profile, setProfile, addWeight, addWaist, ready } = useApp();
@@ -98,6 +98,8 @@ export default function ProfileScreen() {
         <TextInput value={form.heightCm} onChangeText={(v) => setField('heightCm', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={`${t('body.weight')} (kg)`} />
         <TextInput value={form.weightKg} onChangeText={(v) => setField('weightKg', v)} keyboardType="decimal-pad" style={input(colors)} />
+        <Label text={`${t('body.targetWeight')} (kg)`} />
+        <TextInput value={form.targetWeightKg} onChangeText={(v) => setField('targetWeightKg', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={`${t('body.waist')} (cm)`} />
         <TextInput value={form.waistCm} onChangeText={(v) => setField('waistCm', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={t('body.activity')} />

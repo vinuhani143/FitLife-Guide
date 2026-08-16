@@ -6,3 +6,5 @@ export * from './nutrition';
 export * from './fitness';
 export * from './units';
 export * from './goals';
+export * from './weightPlan';
+export * from './intakeCoach';

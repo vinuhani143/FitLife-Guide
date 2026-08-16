@@ -30,6 +30,7 @@ export type UserProfile = {
   sex: Sex;
   heightCm: number | null;
   weightKg: number | null;
+  targetWeightKg: number | null;
   waistCm: number | null;
   activityLevel: ActivityLevel;
   goal: Goal;

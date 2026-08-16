@@ -4,6 +4,17 @@ Educational health, nutrition, and fitness information app for Android-first Exp
 
 This app provides educational information and estimates. It is not a substitute for medical diagnosis, treatment, or individualized advice from a qualified healthcare professional.
 
+## What the app is for
+
+FitLife Guide is a **goal + food education** app, not a fitness coach.
+
+1. Enter body measurements and a goal (lose, gain, or maintain weight).
+2. See estimated BMI, BMR, daily energy, and a cautious timeline to a target weight.
+3. Log what you actually ate — idli, dosa, roti, dal, fruit, and other catalog foods — with an approximate cooked weight.
+4. Compare that day’s nutrients with the estimated need, then decide the next meal with verified food values.
+
+The app does **not** invent nutrition numbers. Indian breakfast items such as idli, dosa, upma, vada, poori, and roti use official USDA FNDDS records. Homemade recipes vary. Pesarattu and ragi java are listed for search but stay unverified until an official IFCT import exists.
+
 ## Principles
 
 - Nutritional values are never invented.
@@ -34,9 +45,9 @@ yarn web
 
 ## Android APK
 
-Download: [FitLife-Guide-1.0.1.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.0.1-preview/FitLife-Guide-1.0.1.apk)
+Download: [FitLife-Guide-1.1.0.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.0-preview/FitLife-Guide-1.1.0.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.0.1-preview
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.0-preview
 
 Local rebuild (sideload / preview):
 
@@ -46,13 +57,13 @@ export ANDROID_HOME="$HOME/android-sdk"
 yarn apk
 ```
 
-The APK is written to `dist/FitLife-Guide-1.0.1.apk`.
+The APK is written to `dist/FitLife-Guide-1.1.0.apk`.
 
 Install on a phone:
 
 1. Copy the APK to the phone.
 2. Allow install from unknown sources for your file app.
-3. Open `FitLife-Guide-1.0.1.apk`.
+3. Open `FitLife-Guide-1.1.0.apk`.
 4. Package name: `com.fitlifeguide.app`
 
 This local APK is for preview/sideload. A Play Store upload needs your own release keystore.
@@ -65,7 +76,7 @@ npx eas-cli build --platform android --profile preview
 
 ## Food database
 
-- Version: `2026.1`
+- Version: `2026.2`
 - File: `src/data/foods/usda-sr-legacy-seed.json`
 - Import helper: `scripts/import-usda-sr-legacy.py`
 - Official USDA download: https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_json_2018-04.zip

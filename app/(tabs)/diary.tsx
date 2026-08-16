@@ -8,18 +8,20 @@ import { Screen } from '@/src/components/Screen';
 import { EMPTY_NUTRITION } from '@/src/data/foods/schema';
 import { foods, searchFoods } from '@/src/data/foods';
 import { addNutrition, calculateNutrition } from '@/src/lib/calculations/nutrition';
+import { compareIntakeToNeed } from '@/src/lib/calculations/intakeCoach';
+import { todayIsoDate } from '@/src/lib/calculations/units';
 import { formatNumber } from '@/src/lib/format';
+import { commonMealFoods } from '@/src/lib/foodSuggestions';
 import { translate } from '@/src/lib/i18n';
 import { useBodyMetrics } from '@/src/lib/useBodyMetrics';
-import { todayIsoDate } from '@/src/lib/calculations/units';
 import { useApp } from '@/src/store/AppProvider';
 import type { MealSlot } from '@/src/types/diary';
 
 const MEALS: MealSlot[] = ['breakfast', 'morning_snack', 'lunch', 'evening_snack', 'dinner'];
 
 export default function DiaryScreen() {
-  const { language, colors, diary, addDiaryEntry, removeDiaryEntry } = useApp();
-  const { target, tdee } = useBodyMetrics();
+  const { language, colors, diary, addDiaryEntry, removeDiaryEntry, profile } = useApp();
+  const { target, tdee, proteinTargetG } = useBodyMetrics();
   const router = useRouter();
   const t = (key: string) => translate(language, key);
   const today = todayIsoDate();
@@ -29,6 +31,8 @@ export default function DiaryScreen() {
   const [foodId, setFoodId] = useState<string | null>(null);
   const results = searchFoods(query).slice(0, 8);
   const energyTarget = target?.targetKcal ?? tdee;
+  const selected = foods.find((item) => item.id === foodId) ?? null;
+  const common = commonMealFoods();
 
   const todays = diary.filter((entry) => entry.date === today);
   const totals = useMemo(() => {
@@ -43,10 +47,31 @@ export default function DiaryScreen() {
     }, { values: { ...EMPTY_NUTRITION }, skipped: 0 });
   }, [todays]);
 
+  const coach = compareIntakeToNeed({
+    logged: totals.values,
+    energyTargetKcal: energyTarget,
+    proteinTargetG,
+    goal: profile.goal,
+  });
+
+  const chooseFood = (id: string) => {
+    const food = foods.find((item) => item.id === id);
+    setFoodId(id);
+    setQuery(food ? (language === 'te' ? food.nameTe : food.nameEn) : id);
+    if (food) setGrams(String(food.serving.defaultAmount));
+  };
+
+  const addSelected = (amountGrams?: number) => {
+    const amount = amountGrams ?? Number(grams);
+    if (!foodId || !Number.isFinite(amount) || amount <= 0) return;
+    void addDiaryEntry({ date: today, meal, foodId, amountGrams: amount });
+    setQuery('');
+  };
+
   return (
     <Screen>
       <Card title={t('diary.title')}>
-        <Text style={{ color: colors.muted }}>{t('diary.noPrescribe')}</Text>
+        <Text style={{ color: colors.muted }}>{t('diary.howTo')}</Text>
         <View style={styles.wrap}>
           {MEALS.map((slot) => (
             <Pressable key={slot} onPress={() => setMeal(slot)} style={[styles.chip, { borderColor: colors.border, backgroundColor: meal === slot ? colors.primarySoft : 'transparent' }]}>
@@ -54,24 +79,43 @@ export default function DiaryScreen() {
             </Pressable>
           ))}
         </View>
+        <Text style={{ color: colors.muted }}>{t('diary.commonHint')}</Text>
+        <View style={styles.wrap}>
+          {common.map((food) => (
+            <Pressable
+              key={food.id}
+              onPress={() => chooseFood(food.id)}
+              style={[styles.chip, { borderColor: colors.border, backgroundColor: foodId === food.id ? colors.primarySoft : 'transparent' }]}
+            >
+              <Text style={{ color: colors.text }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
+            </Pressable>
+          ))}
+        </View>
         <TextInput value={query} onChangeText={setQuery} placeholder={t('foods.search')} placeholderTextColor={colors.muted} style={[styles.input, { color: colors.text, borderColor: colors.border }]} />
         {results.map((food) => (
-          <Pressable key={food.id} onPress={() => setFoodId(food.id)}>
+          <Pressable key={food.id} onPress={() => chooseFood(food.id)}>
             <Text style={{ color: foodId === food.id ? colors.primary : colors.text, fontWeight: foodId === food.id ? '700' : '400' }}>
               {language === 'te' ? food.nameTe : food.nameEn} · {food.state}
+              {food.nutritionAvailable ? ` · ${food.nutrition.energyKcal} kcal/100 g` : ` · ${t('foods.unavailable')}`}
             </Text>
           </Pressable>
         ))}
+        {selected ? (
+          <View style={styles.wrap}>
+            <Pressable style={[styles.chip, { borderColor: colors.border }]} onPress={() => addSelected(selected.serving.defaultAmount)}>
+              <Text style={{ color: colors.text }}>
+                {selected.serving.commonLabelEn} ({selected.serving.defaultAmount} g)
+              </Text>
+            </Pressable>
+            {selected.portions.slice(0, 3).map((portion) => (
+              <Pressable key={portion.labelEn} style={[styles.chip, { borderColor: colors.border }]} onPress={() => addSelected(portion.grams)}>
+                <Text style={{ color: colors.text }}>{portion.labelEn} ({portion.grams} g)</Text>
+              </Pressable>
+            ))}
+          </View>
+        ) : null}
         <TextInput value={grams} onChangeText={setGrams} keyboardType="numeric" placeholder={t('diary.amount')} placeholderTextColor={colors.muted} style={[styles.input, { color: colors.text, borderColor: colors.border }]} />
-        <Pressable
-          style={[styles.save, { backgroundColor: colors.primary }]}
-          onPress={() => {
-            const amount = Number(grams);
-            if (!foodId || !Number.isFinite(amount) || amount <= 0) return;
-            void addDiaryEntry({ date: today, meal, foodId, amountGrams: amount });
-            setQuery('');
-          }}
-        >
+        <Pressable style={[styles.save, { backgroundColor: colors.primary }]} onPress={() => addSelected()}>
           <Text style={styles.saveText}>{t('diary.add')}</Text>
         </Pressable>
       </Card>
@@ -79,13 +123,17 @@ export default function DiaryScreen() {
       <Card title={t('diary.totals')}>
         <Text style={{ color: colors.text }}>{t('card.calories')}: {formatNumber(totals.values.energyKcal, 0)} / {energyTarget ? formatNumber(energyTarget, 0) : '—'}</Text>
         {energyTarget ? <ProgressBar value={totals.values.energyKcal ?? 0} max={energyTarget} /> : null}
-        <Text style={{ color: colors.text }}>{t('card.protein')}: {formatNumber(totals.values.proteinG, 1)} g</Text>
+        <Text style={{ color: colors.text }}>
+          {t('card.protein')}: {formatNumber(totals.values.proteinG, 1)} g
+          {proteinTargetG != null ? ` / ${formatNumber(proteinTargetG, 1)} g` : ''}
+        </Text>
         <Text style={{ color: colors.text }}>{t('card.carbs')}: {formatNumber(totals.values.carbohydrateG, 1)} g</Text>
         <Text style={{ color: colors.text }}>{t('card.fat')}: {formatNumber(totals.values.fatG, 1)} g</Text>
         <Text style={{ color: colors.text }}>{t('card.fiber')}: {formatNumber(totals.values.fiberG, 1)} g</Text>
-        <Text style={{ color: colors.text }}>Sugar: {formatNumber(totals.values.sugarG, 1)} g</Text>
         {totals.skipped > 0 ? <Text style={{ color: colors.warning }}>{t('foods.unavailable')} ({totals.skipped})</Text> : null}
-        <Text style={{ color: colors.muted }}>{t('diary.progress')}</Text>
+        <Text style={{ color: colors.text }}>{t(coach.energyMessageKey)}</Text>
+        <Text style={{ color: colors.text }}>{t(coach.proteinMessageKey)}</Text>
+        <Text style={{ color: colors.muted }}>{t(coach.nextStepKey)}</Text>
       </Card>
 
       {MEALS.map((slot) => (

@@ -11,7 +11,9 @@ export type FoodCategory =
   | 'fish'
   | 'meat'
   | 'milk-dairy'
-  | 'oils-fats';
+  | 'oils-fats'
+  | 'prepared'
+  | 'bakery';
 
 export type FoodState =
   | 'raw'

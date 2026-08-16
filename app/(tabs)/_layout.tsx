@@ -30,8 +30,12 @@ export default function TabLayout() {
         options={{ title: translate(language, 'tabs.body'), tabBarIcon: ({ color }) => <TabIcon name="user" color={color} /> }}
       />
       <Tabs.Screen
+        name="plan"
+        options={{ title: translate(language, 'tabs.plan'), tabBarIcon: ({ color }) => <TabIcon name="flag" color={color} /> }}
+      />
+      <Tabs.Screen
         name="fitness"
-        options={{ title: translate(language, 'tabs.fitness'), tabBarIcon: ({ color }) => <TabIcon name="heartbeat" color={color} /> }}
+        options={{ href: null, title: translate(language, 'tabs.fitness') }}
       />
       <Tabs.Screen
         name="foods"

@@ -7,6 +7,7 @@ export type ProfileFormState = {
   sex: UserProfile['sex'];
   heightCm: string;
   weightKg: string;
+  targetWeightKg: string;
   waistCm: string;
   activityLevel: UserProfile['activityLevel'];
   goal: UserProfile['goal'];
@@ -25,6 +26,7 @@ export function profileToFormState(profile: UserProfile): ProfileFormState {
     sex: profile.sex,
     heightCm: profile.heightCm == null ? '' : String(profile.heightCm),
     weightKg: profile.weightKg == null ? '' : String(profile.weightKg),
+    targetWeightKg: profile.targetWeightKg == null ? '' : String(profile.targetWeightKg),
     waistCm: profile.waistCm == null ? '' : String(profile.waistCm),
     activityLevel: profile.activityLevel,
     goal: profile.goal,
@@ -57,6 +59,9 @@ export function buildProfileFromForm(form: ProfileFormState, base: UserProfile):
   const weight = optionalMeasure(form.weightKg, 10, 400, 'body.weightInvalid');
   if (weight.errorKey) return { ok: false, errorKey: weight.errorKey };
 
+  const targetWeight = optionalMeasure(form.targetWeightKg, 10, 400, 'body.targetWeightInvalid');
+  if (targetWeight.errorKey) return { ok: false, errorKey: targetWeight.errorKey };
+
   const waist = optionalMeasure(form.waistCm, 30, 300, 'body.waistInvalid');
   if (waist.errorKey) return { ok: false, errorKey: waist.errorKey };
 
@@ -72,6 +77,7 @@ export function buildProfileFromForm(form: ProfileFormState, base: UserProfile):
       sex: form.sex,
       heightCm: height.value,
       weightKg: weight.value,
+      targetWeightKg: targetWeight.value,
       waistCm: waist.value,
       activityLevel: form.activityLevel,
       goal: form.goal,

@@ -6,9 +6,10 @@ export const defaultProfile: UserProfile = {
   sex: 'unspecified',
   heightCm: null,
   weightKg: null,
+  targetWeightKg: null,
   waistCm: null,
   activityLevel: 'lightly_active',
-  goal: 'general_fitness',
+  goal: 'weight_maintenance',
   unitPreference: {
     mass: 'kg',
     length: 'cm',

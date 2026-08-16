@@ -8,19 +8,24 @@ import { ProgressBar } from '@/src/components/ProgressBar';
 import { Screen } from '@/src/components/Screen';
 import { StatTile } from '@/src/components/StatTile';
 import { foods } from '@/src/data/foods';
+import { EMPTY_NUTRITION } from '@/src/data/foods/schema';
+import { addNutrition, calculateNutrition } from '@/src/lib/calculations/nutrition';
+import { compareIntakeToNeed } from '@/src/lib/calculations/intakeCoach';
+import { todayIsoDate } from '@/src/lib/calculations/units';
 import { formatKcal, formatNumber } from '@/src/lib/format';
+import { commonMealFoods, suggestFoodsForGoal } from '@/src/lib/foodSuggestions';
 import { translate } from '@/src/lib/i18n';
 import { useBodyMetrics } from '@/src/lib/useBodyMetrics';
-import { addNutrition, calculateNutrition } from '@/src/lib/calculations/nutrition';
-import { todayIsoDate } from '@/src/lib/calculations/units';
-import { EMPTY_NUTRITION } from '@/src/data/foods/schema';
 import { useApp } from '@/src/store/AppProvider';
 
 export default function HomeScreen() {
-  const { language, colors, diary, water, activities, profile } = useApp();
-  const { age, bmi, bmr, tdee, target, fitness, healthy } = useBodyMetrics();
-  const t = (key: string) => translate(language, key);
+  const { language, colors, diary, water, profile } = useApp();
+  const { age, bmi, bmr, tdee, target, plan, proteinTargetG, healthy } = useBodyMetrics();
+  const t = (key: string, vars?: Record<string, string | number>) => translate(language, key, vars);
   const today = todayIsoDate();
+  const energyTarget = target?.targetKcal ?? tdee;
+  const suggestions = suggestFoodsForGoal(profile.goal, 4);
+  const common = commonMealFoods().filter((food) => food.nutritionAvailable);
 
   const todayNutrition = useMemo(() => {
     return diary
@@ -34,15 +39,13 @@ export default function HomeScreen() {
       }, { ...EMPTY_NUTRITION });
   }, [diary, today]);
 
+  const coach = compareIntakeToNeed({
+    logged: todayNutrition,
+    energyTargetKcal: energyTarget,
+    proteinTargetG,
+    goal: profile.goal,
+  });
   const waterToday = water.filter((item) => item.date === today).reduce((sum, item) => sum + item.amountMl, 0);
-  const weekMinutes = activities
-    .filter((item) => item.date >= new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
-    .reduce((sum, item) => sum + item.durationMinutes, 0);
-  const strengthDays = new Set(
-    activities
-      .filter((item) => item.activityId === 'strength-general' && item.date >= new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
-      .map((item) => item.date),
-  ).size;
 
   return (
     <Screen>
@@ -57,14 +60,12 @@ export default function HomeScreen() {
       <Card eyebrow={t('card.body')} title={t('home.yourBody')}>
         <View style={styles.grid}>
           <StatTile label={t('home.age')} value={age != null ? `${age}` : '—'} hint={t('common.years')} />
-          <StatTile label={t('home.height')} value={profile.heightCm ? `${profile.heightCm} cm` : '—'} />
           <StatTile label={t('home.weight')} value={profile.weightKg ? `${profile.weightKg} kg` : '—'} />
+          <StatTile label={t('body.targetWeight')} value={profile.targetWeightKg ? `${profile.targetWeightKg} kg` : '—'} />
           <StatTile label={t('home.bmi')} value={bmi ? formatNumber(bmi.bmi, 1) : '—'} hint={bmi?.category ? t(`bmi.${bmi.category}`) : undefined} />
           <StatTile label={t('home.bmr')} value={formatKcal(bmr?.bmrKcal ?? null)} />
           <StatTile label={t('home.tdee')} value={formatKcal(tdee)} />
         </View>
-        <Text style={{ color: colors.muted }}>{t('home.activityLevel')}: {t(`activity.${profile.activityLevel}`)}</Text>
-        <Text style={{ color: colors.muted }}>{t('home.goal')}: {t(`goal.${profile.goal}`)}</Text>
         {healthy ? (
           <Text style={{ color: colors.text }}>
             {t('card.healthyWeight')}: {formatNumber(healthy.minKg, 1)}–{formatNumber(healthy.maxKg, 1)} kg
@@ -73,29 +74,35 @@ export default function HomeScreen() {
           <Text style={{ color: colors.muted }}>{t('home.setupProfile')}</Text>
         )}
         <Link href="/profile" asChild>
-          <Pressable><Text style={{ color: colors.primary, fontWeight: '700' }}>{t('body.edit')}</Text></Pressable>
+          <Pressable><Text style={styles.link}>{t('body.edit')}</Text></Pressable>
         </Link>
       </Card>
 
-      <Card eyebrow={t('card.fitness')} title={t('home.yourFitness')}>
-        <View style={styles.grid}>
-          <StatTile label={t('card.weeklyActivity')} value={`${weekMinutes} min`} />
-          <StatTile label={t('card.strength')} value={`${strengthDays}`} />
-          <StatTile
-            label={t('card.fitnessScore')}
-            value={fitness.status === 'estimated' ? String(fitness.score) : '—'}
-            hint={fitness.status === 'insufficient' ? t('fitness.notEnough') : fitness.status === 'estimated' ? fitness.band : undefined}
-          />
-        </View>
+      <Card eyebrow={t('plan.eyebrow')} title={t(`goal.${profile.goal}`)}>
+        {plan.status === 'estimated' && plan.estimatedDays != null ? (
+          <Text style={{ color: colors.text, fontWeight: '700' }}>
+            {t('plan.aboutDays', { days: plan.estimatedDays })}
+          </Text>
+        ) : (
+          <Text style={{ color: colors.text }}>{t(`plan.status.${plan.status}`)}</Text>
+        )}
+        <Text style={{ color: colors.muted }}>{t('goal.estimatedTarget')}: {formatKcal(energyTarget)}</Text>
+        <Link href="/(tabs)/plan" asChild>
+          <Pressable><Text style={styles.link}>{t('plan.open')}</Text></Pressable>
+        </Link>
       </Card>
 
-      <Card eyebrow={t('card.nutrition')} title={t('home.yourNutrition')}>
-        <Text style={{ color: colors.muted }}>{t('home.nutritionSummary')}</Text>
-        <Macro label={t('card.calories')} value={todayNutrition.energyKcal} target={target?.targetKcal ?? tdee} />
-        <Macro label={t('card.protein')} value={todayNutrition.proteinG} />
-        <Macro label={t('card.carbs')} value={todayNutrition.carbohydrateG} />
-        <Macro label={t('card.fat')} value={todayNutrition.fatG} />
-        <Macro label={t('card.fiber')} value={todayNutrition.fiberG} />
+      <Card eyebrow={t('card.nutrition')} title={t('home.todayVsNeed')}>
+        <Text style={{ color: colors.text }}>
+          {t('card.calories')}: {formatNumber(todayNutrition.energyKcal, 0)} / {energyTarget ? formatNumber(energyTarget, 0) : '—'}
+        </Text>
+        {energyTarget ? <ProgressBar value={todayNutrition.energyKcal ?? 0} max={energyTarget} /> : null}
+        <Text style={{ color: colors.text }}>
+          {t('card.protein')}: {formatNumber(todayNutrition.proteinG, 1)} g
+          {proteinTargetG != null ? ` / ${formatNumber(proteinTargetG, 1)} g` : ''}
+        </Text>
+        <Text style={{ color: colors.text }}>{t(coach.energyMessageKey)}</Text>
+        <Text style={{ color: colors.muted }}>{t(coach.nextStepKey)}</Text>
         <Link href="/water" asChild>
           <Pressable>
             <Text style={{ color: colors.text, marginTop: 8 }}>
@@ -106,22 +113,30 @@ export default function HomeScreen() {
         </Link>
       </Card>
 
-      <Card eyebrow={t('card.food')} title={t('foods.title')}>
+      <Card title={t('home.commonFoods')}>
+        <Text style={{ color: colors.muted }}>{t('home.commonFoodsHint')}</Text>
         <View style={styles.links}>
-          {[
-            ['vegetables', '/(tabs)/foods'],
-            ['fruits', '/(tabs)/foods'],
-            ['grains', '/(tabs)/foods'],
-            ['millets', '/(tabs)/foods'],
-            ['proteinFoods', '/(tabs)/foods'],
-          ].map(([key, href]) => (
-            <Link key={key} href={href as '/(tabs)/foods'} asChild>
+          {common.map((food) => (
+            <Link key={food.id} href={`/food/${food.id}`} asChild>
               <Pressable style={[styles.chip, { borderColor: colors.border }]}>
-                <Text style={{ color: colors.text }}>{t(`card.${key}`)}</Text>
+                <Text style={{ color: colors.text }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
               </Pressable>
             </Link>
           ))}
         </View>
+        <Link href="/(tabs)/diary" asChild>
+          <Pressable><Text style={styles.link}>{t('diary.add')}</Text></Pressable>
+        </Link>
+      </Card>
+
+      <Card title={t('plan.whatToEat')}>
+        {suggestions.map((item) => (
+          <Text key={item.food.id} style={{ color: colors.text }}>
+            {language === 'te' ? item.food.nameTe : item.food.nameEn}
+            {' · '}
+            {formatNumber(item.energyPer100, 0)} kcal / 100 g
+          </Text>
+        ))}
       </Card>
 
       <View style={styles.links}>
@@ -131,19 +146,6 @@ export default function HomeScreen() {
       </View>
       <Disclaimer />
     </Screen>
-  );
-}
-
-function Macro({ label, value, target }: { label: string; value: number | null; target?: number | null }) {
-  const { colors } = useApp();
-  return (
-    <View style={{ gap: 4 }}>
-      <Text style={{ color: colors.text }}>
-        {label}: {value == null ? '—' : formatNumber(value, 1)}
-        {target ? ` / ${formatNumber(target, 0)}` : ''}
-      </Text>
-      {target ? <ProgressBar value={value ?? 0} max={target} /> : null}
-    </View>
   );
 }
 

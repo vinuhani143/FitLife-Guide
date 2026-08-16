@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { ACTIVITIES } from '@/src/data/activities';
-import { WHO_ACTIVITY_SOURCE, estimateActivityKcal } from '@/src/lib/calculations/fitness';
+import { WHO_ACTIVITY_SOURCE, estimateActivityKcal, estimateFitnessProfile } from '@/src/lib/calculations/fitness';
 import { Card } from '@/src/components/Card';
 import { Disclaimer } from '@/src/components/Disclaimer';
 import { Screen } from '@/src/components/Screen';
@@ -14,7 +14,8 @@ import type { FitnessInputs } from '@/src/types/profile';
 
 export default function FitnessScreen() {
   const { language, colors, fitnessInputs, setFitnessInputs, activities, addActivity, profile } = useApp();
-  const { fitness, age } = useBodyMetrics();
+  const { age } = useBodyMetrics();
+  const fitness = estimateFitnessProfile(fitnessInputs, age);
   const t = (key: string) => translate(language, key);
   const [draft, setDraft] = useState<FitnessInputs>(fitnessInputs);
   const [duration, setDuration] = useState('30');
