@@ -45,9 +45,9 @@ yarn web
 
 ## Android APK
 
-Previous published preview: [FitLife-Guide-1.1.0.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.0-preview/FitLife-Guide-1.1.0.apk)
+Download: [FitLife-Guide-1.1.1.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.1-preview/FitLife-Guide-1.1.1.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.1-preview
 
 Local rebuild for this version (sideload / preview):
 
