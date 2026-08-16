@@ -20,6 +20,8 @@ fi
 
 printf 'sdk.dir=%s\n' "$ANDROID_HOME" > android/local.properties
 
+VERSION="$(node -p "require('$ROOT/package.json').version")"
+
 cd android
 ./gradlew :app:assembleRelease --no-daemon
 
@@ -29,7 +31,6 @@ if [[ -z "$APK" ]]; then
   exit 1
 fi
 
-VERSION="$(node -p "require('./package.json').version")"
 DEST_DIR="${FITLIFE_APK_OUT:-/opt/cursor/artifacts}"
 mkdir -p "$DEST_DIR" "$ROOT/dist"
 OUT="$DEST_DIR/FitLife-Guide-$VERSION.apk"
