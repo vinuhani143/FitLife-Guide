@@ -342,10 +342,10 @@
   "scan.noMatch": "No catalog match yet. Try idli, rice, dal, or another food name.",
   "scan.barcodeUnknown": "This barcode was not found in Open Food Facts. Search the USDA catalog below.",
   "scan.networkError": "Could not reach Open Food Facts. Search the USDA catalog below.",
-  "scan.plateIntro": "Take a photo of the plate. Then tick the foods you see (example: idli, vada, sambar). Pick Small, Medium, or Large for each. Nutrition is scaled from official USDA catalog values. The camera does not invent names or calories from the photo.",
+  "scan.plateIntro": "Tick the foods on the plate (example: idli, vada, sambar), then pick Small, Medium, or Large. You can also take a photo. Nutrition is scaled from official USDA catalog values. The camera does not invent names or calories from the photo.",
   "scan.capturePlate": "Scan plate",
   "scan.captureFirst": "Scan the plate first. After the photo, tick idli, vada, sambar, or other foods and pick a size for each.",
-  "scan.captureError": "Could not take the photo. Try again.",
+  "scan.captureError": "Could not save the photo. You can still tick the foods below and pick Small, Medium, or Large.",
   "scan.again": "Scan again",
   "scan.plateItems": "Foods on this plate",
   "scan.plateItemsHint": "The camera cannot invent names from the photo. Tick the items on the plate, then pick Small, Medium, or Large.",
@@ -365,5 +365,8 @@
   "scan.standIn.fry": "Vegetable fry has no USDA record. These numbers are USDA mixed vegetables, cooked, as a stand-in.",
   "diary.nonVegList": "Chicken, mutton, fish, prawns, and eggs",
   "diary.nonVegHint": "Pick a non-veg item, then choose the cooked weight. Values are USDA copies, not homemade recipes.",
-  "diary.dietHint": "Switch here if today's meal is veg or non-veg. This also updates Goal and Scan lists."
+  "diary.dietHint": "Switch here if today's meal is veg or non-veg. This also updates Goal and Scan lists.",
+  "foods.nonveg": "Non-veg",
+  "foods.nonvegHint": "Chicken, mutton, fish, prawns, eggs, and mixed dishes. Values are USDA copies, not homemade recipes.",
+  "foods.dietHint": "Choose veg or non-veg to jump to that list. Non-veg is the first chip."
 }

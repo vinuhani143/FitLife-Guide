@@ -89,7 +89,7 @@ export async function fetchOpenFoodFactsProduct(
   const url = `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(barcode)}.json`;
   const response = await fetchImpl(url, {
     headers: {
-      'User-Agent': 'FitLifeGuide/1.1.3 (educational; https://github.com/vinuhani143/FitLife-Guide)',
+      'User-Agent': 'FitLifeGuide/1.1.4 (educational; https://github.com/vinuhani143/FitLife-Guide)',
     },
   });
   if (!response.ok) {

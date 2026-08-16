@@ -3,29 +3,46 @@ import React, { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Screen } from '@/src/components/Screen';
-import { explorerGroups, foods, searchFoods } from '@/src/data/foods';
+import { explorerGroups, foodsInExplorerGroup, searchFoods } from '@/src/data/foods';
 import { translate } from '@/src/lib/i18n';
 import { useApp } from '@/src/store/AppProvider';
-import type { FoodCategory } from '@/src/types/food';
+import type { DietType } from '@/src/types/profile';
+
+const DIETS: DietType[] = ['vegetarian', 'non_vegetarian'];
 
 export default function FoodsScreen() {
-  const { language, colors, compareIds, setCompareIds } = useApp();
+  const { language, colors, compareIds, setCompareIds, profile, setProfile } = useApp();
   const router = useRouter();
   const [query, setQuery] = useState('');
-  const [group, setGroup] = useState<string>('vegetables');
+  const [group, setGroup] = useState<string>(profile.dietType === 'non_vegetarian' ? 'nonveg' : 'vegetables');
   const t = (key: string) => translate(language, key);
 
   const visible = useMemo(() => {
     const searched = searchFoods(query);
     if (query.trim()) return searched;
-    const selected = explorerGroups.find((item) => item.key === group);
-    if (!selected) return searched;
-    return searched.filter((food) => selected.categories.includes(food.category as FoodCategory));
+    return foodsInExplorerGroup(group, searched);
   }, [query, group]);
+
+  const setDiet = (diet: DietType) => {
+    void setProfile({ ...profile, dietType: diet });
+    setGroup(diet === 'non_vegetarian' ? 'nonveg' : 'vegetables');
+  };
 
   return (
     <Screen>
       <Card title={t('foods.title')}>
+        <Text style={{ color: colors.muted }}>{t('foods.dietHint')}</Text>
+        <View style={styles.wrap}>
+          {DIETS.map((diet) => (
+            <Pressable
+              key={diet}
+              onPress={() => setDiet(diet)}
+              style={[styles.chip, { borderColor: colors.border, backgroundColor: profile.dietType === diet ? colors.primarySoft : 'transparent' }]}
+            >
+              <Text style={{ color: colors.text }}>{t(`diet.${diet}`)}</Text>
+            </Pressable>
+          ))}
+        </View>
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -44,6 +61,9 @@ export default function FoodsScreen() {
             </Pressable>
           ))}
         </View>
+        {group === 'nonveg' && !query.trim() ? (
+          <Text style={{ color: colors.muted }}>{t('foods.nonvegHint')}</Text>
+        ) : null}
         <Pressable onPress={() => router.push('/compare')}>
           <Text style={{ color: colors.primary, fontWeight: '700' }}>{t('foods.compare')} ({compareIds.length})</Text>
         </Pressable>

@@ -45,9 +45,9 @@ yarn web
 
 ## Android APK
 
-Download: [FitLife-Guide-1.1.3.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.3-preview/FitLife-Guide-1.1.3.apk)
+Download: [FitLife-Guide-1.1.4.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.4-preview/FitLife-Guide-1.1.4.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.3-preview
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.4-preview
 
 Local rebuild for this version (sideload / preview):
 
@@ -57,13 +57,13 @@ export ANDROID_HOME="$HOME/android-sdk"
 yarn apk
 ```
 
-The APK is written to `dist/FitLife-Guide-1.1.3.apk`.
+The APK is written to `dist/FitLife-Guide-1.1.4.apk`.
 
 Install on a phone:
 
 1. Copy the APK to the phone.
 2. Allow install from unknown sources for your file app.
-3. Open `FitLife-Guide-1.1.3.apk`.
+3. Open `FitLife-Guide-1.1.4.apk`.
 4. Package name: `com.fitlifeguide.app`
 
 This local APK is for preview/sideload. A Play Store upload needs your own release keystore.

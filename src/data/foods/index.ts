@@ -1,4 +1,5 @@
 import type { FoodCategory, FoodRecord } from '@/src/types/food';
+import { isVegetarianFood } from '@/src/lib/foodDiet';
 import { validateFoodDatabase } from '@/src/lib/dataQuality';
 import seed from './usda-sr-legacy-seed.json';
 
@@ -47,11 +48,12 @@ export function foodDatabaseIssues() {
 }
 
 export const explorerGroups: { key: string; categories: FoodCategory[] }[] = [
+  { key: 'nonveg', categories: ['eggs', 'chicken', 'fish', 'meat'] },
   { key: 'vegetables', categories: ['vegetables'] },
   { key: 'fruits', categories: ['fruits'] },
   { key: 'grains', categories: ['grains'] },
   { key: 'millets', categories: ['millets'] },
-  { key: 'protein', categories: ['pulses', 'legumes', 'eggs', 'chicken', 'fish', 'meat'] },
+  { key: 'protein', categories: ['pulses', 'legumes'] },
   { key: 'nutsSeeds', categories: ['nuts-seeds'] },
   { key: 'dairy', categories: ['milk-dairy'] },
   { key: 'oils', categories: ['oils-fats'] },
@@ -59,3 +61,10 @@ export const explorerGroups: { key: string; categories: FoodCategory[] }[] = [
   { key: 'bakery', categories: ['bakery'] },
   { key: 'snacks', categories: ['snacks'] },
 ];
+
+export function foodsInExplorerGroup(groupKey: string, list: FoodRecord[] = foods): FoodRecord[] {
+  if (groupKey === 'nonveg') return list.filter((food) => !isVegetarianFood(food));
+  const selected = explorerGroups.find((item) => item.key === groupKey);
+  if (!selected) return list;
+  return list.filter((food) => selected.categories.includes(food.category as FoodCategory));
+}

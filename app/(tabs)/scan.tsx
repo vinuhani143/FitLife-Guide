@@ -42,6 +42,8 @@ export default function ScanScreen() {
   const [permission, requestPermission] = useCameraPermissions();
   const cameraRef = useRef<CameraView>(null);
   const [busy, setBusy] = useState(false);
+  const [cameraReady, setCameraReady] = useState(false);
+  const [barcodeOn, setBarcodeOn] = useState(true);
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>(defaultPlateFoodIds(profile.dietType));
   const [sizes, setSizes] = useState<Record<string, SizeKey | null>>({});
@@ -51,30 +53,37 @@ export default function ScanScreen() {
   const lastBarcode = useRef<string | null>(null);
 
   const candidates = plateCandidateIds(profile.dietType);
-  const showPlatePicker = Platform.OS === 'web' || Boolean(photoUri);
   const visibleIds = selectedIds.filter((foodId) => candidates.includes(foodId));
   const totals = useMemo(
     () => plateTotals(visibleIds.map((foodId) => ({ foodId, size: sizes[foodId] ?? null }))),
-    [visibleIds, sizes],
+    [selectedIds, sizes, profile.dietType],
   );
 
   const capturePlate = async () => {
     if (busy) return;
     setBusy(true);
+    setBarcodeOn(false);
     setMessage(null);
     setLogged(false);
+    setSelectedIds(defaultPlateFoodIds(profile.dietType));
+    setSizes({});
+    setPackaged(null);
     try {
-      const photo = await cameraRef.current?.takePictureAsync({ quality: 0.7, skipProcessing: true });
-      if (!photo?.uri) {
+      if (!cameraRef.current || !cameraReady) {
         setMessage(t('scan.captureError'));
         return;
       }
-      setPhotoUri(photo.uri);
-      setSelectedIds(defaultPlateFoodIds(profile.dietType));
-      setSizes({});
-      setPackaged(null);
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      const photo = await cameraRef.current.takePictureAsync({ quality: 0.5 });
+      if (photo?.uri) {
+        setPhotoUri(photo.uri);
+      } else {
+        setMessage(t('scan.captureError'));
+        setBarcodeOn(true);
+      }
     } catch {
       setMessage(t('scan.captureError'));
+      setBarcodeOn(true);
     } finally {
       setBusy(false);
     }
@@ -130,6 +139,8 @@ export default function ScanScreen() {
     setPhotoUri(null);
     setPackaged(null);
     setLogged(false);
+    setCameraReady(false);
+    setBarcodeOn(true);
     lastBarcode.current = null;
   };
 
@@ -156,26 +167,33 @@ export default function ScanScreen() {
             <Text style={styles.buttonText}>{t('scan.grant')}</Text>
           </Pressable>
         ) : photoUri ? (
-          <View style={styles.cameraWrap}>
+          <View style={styles.previewBox}>
             <Image source={{ uri: photoUri }} style={styles.camera} />
             <Pressable onPress={resetScan}>
               <Text style={{ color: colors.primary, fontWeight: '700' }}>{t('scan.again')}</Text>
             </Pressable>
           </View>
         ) : (
-          <View style={styles.cameraWrap}>
-            <CameraView
-              ref={cameraRef}
-              style={styles.camera}
-              facing="back"
-              barcodeScannerSettings={{ barcodeTypes: ['ean13', 'ean8', 'upc_a', 'upc_e', 'code128', 'qr'] }}
-              onBarcodeScanned={busy ? undefined : onBarcode}
-            />
-            <Pressable style={[styles.button, { backgroundColor: colors.primary }]} onPress={() => void capturePlate()}>
+          <>
+            <View style={styles.previewBox}>
+              <CameraView
+                ref={cameraRef}
+                style={styles.camera}
+                facing="back"
+                mode="picture"
+                barcodeScannerSettings={{ barcodeTypes: ['ean13', 'ean8', 'upc_a', 'upc_e', 'code128', 'qr'] }}
+                onCameraReady={() => setCameraReady(true)}
+                onBarcodeScanned={barcodeOn && !busy ? onBarcode : undefined}
+              />
+            </View>
+            <Pressable
+              style={[styles.button, { backgroundColor: colors.primary, opacity: cameraReady && !busy ? 1 : 0.6 }]}
+              onPress={() => void capturePlate()}
+            >
               <Text style={styles.buttonText}>{t('scan.capturePlate')}</Text>
             </Pressable>
             <Text style={{ color: colors.muted }}>{t('scan.hint')}</Text>
-          </View>
+          </>
         )}
         {busy ? <ActivityIndicator color={colors.primary} /> : null}
         {message ? <Text style={{ color: colors.warning }}>{message}</Text> : null}
@@ -195,7 +213,6 @@ export default function ScanScreen() {
         </Card>
       ) : null}
 
-      {showPlatePicker ? (
       <Card title={t('scan.plateItems')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateItemsHint')}</Text>
         <View style={styles.wrap}>
@@ -215,13 +232,8 @@ export default function ScanScreen() {
           })}
         </View>
       </Card>
-      ) : (
-        <Card title={t('scan.plateItems')}>
-          <Text style={{ color: colors.muted }}>{t('scan.captureFirst')}</Text>
-        </Card>
-      )}
 
-      {showPlatePicker ? visibleIds.map((foodId) => {
+      {visibleIds.map((foodId) => {
         const food = getFoodById(foodId);
         if (!food) return null;
         const size = sizes[foodId] ?? null;
@@ -262,9 +274,8 @@ export default function ScanScreen() {
             ) : null}
           </Card>
         );
-      }) : null}
+      })}
 
-      {showPlatePicker ? (
       <Card title={t('scan.plateTotal')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateTotalHint', { n: totals.counted })}</Text>
         {totals.counted > 0 ? (
@@ -287,14 +298,13 @@ export default function ScanScreen() {
           <Text style={{ color: colors.primary, fontWeight: '700' }}>{t('plan.logToday')}</Text>
         </Pressable>
       </Card>
-      ) : null}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  cameraWrap: { height: 300, borderRadius: 16, overflow: 'hidden', gap: 8 },
-  camera: { flex: 1, minHeight: 220 },
+  previewBox: { height: 240, borderRadius: 16, overflow: 'hidden' },
+  camera: { flex: 1, minHeight: 240 },
   button: { borderRadius: 12, padding: 12, alignItems: 'center' },
   buttonText: { color: '#fff', fontWeight: '700' },
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },

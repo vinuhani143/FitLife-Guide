@@ -1,4 +1,4 @@
-import { searchFoods } from '../index';
+import { foodsInExplorerGroup, searchFoods } from '../index';
 
 describe('food search', () => {
   test('English and Telugu names return the same ragi record', () => {
@@ -58,5 +58,18 @@ describe('food search', () => {
     expect(prawns?.fdcId).toBe(171971);
     expect(fish?.nutrition.energyKcal).toBe(105);
     expect(fish?.fdcId).toBe(171956);
+  });
+
+  test('non-veg explorer list includes chicken, mutton, fish, prawns, and eggs', () => {
+    const ids = foodsInExplorerGroup('nonveg').map((food) => food.id);
+    expect(ids).toEqual(expect.arrayContaining([
+      'chicken-curry',
+      'mutton-gravy',
+      'fish-cooked',
+      'prawns-cooked',
+      'egg-boiled',
+    ]));
+    expect(ids).not.toContain('idli');
+    expect(ids).not.toContain('spinach-raw');
   });
 });
