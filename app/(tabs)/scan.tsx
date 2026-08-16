@@ -20,6 +20,7 @@ import {
   standInFor,
   type SizeKey,
 } from '@/src/lib/plateScan';
+import { foodEmoji } from '@/src/lib/foodVisuals';
 import { translate } from '@/src/lib/i18n';
 import { useApp } from '@/src/store/AppProvider';
 import type { DietType } from '@/src/types/profile';
@@ -155,7 +156,7 @@ export default function ScanScreen() {
 
   return (
     <Screen>
-      <Card title={t('scan.title')}>
+      <Card emoji="📷" title={t('scan.title')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateIntro')}</Text>
         <Text style={{ color: colors.muted }}>{t('body.diet')}</Text>
         <View style={styles.wrap}>
@@ -222,7 +223,7 @@ export default function ScanScreen() {
         </Card>
       ) : null}
 
-      <Card title={t('scan.plateItems')}>
+      <Card emoji="🍽️" title={t('scan.plateItems')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateItemsHint')}</Text>
         <View style={styles.wrap}>
           {chipIds.map((foodId) => {
@@ -235,7 +236,9 @@ export default function ScanScreen() {
                 onPress={() => toggleItem(foodId)}
                 style={[styles.chip, { borderColor: colors.border, backgroundColor: on ? colors.primarySoft : 'transparent' }]}
               >
-                <Text style={{ color: colors.text }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
+                <Text style={{ color: colors.text, fontWeight: '700' }}>
+                  {foodEmoji(food)} {language === 'te' ? food.nameTe : food.nameEn}
+                </Text>
               </Pressable>
             );
           })}
@@ -254,7 +257,7 @@ export default function ScanScreen() {
         {searchHits.map((food) => (
           <Pressable key={`search-${food.id}`} onPress={() => addCustom(food.id)}>
             <Text style={{ color: visibleIds.includes(food.id) ? colors.primary : colors.text, fontWeight: visibleIds.includes(food.id) ? '700' : '400' }}>
-              {language === 'te' ? food.nameTe : food.nameEn}
+              {foodEmoji(food)} {language === 'te' ? food.nameTe : food.nameEn}
               {food.nutritionAvailable ? ` · ${food.nutrition.energyKcal} kcal/100 g` : ` · ${t('foods.unavailable')}`}
             </Text>
           </Pressable>
@@ -270,7 +273,7 @@ export default function ScanScreen() {
         const nutrition = grams ? plateItemNutrition(foodId, grams) : null;
         const standIn = standInFor(foodId);
         return (
-          <Card key={foodId} title={language === 'te' ? food.nameTe : food.nameEn}>
+          <Card key={foodId} emoji={foodEmoji(food)} title={language === 'te' ? food.nameTe : food.nameEn}>
             {standIn ? <Text style={{ color: colors.warning }}>{t(standIn.noteKey)}</Text> : null}
             <Text style={{ color: colors.muted }}>{t('scan.pickSize')}</Text>
             <View style={styles.wrap}>
@@ -305,7 +308,7 @@ export default function ScanScreen() {
         );
       })}
 
-      <Card title={t('scan.plateTotal')}>
+      <Card emoji="➕" title={t('scan.plateTotal')}>
         <Text style={{ color: colors.muted }}>{t('scan.plateTotalHint', { n: totals.counted })}</Text>
         {totals.counted > 0 ? (
           MACRO_KEYS.map((key) => (

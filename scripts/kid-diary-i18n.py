@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+# ASCII-only source. Telugu values are unicode escapes.
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+EN = {
+    "tabs.diary": "Today",
+    "tabs.foods": "Foods",
+    "diary.title": "Today's food book",
+    "diary.hello": "Hi {{name}}! What did you eat today?",
+    "diary.helloAnon": "What did you eat today?",
+    "diary.howTo": "Three easy steps: 1) When? 2) What food? 3) How much? Then tap a plate size. The app uses official catalog numbers. It does not make up calories.",
+    "diary.stepWhen": "When did you eat?",
+    "diary.stepWhat": "What did you eat?",
+    "diary.stepHowMuch": "How much?",
+    "diary.pickMeal": "Tap morning, lunch, snack, or night.",
+    "diary.pickFood": "Tap a food picture. Or type a name.",
+    "diary.searchBox": "Type a food name",
+    "diary.sizeHint": "Tap Small, Usual, or Big to add it. Like a small plate, a usual plate, or a big plate.",
+    "diary.needFoodFirst": "First tap a food picture in step 2.",
+    "diary.addBig": "Add to today's book",
+    "diary.emptyMeal": "Nothing here yet. Tap to add.",
+    "diary.remove": "Remove",
+    "diary.energyFill": "Energy tank",
+    "diary.strength": "Strength (protein)",
+    "diary.foodsCount": "{{n}} foods",
+    "diary.noFoods": "None yet",
+    "diary.cameraHelp": "Take a plate photo",
+    "diary.exactGrams": "Exact grams (optional)",
+    "diary.gramsHint": "Grown-ups can type exact grams if they want.",
+    "diary.selected": "You picked",
+    "diary.added": "Added {{food}}!",
+    "diary.totals": "Today's energy",
+    "diary.todayMeals": "Today's meals",
+    "diary.dietHint": "Veg or non-veg? Tap here. Goal and Scan lists follow this too.",
+    "diary.nonVegList": "Chicken, mutton, fish, prawns, and eggs",
+    "diary.nonVegHint": "Tap a picture, then pick a plate size. Numbers are USDA copies, not homemade recipes.",
+    "diary.commonHint.breakfast": "Morning foods people often eat. Some names are for search only and have no made-up calories.",
+    "diary.commonHint.lunch": "Lunch and dinner foods people often eat.",
+    "diary.commonHint.snack": "Snack and packet foods. Numbers are USDA copies, not homemade recipes.",
+    "diary.mealShort.breakfast": "Morning",
+    "diary.mealShort.morning_snack": "Snack",
+    "diary.mealShort.lunch": "Lunch",
+    "diary.mealShort.evening_snack": "Snack",
+    "diary.mealShort.dinner": "Night",
+    "diary.add": "Add food",
+    "card.calories": "Energy",
+    "card.protein": "Strength",
+    "home.helloKid": "Hi {{name}}! Let's see today.",
+    "home.helloKidAnon": "Hi! Let's see today.",
+    "home.todayVsNeed": "Today's energy",
+    "home.yourBody": "Your body",
+    "home.tdeeShort": "Day energy",
+    "home.commonFoods": "Foods people often log",
+    "home.commonFoodsHint": "Tap a picture to see official numbers. Then add what you ate in Today.",
+    "home.setupProfile": "Add age, height, and weight to see body numbers.",
+    "coach.energy.unknown": "Add foods and the energy tank starts to fill.",
+    "coach.energy.onTrack": "The energy tank is near the day's estimate. This is information, not a score.",
+    "coach.energy.under": "The energy tank is still filling. Maybe a meal is missing, or today was lighter.",
+    "coach.energy.over": "The energy tank is a bit extra today. That is information for the next meal, not a scolding.",
+    "coach.protein.unknown": "Add foods to see strength (protein).",
+    "coach.protein.enough": "Strength (protein) looks close to the educational comparison.",
+    "coach.protein.under": "Strength (protein) is still below the educational comparison.",
+    "coach.next.logMore": "Add the next meal so the picture gets clearer.",
+    "coach.next.logFoods": "Start with idli, dosa, rice, dal, or another catalog food.",
+    "coach.next.lossOver": "For a weight-loss goal, the next meal can be dal, yogurt, fruit, or vegetables. This is teaching, not a ban.",
+    "coach.next.gainUnder": "For a weight-gain goal, the next meal can include rice, roti, yogurt, nuts, or dal.",
+    "coach.next.keepPattern": "If this looks like a usual day, keep going and watch the week, not one day.",
+    "plan.logToday": "Write what you ate today",
+    "foods.dietHint": "Choose veg or non-veg to jump to that picture list.",
+    "scan.plateItems": "Foods on this plate",
+    "scan.plateItemsHint": "The camera cannot invent names. Tick what is on the plate, then pick Small, Usual, or Big.",
+}
+
+TE = {
+    "tabs.diary": "\u0c08\u0c30\u0c4b\u0c1c\u0c41",
+    "tabs.foods": "\u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41",
+    "diary.title": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c06\u0c39\u0c3e\u0c30 \u0c2a\u0c41\u0c38\u0c4d\u0c24\u0c15\u0c02",
+    "diary.hello": "\u0c39\u0c3e\u0c2f\u0c4d {{name}}! \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c0f\u0c02 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41?",
+    "diary.helloAnon": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c0f\u0c02 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41?",
+    "diary.howTo": "\u0c2e\u0c42\u0c21\u0c41 \u0c38\u0c41\u0c32\u0c2d\u0c02 \u0c05\u0c21\u0c41\u0c17\u0c41\u0c32\u0c41: 1) \u0c0e\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41? 2) \u0c0f\u0c02 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41? 3) \u0c0e\u0c02\u0c24? \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d \u0c2a\u0c4d\u0c30\u0c2e\u0c3e\u0c23\u0c02 \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c41. \u0c2f\u0c3e\u0c2a\u0c4d \u0c05\u0c27\u0c3f\u0c15\u0c3e\u0c30 \u0c15\u0c47\u0c1f\u0c32\u0c3e\u0c17\u0c4d \u0c38\u0c02\u0c16\u0c4d\u0c2f\u0c32\u0c41 \u0c35\u0c3e\u0c21\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f. \u0c15\u0c47\u0c32\u0c30\u0c40\u0c32\u0c41 \u0c15\u0c32\u0c4d\u0c2a\u0c3f\u0c02\u0c1a\u0c26\u0c41.",
+    "diary.stepWhen": "\u0c0e\u0c2a\u0c4d\u0c2a\u0c41\u0c21\u0c41 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41?",
+    "diary.stepWhat": "\u0c0f\u0c02 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41?",
+    "diary.stepHowMuch": "\u0c0e\u0c02\u0c24 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c35\u0c41?",
+    "diary.pickMeal": "\u0c09\u0c26\u0c2f\u0c02, \u0c2d\u0c4b\u0c1c\u0c28\u0c02, \u0c1a\u0c3f\u0c30\u0c41\u0c24\u0c3f\u0c02\u0c21\u0c3f \u0c32\u0c47\u0c26\u0c3e \u0c30\u0c3e\u0c24\u0c4d\u0c30\u0c3f \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c41.",
+    "diary.pickFood": "\u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c2c\u0c4a\u0c2e\u0c4d\u0c2e\u0c28\u0c41 \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c41. \u0c32\u0c47\u0c26\u0c3e \u0c2a\u0c47\u0c30\u0c41 \u0c1f\u0c48\u0c2a\u0c4d \u0c1a\u0c47\u0c2f\u0c3f.",
+    "diary.searchBox": "\u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c2a\u0c47\u0c30\u0c41 \u0c1f\u0c48\u0c2a\u0c4d \u0c1a\u0c47\u0c2f\u0c3f",
+    "diary.sizeHint": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 / \u0c2e\u0c27\u0c4d\u0c2f / \u0c2a\u0c46\u0c26\u0c4d\u0c26 \u0c28\u0c4a\u0c15\u0c3f\u0c24\u0c47 \u0c1a\u0c47\u0c30\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f. \u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d, \u0c38\u0c3e\u0c27\u0c3e\u0c30\u0c23 \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d, \u0c2a\u0c46\u0c26\u0c4d\u0c26 \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d \u0c32\u0c3e\u0c17\u0c3e.",
+    "diary.needFoodFirst": "\u0c2e\u0c41\u0c02\u0c26\u0c41 2\u0c35 \u0c05\u0c21\u0c41\u0c17\u0c41\u0c32\u0c4b \u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c2c\u0c4a\u0c2e\u0c4d\u0c2e\u0c28\u0c41 \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c41.",
+    "diary.addBig": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c2a\u0c41\u0c38\u0c4d\u0c24\u0c15\u0c02\u0c32\u0c4b \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c41",
+    "diary.emptyMeal": "\u0c07\u0c02\u0c15\u0c3e \u0c0f\u0c2e\u0c40 \u0c32\u0c47\u0c26\u0c41. \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c41.",
+    "diary.remove": "\u0c24\u0c40\u0c38\u0c47\u0c2f\u0c3f",
+    "diary.energyFill": "\u0c36\u0c15\u0c4d\u0c24\u0c3f \u0c1f\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d",
+    "diary.strength": "\u0c2c\u0c32\u0c02 (\u0c2a\u0c4d\u0c30\u0c4b\u0c1f\u0c40\u0c28\u0c4d)",
+    "diary.foodsCount": "{{n}} \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41",
+    "diary.noFoods": "\u0c07\u0c02\u0c15\u0c3e \u0c32\u0c47\u0c35\u0c41",
+    "diary.cameraHelp": "\u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d \u0c2b\u0c4b\u0c1f\u0c4b \u0c24\u0c40\u0c2f\u0c3f",
+    "diary.exactGrams": "\u0c16\u0c1a\u0c4d\u0c1a\u0c3f\u0c24\u0c2e\u0c48\u0c28 \u0c17\u0c4d\u0c30\u0c3e\u0c2e\u0c41\u0c32\u0c41 (\u0c10\u0c1a\u0c4d\u0c1b\u0c3f\u0c15\u0c02)",
+    "diary.gramsHint": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c35\u0c3e\u0c33\u0c4d\u0c33\u0c41 \u0c15\u0c3e\u0c35\u0c3e\u0c32\u0c3f\u0c38\u0c4d\u0c24\u0c47 \u0c17\u0c4d\u0c30\u0c3e\u0c2e\u0c41\u0c32\u0c41 \u0c30\u0c3e\u0c2f\u0c35\u0c1a\u0c4d\u0c1a\u0c41.",
+    "diary.selected": "\u0c28\u0c41\u0c35\u0c4d\u0c35\u0c41 \u0c0e\u0c02\u0c1a\u0c41\u0c15\u0c41\u0c28\u0c4d\u0c28\u0c26\u0c3f",
+    "diary.added": "{{food}} \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c3e\u0c02!",
+    "diary.totals": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c36\u0c15\u0c4d\u0c24\u0c3f",
+    "diary.todayMeals": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c2d\u0c4b\u0c1c\u0c28\u0c3e\u0c32\u0c41",
+    "diary.dietHint": "\u0c36\u0c3e\u0c15\u0c3e\u0c39\u0c3e\u0c30\u0c2e\u0c3e, \u0c2e\u0c3e\u0c02\u0c38\u0c3e\u0c39\u0c3e\u0c30\u0c2e\u0c3e? \u0c07\u0c15\u0c4d\u0c15\u0c21 \u0c2e\u0c3e\u0c30\u0c4d\u0c1a\u0c41. \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2f\u0c02, \u0c38\u0c4d\u0c15\u0c3e\u0c28\u0c4d \u0c1c\u0c3e\u0c2c\u0c3f\u0c24\u0c3e\u0c32\u0c41 \u0c15\u0c42\u0c21\u0c3e \u0c07\u0c32\u0c3e \u0c35\u0c38\u0c4d\u0c24\u0c3e\u0c2f\u0c3f.",
+    "diary.nonVegList": "\u0c15\u0c4b\u0c21\u0c3f, \u0c2e\u0c1f\u0c28\u0c4d, \u0c1a\u0c47\u0c2a, \u0c30\u0c4a\u0c2f\u0c4d\u0c2f\u0c32\u0c41, \u0c17\u0c41\u0c21\u0c4d\u0c21\u0c41",
+    "diary.nonVegHint": "\u0c2c\u0c4a\u0c2e\u0c4d\u0c2e\u0c28\u0c41 \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c3f, \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d \u0c2a\u0c4d\u0c30\u0c2e\u0c3e\u0c23\u0c02 \u0c0e\u0c02\u0c1a\u0c41\u0c15\u0c4b. \u0c38\u0c02\u0c16\u0c4d\u0c2f\u0c32\u0c41 USDA \u0c15\u0c3e\u0c2a\u0c40\u0c32\u0c41, \u0c07\u0c02\u0c1f\u0c3f \u0c35\u0c02\u0c1f\u0c15\u0c3e\u0c32\u0c41 \u0c15\u0c3e\u0c35\u0c41.",
+    "diary.commonHint.breakfast": "\u0c09\u0c26\u0c2f\u0c02 \u0c24\u0c30\u0c1a\u0c41 \u0c24\u0c3f\u0c28\u0c47 \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41. \u0c15\u0c4a\u0c28\u0c4d\u0c28\u0c3f \u0c2a\u0c47\u0c30\u0c4d\u0c32\u0c41 \u0c35\u0c46\u0c24\u0c41\u0c15\u0c41\u0c21\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c09\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c3f; \u0c15\u0c32\u0c4d\u0c2a\u0c3f\u0c02\u0c1a\u0c3f\u0c28 \u0c15\u0c47\u0c32\u0c30\u0c40\u0c32\u0c41 \u0c32\u0c47\u0c35\u0c41.",
+    "diary.commonHint.lunch": "\u0c2d\u0c4b\u0c1c\u0c28\u0c02 / \u0c30\u0c3e\u0c24\u0c4d\u0c30\u0c3f \u0c24\u0c30\u0c1a\u0c41 \u0c24\u0c3f\u0c28\u0c47 \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41.",
+    "diary.commonHint.snack": "\u0c1a\u0c3f\u0c30\u0c41\u0c24\u0c3f\u0c02\u0c21\u0c3f, \u0c2a\u0c4d\u0c2f\u0c3e\u0c15\u0c46\u0c1f\u0c4d \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41. \u0c38\u0c02\u0c16\u0c4d\u0c2f\u0c32\u0c41 USDA \u0c15\u0c3e\u0c2a\u0c40\u0c32\u0c41, \u0c07\u0c02\u0c1f\u0c3f \u0c35\u0c02\u0c1f\u0c15\u0c3e\u0c32\u0c41 \u0c15\u0c3e\u0c35\u0c41.",
+    "diary.mealShort.breakfast": "\u0c09\u0c26\u0c2f\u0c02",
+    "diary.mealShort.morning_snack": "\u0c1a\u0c3f\u0c30\u0c41\u0c24\u0c3f\u0c02\u0c21\u0c3f",
+    "diary.mealShort.lunch": "\u0c2d\u0c4b\u0c1c\u0c28\u0c02",
+    "diary.mealShort.evening_snack": "\u0c1a\u0c3f\u0c30\u0c41\u0c24\u0c3f\u0c02\u0c21\u0c3f",
+    "diary.mealShort.dinner": "\u0c30\u0c3e\u0c24\u0c4d\u0c30\u0c3f",
+    "diary.add": "\u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c41",
+    "card.calories": "\u0c36\u0c15\u0c4d\u0c24\u0c3f",
+    "card.protein": "\u0c2c\u0c32\u0c02",
+    "home.helloKid": "\u0c39\u0c3e\u0c2f\u0c4d {{name}}! \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c1a\u0c42\u0c26\u0c4d\u0c26\u0c3e\u0c02.",
+    "home.helloKidAnon": "\u0c39\u0c3e\u0c2f\u0c4d! \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c1a\u0c42\u0c26\u0c4d\u0c26\u0c3e\u0c02.",
+    "home.todayVsNeed": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c36\u0c15\u0c4d\u0c24\u0c3f",
+    "home.yourBody": "\u0c28\u0c40 \u0c36\u0c30\u0c40\u0c30\u0c02",
+    "home.tdeeShort": "\u0c30\u0c4b\u0c1c\u0c41 \u0c36\u0c15\u0c4d\u0c24\u0c3f",
+    "home.commonFoods": "\u0c24\u0c30\u0c1a\u0c41 \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c47 \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41",
+    "home.commonFoodsHint": "\u0c2c\u0c4a\u0c2e\u0c4d\u0c2e\u0c28\u0c41 \u0c28\u0c4a\u0c15\u0c4d\u0c15\u0c3f \u0c05\u0c27\u0c3f\u0c15\u0c3e\u0c30 \u0c38\u0c02\u0c16\u0c4d\u0c2f\u0c32\u0c41 \u0c1a\u0c42\u0c21\u0c41. \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c32\u0c4b \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c26\u0c3f \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c41.",
+    "home.setupProfile": "\u0c36\u0c30\u0c40\u0c30 \u0c38\u0c02\u0c16\u0c4d\u0c2f\u0c32\u0c41 \u0c1a\u0c42\u0c21\u0c1f\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c35\u0c2f\u0c38\u0c41, \u0c0e\u0c24\u0c4d\u0c24\u0c41, \u0c2c\u0c30\u0c41\u0c35\u0c41 \u0c07\u0c35\u0c4d\u0c35\u0c02\u0c21\u0c3f.",
+    "coach.energy.unknown": "\u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c3f\u0c24\u0c47 \u0c36\u0c15\u0c4d\u0c24\u0c3f \u0c1f\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c28\u0c3f\u0c02\u0c21\u0c41\u0c24\u0c41\u0c02\u0c26\u0c3f.",
+    "coach.energy.onTrack": "\u0c36\u0c15\u0c4d\u0c24\u0c3f \u0c1f\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c26\u0c3e\u0c26\u0c3e\u0c2a\u0c41 \u0c28\u0c3f\u0c02\u0c21\u0c3f\u0c02\u0c26\u0c3f. \u0c07\u0c26\u0c3f \u0c38\u0c2e\u0c3e\u0c1a\u0c3e\u0c30\u0c02, \u0c2e\u0c3e\u0c30\u0c4d\u0c15\u0c41\u0c32\u0c41 \u0c15\u0c3e\u0c26\u0c41.",
+    "coach.energy.under": "\u0c36\u0c15\u0c4d\u0c24\u0c3f \u0c1f\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c07\u0c02\u0c15\u0c3e \u0c28\u0c3f\u0c02\u0c21\u0c32\u0c47\u0c26\u0c41. \u0c12\u0c15 \u0c2d\u0c4b\u0c1c\u0c28\u0c02 \u0c2e\u0c3f\u0c38\u0c3f\u0c2a\u0c4b\u0c2f\u0c3f \u0c09\u0c02\u0c21\u0c35\u0c1a\u0c4d\u0c1a\u0c41, \u0c32\u0c47\u0c26\u0c3e \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c24\u0c15\u0c4d\u0c15\u0c41\u0c35 \u0c24\u0c3f\u0c28\u0c3f \u0c09\u0c02\u0c21\u0c35\u0c1a\u0c4d\u0c1a\u0c41.",
+    "coach.energy.over": "\u0c36\u0c15\u0c4d\u0c24\u0c3f \u0c1f\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c15\u0c4a\u0c02\u0c1a\u0c46\u0c02 \u0c0e\u0c15\u0c4d\u0c15\u0c41\u0c35 \u0c28\u0c3f\u0c02\u0c21\u0c3f\u0c02\u0c26\u0c3f. \u0c24\u0c3f\u0c1f\u0c4d\u0c1f\u0c41 \u0c15\u0c3e\u0c26\u0c41, \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c2d\u0c4b\u0c1c\u0c28\u0c3e\u0c28\u0c3f\u0c15\u0c3f \u0c38\u0c2e\u0c3e\u0c1a\u0c3e\u0c30\u0c02.",
+    "coach.protein.unknown": "\u0c06\u0c39\u0c3e\u0c30\u0c02 \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c3f\u0c24\u0c47 \u0c2c\u0c32\u0c02 (\u0c2a\u0c4d\u0c30\u0c4b\u0c1f\u0c40\u0c28\u0c4d) \u0c15\u0c28\u0c3f\u0c2a\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
+    "coach.protein.enough": "\u0c2c\u0c32\u0c02 (\u0c2a\u0c4d\u0c30\u0c4b\u0c1f\u0c40\u0c28\u0c4d) \u0c35\u0c3f\u0c26\u0c4d\u0c2f \u0c2a\u0c4b\u0c32\u0c3f\u0c15\u0c15\u0c3f \u0c26\u0c17\u0c4d\u0c17\u0c30\u0c17\u0c3e \u0c09\u0c02\u0c26\u0c3f.",
+    "coach.protein.under": "\u0c2c\u0c32\u0c02 (\u0c2a\u0c4d\u0c30\u0c4b\u0c1f\u0c40\u0c28\u0c4d) \u0c07\u0c02\u0c15\u0c3e \u0c35\u0c3f\u0c26\u0c4d\u0c2f \u0c2a\u0c4b\u0c32\u0c3f\u0c15 \u0c15\u0c02\u0c1f\u0c47 \u0c09\u0c02\u0c26\u0c3f.",
+    "coach.next.logMore": "\u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c2d\u0c4b\u0c1c\u0c28\u0c02 \u0c1a\u0c47\u0c30\u0c4d\u0c1a\u0c41, \u0c2c\u0c4a\u0c2e\u0c4d\u0c2e \u0c38\u0c4d\u0c2a\u0c37\u0c4d\u0c1f\u0c02\u0c17\u0c3e \u0c15\u0c28\u0c3f\u0c2a\u0c3f\u0c38\u0c4d\u0c24\u0c41\u0c02\u0c26\u0c3f.",
+    "coach.next.logFoods": "\u0c07\u0c21\u0c4d\u0c32\u0c40, \u0c26\u0c4b\u0c36, \u0c05\u0c28\u0c4d\u0c28\u0c02, \u0c2a\u0c2a\u0c4d\u0c2a\u0c41 \u0c32\u0c3e\u0c02\u0c1f\u0c3f \u0c15\u0c47\u0c1f\u0c32\u0c3e\u0c17\u0c4d \u0c06\u0c39\u0c3e\u0c30\u0c02\u0c24\u0c4b \u0c2e\u0c4a\u0c26\u0c32\u0c41\u0c2a\u0c46\u0c1f\u0c4d\u0c1f\u0c41.",
+    "coach.next.lossOver": "\u0c2c\u0c30\u0c41\u0c35\u0c41 \u0c24\u0c17\u0c4d\u0c17\u0c3e\u0c32\u0c3f \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2f\u0c2e\u0c48\u0c24\u0c47 \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c2a\u0c2a\u0c4d\u0c2a\u0c41, \u0c2a\u0c46\u0c30\u0c41\u0c17\u0c41, \u0c2a\u0c02\u0c21\u0c41 \u0c32\u0c47\u0c26\u0c3e \u0c15\u0c42\u0c30\u0c17\u0c3e\u0c2f\u0c32\u0c41 \u0c1a\u0c42\u0c21\u0c35\u0c1a\u0c4d\u0c1a\u0c41. \u0c28\u0c3f\u0c37\u0c47\u0c27\u0c02 \u0c15\u0c3e\u0c26\u0c41.",
+    "coach.next.gainUnder": "\u0c2c\u0c30\u0c41\u0c35\u0c41 \u0c2a\u0c46\u0c30\u0c17\u0c3e\u0c32\u0c3f \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2f\u0c2e\u0c48\u0c24\u0c47 \u0c24\u0c30\u0c4d\u0c35\u0c3e\u0c24 \u0c05\u0c28\u0c4d\u0c28\u0c02, \u0c30\u0c4a\u0c1f\u0c4d\u0c1f\u0c46, \u0c2a\u0c46\u0c30\u0c41\u0c17\u0c41, \u0c2a\u0c2a\u0c4d\u0c2a\u0c41 \u0c1a\u0c42\u0c21\u0c35\u0c1a\u0c4d\u0c1a\u0c41.",
+    "coach.next.keepPattern": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c38\u0c3e\u0c27\u0c3e\u0c30\u0c23\u0c02\u0c17\u0c3e \u0c09\u0c02\u0c1f\u0c47 \u0c07\u0c32\u0c3e\u0c17\u0c47 \u0c15\u0c4a\u0c28\u0c38\u0c3e\u0c17\u0c3f\u0c02\u0c1a\u0c41. \u0c12\u0c15 \u0c30\u0c4b\u0c1c\u0c41 \u0c15\u0c3e\u0c26\u0c41, \u0c35\u0c3e\u0c30\u0c02 \u0c1a\u0c42\u0c21\u0c41.",
+    "plan.logToday": "\u0c08\u0c30\u0c4b\u0c1c\u0c41 \u0c24\u0c3f\u0c28\u0c4d\u0c28\u0c26\u0c3f \u0c30\u0c3e\u0c2f\u0c3f",
+    "foods.dietHint": "\u0c36\u0c3e\u0c15\u0c3e\u0c39\u0c3e\u0c30\u0c02 \u0c32\u0c47\u0c26\u0c3e \u0c2e\u0c3e\u0c02\u0c38\u0c3e\u0c39\u0c3e\u0c30\u0c02 \u0c0e\u0c02\u0c1a\u0c41\u0c15\u0c41\u0c02\u0c1f\u0c47 \u0c06 \u0c2c\u0c4a\u0c2e\u0c4d\u0c2e\u0c32 \u0c1c\u0c3e\u0c2c\u0c3f\u0c24\u0c3e\u0c15\u0c3f \u0c35\u0c46\u0c33\u0c24\u0c3e\u0c35\u0c41.",
+    "scan.plateItems": "\u0c08 \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d\u0c32\u0c4b\u0c28\u0c3f \u0c06\u0c39\u0c3e\u0c30\u0c3e\u0c32\u0c41",
+    "scan.plateItemsHint": "\u0c15\u0c46\u0c2e\u0c46\u0c30\u0c3e \u0c2a\u0c47\u0c30\u0c4d\u0c32\u0c41 \u0c15\u0c32\u0c4d\u0c2a\u0c3f\u0c02\u0c1a\u0c26\u0c41. \u0c2a\u0c4d\u0c32\u0c47\u0c1f\u0c4d\u0c32\u0c4b \u0c09\u0c28\u0c4d\u0c28\u0c35\u0c3f \u0c1f\u0c3f\u0c15\u0c4d \u0c1a\u0c47\u0c38\u0c3f, \u0c1a\u0c3f\u0c28\u0c4d\u0c28 / \u0c2e\u0c27\u0c4d\u0c2f / \u0c2a\u0c46\u0c26\u0c4d\u0c26 \u0c0e\u0c02\u0c1a\u0c41\u0c15\u0c4b.",
+}
+
+
+def merge(path: Path, extra: dict) -> None:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data.update(extra)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(path.name, len(data))
+
+
+def main() -> int:
+    merge(ROOT / "translations/en.json", EN)
+    merge(ROOT / "translations/te.json", TE)
+    te = (ROOT / "translations/te.json").read_text(encoding="utf-8")
+    if "\ufffd" in te:
+        raise SystemExit("Telugu file still has replacement characters")
+    missing = [key for key in EN if key not in TE]
+    if missing:
+        raise SystemExit(f"Missing Telugu keys: {missing}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

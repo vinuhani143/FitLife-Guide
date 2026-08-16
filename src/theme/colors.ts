@@ -1,6 +1,6 @@
 export const palette = {
   light: {
-    bg: '#F3F6F5',
+    bg: '#EEF7F4',
     card: '#FFFFFF',
     text: '#12221E',
     muted: '#5B6B66',

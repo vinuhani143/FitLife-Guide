@@ -21,7 +21,7 @@ export default function BodyScreen() {
 
   return (
     <Screen>
-      <Card title={t('body.title')}>
+      <Card emoji="🧍" title={t('body.title')}>
         <Text style={{ color: colors.text }}>{profile.name || t('common.profile')}</Text>
         <View style={styles.grid}>
           <StatTile label={t('home.age')} value={age != null ? String(age) : '—'} />

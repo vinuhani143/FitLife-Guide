@@ -22,7 +22,7 @@ export function StatTile({
 }
 
 const styles = StyleSheet.create({
-  tile: { flex: 1, minWidth: '45%', borderRadius: 14, padding: 12, gap: 4 },
+  tile: { flex: 1, minWidth: '45%', borderRadius: 18, padding: 14, gap: 4 },
   label: { fontSize: 12, fontWeight: '600' },
   value: { fontSize: 20, fontWeight: '700' },
   hint: { fontSize: 11 },

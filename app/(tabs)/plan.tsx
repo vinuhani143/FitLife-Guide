@@ -5,6 +5,7 @@ import { Card } from '@/src/components/Card';
 import { Disclaimer } from '@/src/components/Disclaimer';
 import { Screen } from '@/src/components/Screen';
 import { formatKcal, formatNumber } from '@/src/lib/format';
+import { foodEmoji } from '@/src/lib/foodVisuals';
 import { suggestFoodsForGoal } from '@/src/lib/foodSuggestions';
 import { translate } from '@/src/lib/i18n';
 import { WHO_PROTEIN_SOURCE, WISHNOFSKY_SOURCE } from '@/src/lib/calculations/weightPlan';
@@ -23,7 +24,7 @@ export default function PlanScreen() {
 
   return (
     <Screen>
-      <Card eyebrow={t('plan.eyebrow')} title={t('plan.title')}>
+      <Card emoji="🏁" eyebrow={t('plan.eyebrow')} title={t('plan.title')}>
         <Text style={{ color: colors.text }}>{t(`goal.${profile.goal}`)}</Text>
         <Text style={{ color: colors.muted }}>{t('plan.purpose')}</Text>
         <Text style={{ color: colors.muted }}>{t('body.diet')}</Text>
@@ -94,7 +95,7 @@ export default function PlanScreen() {
         </Link>
       </Card>
 
-      <Card title={t('plan.whatToEat')}>
+      <Card emoji="🥗" title={t('plan.whatToEat')}>
         <Text style={{ color: colors.muted }}>{t('plan.suggestIntro')}</Text>
         <Text style={{ color: colors.text, fontWeight: '700' }}>{t(`diet.${profile.dietType}`)}</Text>
         {suggestions.length === 0 ? (
@@ -103,7 +104,8 @@ export default function PlanScreen() {
           suggestions.map((item) => (
           <Link key={item.food.id} href={`/food/${item.food.id}`} asChild>
             <Pressable style={[styles.food, { borderColor: colors.border }]}>
-              <Text style={{ color: colors.text, fontWeight: '700' }}>
+              <Text style={{ fontSize: 24 }}>{foodEmoji(item.food)}</Text>
+              <Text style={{ color: colors.text, fontWeight: '800' }}>
                 {language === 'te' ? item.food.nameTe : item.food.nameEn}
               </Text>
               <Text style={{ color: colors.muted }}>
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: { borderWidth: 1, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 },
-  food: { borderWidth: 1, borderRadius: 12, padding: 10, gap: 4 },
+  food: { borderWidth: 1, borderRadius: 16, padding: 10, gap: 4 },
   link: { color: '#0F766E', fontWeight: '700' },
   src: { fontSize: 12, color: '#5B6B66' },
   cta: { borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12, alignItems: 'center' },

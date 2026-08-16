@@ -16,6 +16,6 @@ export function Disclaimer() {
 }
 
 const styles = StyleSheet.create({
-  box: { borderWidth: 1, borderRadius: 12, padding: 12 },
+  box: { borderWidth: 1, borderRadius: 16, padding: 12 },
   text: { fontSize: 12, lineHeight: 18 },
 });

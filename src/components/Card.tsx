@@ -5,11 +5,13 @@ import { useApp } from '@/src/store/AppProvider';
 export function Card({
   title,
   eyebrow,
+  emoji,
   children,
   style,
 }: {
   title?: string;
   eyebrow?: string;
+  emoji?: string;
   children?: React.ReactNode;
   style?: ViewStyle;
 }) {
@@ -19,7 +21,12 @@ export function Card({
       {eyebrow ? (
         <Text style={[styles.eyebrow, { color: colors.primary }]}>{eyebrow}</Text>
       ) : null}
-      {title ? <Text style={[styles.title, { color: colors.text }]}>{title}</Text> : null}
+      {title ? (
+        <Text style={[styles.title, { color: colors.text }]}>
+          {emoji ? `${emoji}  ` : ''}
+          {title}
+        </Text>
+      ) : null}
       {children}
     </View>
   );
@@ -27,10 +34,10 @@ export function Card({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 16,
+    borderRadius: 22,
     borderWidth: 1,
     padding: 16,
-    gap: 8,
+    gap: 10,
   },
   eyebrow: {
     fontSize: 12,
@@ -38,7 +45,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
   },
   title: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 20,
+    fontWeight: '800',
   },
 });

@@ -15,10 +15,11 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors.tab,
         tabBarInactiveTintColor: colors.muted,
-        tabBarStyle: { backgroundColor: colors.card, borderTopColor: colors.border },
+        tabBarStyle: { backgroundColor: colors.card, borderTopColor: colors.border, height: 62, paddingTop: 4 },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '800' },
         headerStyle: { backgroundColor: colors.card },
         headerTintColor: colors.text,
-        headerTitleStyle: { fontWeight: '700' },
+        headerTitleStyle: { fontWeight: '800' },
       }}
     >
       <Tabs.Screen
@@ -47,7 +48,7 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="diary"
-        options={{ title: translate(language, 'tabs.diary'), tabBarIcon: ({ color }) => <TabIcon name="book" color={color} /> }}
+        options={{ title: translate(language, 'tabs.diary'), tabBarIcon: ({ color }) => <TabIcon name="cutlery" color={color} /> }}
       />
     </Tabs>
   );

@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Screen } from '@/src/components/Screen';
 import { explorerGroups, foodsInExplorerGroup, searchFoods } from '@/src/data/foods';
+import { foodEmoji } from '@/src/lib/foodVisuals';
 import { translate } from '@/src/lib/i18n';
 import { useApp } from '@/src/store/AppProvider';
 import type { DietType } from '@/src/types/profile';
@@ -30,7 +31,7 @@ export default function FoodsScreen() {
 
   return (
     <Screen>
-      <Card title={t('foods.title')}>
+      <Card emoji="🥗" title={t('foods.title')}>
         <Text style={{ color: colors.muted }}>{t('foods.dietHint')}</Text>
         <View style={styles.wrap}>
           {DIETS.map((diet) => (
@@ -39,7 +40,7 @@ export default function FoodsScreen() {
               onPress={() => setDiet(diet)}
               style={[styles.chip, { borderColor: colors.border, backgroundColor: profile.dietType === diet ? colors.primarySoft : 'transparent' }]}
             >
-              <Text style={{ color: colors.text }}>{t(`diet.${diet}`)}</Text>
+              <Text style={{ color: colors.text }}>{diet === 'vegetarian' ? '🥬 ' : '🍗 '}{t(`diet.${diet}`)}</Text>
             </Pressable>
           ))}
         </View>
@@ -72,7 +73,8 @@ export default function FoodsScreen() {
         <Link key={food.id} href={`/food/${food.id}`} asChild>
           <Pressable>
             <Card>
-              <Text style={{ color: colors.text, fontWeight: '700' }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
+              <Text style={{ fontSize: 28 }}>{foodEmoji(food)}</Text>
+              <Text style={{ color: colors.text, fontWeight: '800', fontSize: 17 }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
               <Text style={{ color: colors.muted }}>{language === 'te' ? food.nameEn : food.nameTe}</Text>
               <Text style={{ color: colors.muted }}>{food.state} · {food.category}</Text>
               <Text style={{ color: colors.muted }}>

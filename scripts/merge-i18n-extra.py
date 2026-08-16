@@ -244,6 +244,8 @@ def main() -> int:
     te = (ROOT / "translations/te.json").read_text(encoding="utf-8")
     if "\ufffd" in te:
         raise SystemExit("Telugu file still has replacement characters")
+    import runpy
+    runpy.run_path(str(ROOT / "scripts/kid-diary-i18n.py"))
     return 0
 
 
