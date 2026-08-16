@@ -39,3 +39,8 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+android/local.properties
+android/keystore.properties
+.keystore/
+dist/*.apk
+*.apk

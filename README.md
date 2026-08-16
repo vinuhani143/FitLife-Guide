@@ -32,7 +32,28 @@ yarn android
 yarn web
 ```
 
-Android production/preview builds (EAS):
+## Android APK
+
+Local release APK (sideload / preview):
+
+```bash
+# Requires Android SDK 36, NDK 27.1.12297006, JDK 21
+export ANDROID_HOME="$HOME/android-sdk"
+yarn apk
+```
+
+The APK is written to `dist/FitLife-Guide-1.0.0.apk`.
+
+Install on a phone:
+
+1. Copy the APK to the phone.
+2. Allow install from unknown sources for your file app.
+3. Open `FitLife-Guide-1.0.0.apk`.
+4. Package name: `com.fitlifeguide.app`
+
+This local APK is for preview/sideload. A Play Store upload needs your own release keystore.
+
+Cloud/EAS APK:
 
 ```bash
 npx eas-cli build --platform android --profile preview
