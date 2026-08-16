@@ -11,16 +11,18 @@ import { addNutrition, calculateNutrition } from '@/src/lib/calculations/nutriti
 import { compareIntakeToNeed } from '@/src/lib/calculations/intakeCoach';
 import { todayIsoDate } from '@/src/lib/calculations/units';
 import { formatNumber } from '@/src/lib/format';
-import { commonMealFoods } from '@/src/lib/foodSuggestions';
+import { commonMealFoods, nonVegDiaryFoods } from '@/src/lib/foodSuggestions';
 import { translate } from '@/src/lib/i18n';
 import { useBodyMetrics } from '@/src/lib/useBodyMetrics';
 import { useApp } from '@/src/store/AppProvider';
 import type { MealSlot } from '@/src/types/diary';
+import type { DietType } from '@/src/types/profile';
 
 const MEALS: MealSlot[] = ['breakfast', 'morning_snack', 'lunch', 'evening_snack', 'dinner'];
+const DIETS: DietType[] = ['vegetarian', 'non_vegetarian'];
 
 export default function DiaryScreen() {
-  const { language, colors, diary, addDiaryEntry, removeDiaryEntry, profile } = useApp();
+  const { language, colors, diary, addDiaryEntry, removeDiaryEntry, profile, setProfile } = useApp();
   const { target, tdee, proteinTargetG } = useBodyMetrics();
   const router = useRouter();
   const t = (key: string) => translate(language, key);
@@ -32,7 +34,9 @@ export default function DiaryScreen() {
   const results = searchFoods(query).slice(0, 8);
   const energyTarget = target?.targetKcal ?? tdee;
   const selected = foods.find((item) => item.id === foodId) ?? null;
-  const common = commonMealFoods(meal, profile.dietType);
+  const nonVegList = profile.dietType === 'non_vegetarian' ? nonVegDiaryFoods() : [];
+  const nonVegIds = new Set(nonVegList.map((food) => food.id));
+  const common = commonMealFoods(meal, profile.dietType).filter((food) => !nonVegIds.has(food.id));
   const commonHintKey =
     meal === 'breakfast'
       ? 'diary.commonHint.breakfast'
@@ -78,6 +82,18 @@ export default function DiaryScreen() {
     <Screen>
       <Card title={t('diary.title')}>
         <Text style={{ color: colors.muted }}>{t('diary.howTo')}</Text>
+        <Text style={{ color: colors.muted }}>{t('diary.dietHint')}</Text>
+        <View style={styles.wrap}>
+          {DIETS.map((diet) => (
+            <Pressable
+              key={diet}
+              onPress={() => void setProfile({ ...profile, dietType: diet })}
+              style={[styles.chip, { borderColor: colors.border, backgroundColor: profile.dietType === diet ? colors.primarySoft : 'transparent' }]}
+            >
+              <Text style={{ color: colors.text }}>{t(`diet.${diet}`)}</Text>
+            </Pressable>
+          ))}
+        </View>
         <View style={styles.wrap}>
           {MEALS.map((slot) => (
             <Pressable key={slot} onPress={() => setMeal(slot)} style={[styles.chip, { borderColor: colors.border, backgroundColor: meal === slot ? colors.primarySoft : 'transparent' }]}>
@@ -85,6 +101,23 @@ export default function DiaryScreen() {
             </Pressable>
           ))}
         </View>
+        {nonVegList.length > 0 ? (
+          <>
+            <Text style={{ color: colors.text, fontWeight: '700' }}>{t('diary.nonVegList')}</Text>
+            <Text style={{ color: colors.muted }}>{t('diary.nonVegHint')}</Text>
+            <View style={styles.wrap}>
+              {nonVegList.map((food) => (
+                <Pressable
+                  key={`nonveg-${food.id}`}
+                  onPress={() => chooseFood(food.id)}
+                  style={[styles.chip, { borderColor: colors.border, backgroundColor: foodId === food.id ? colors.primarySoft : 'transparent' }]}
+                >
+                  <Text style={{ color: colors.text }}>{language === 'te' ? food.nameTe : food.nameEn}</Text>
+                </Pressable>
+              ))}
+            </View>
+          </>
+        ) : null}
         <Text style={{ color: colors.muted }}>{t(commonHintKey)}</Text>
         <View style={styles.wrap}>
           {common.map((food) => (

@@ -11,9 +11,9 @@ FitLife Guide is a **goal + food education** app, not a fitness coach.
 1. Enter body measurements, a goal (lose, gain, or maintain weight), and veg or non-veg.
 2. See estimated BMI, BMR, daily energy, and a cautious timeline to a target weight.
 3. Open the day-to-day list for that many days (veg list or non-veg list).
-4. Log what you actually ate, or scan a packaged barcode and match it to catalog nutrition.
+4. Log what you actually ate, or scan a plate photo and pick Small / Medium / Large for each food, or scan a packaged barcode.
 
-The app does **not** invent nutrition numbers. Everyday items such as idli, dosa, upma, vada, poori, roti, chutney, dal, vegetable curry, chicken curry, biryani, ghee, oats, eggs, bakery, and snack foods use official USDA FNDDS or SR Legacy records. Homemade recipes vary. Pesarattu, ragi java, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry are listed for search but stay unverified until an official IFCT import exists.
+The app does **not** invent nutrition numbers. Everyday items such as idli, dosa, upma, vada, poori, roti, chutney, dal, vegetable curry, chicken curry, biryani, ghee, oats, eggs, cooked fish, prawns, bakery, and snack foods use official USDA FNDDS or SR Legacy records. Homemade recipes vary. Pesarattu, ragi java, sambar, rasam, pongal, lemon rice, vegetable korma, and vegetable fry are listed for search but stay unverified until an official IFCT import exists. Plate scan uses USDA lentil curry as a disclosed stand-in for sambar.
 
 ## Principles
 
@@ -45,9 +45,9 @@ yarn web
 
 ## Android APK
 
-Download: [FitLife-Guide-1.1.2.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.2-preview/FitLife-Guide-1.1.2.apk)
+Download: [FitLife-Guide-1.1.3.apk](https://github.com/vinuhani143/FitLife-Guide/releases/download/v1.1.3-preview/FitLife-Guide-1.1.3.apk)
 
-Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.2-preview
+Release page: https://github.com/vinuhani143/FitLife-Guide/releases/tag/v1.1.3-preview
 
 Local rebuild for this version (sideload / preview):
 
@@ -57,13 +57,13 @@ export ANDROID_HOME="$HOME/android-sdk"
 yarn apk
 ```
 
-The APK is written to `dist/FitLife-Guide-1.1.2.apk`.
+The APK is written to `dist/FitLife-Guide-1.1.3.apk`.
 
 Install on a phone:
 
 1. Copy the APK to the phone.
 2. Allow install from unknown sources for your file app.
-3. Open `FitLife-Guide-1.1.2.apk`.
+3. Open `FitLife-Guide-1.1.3.apk`.
 4. Package name: `com.fitlifeguide.app`
 
 This local APK is for preview/sideload. A Play Store upload needs your own release keystore.
@@ -76,7 +76,7 @@ npx eas-cli build --platform android --profile preview
 
 ## Food database
 
-- Version: `2026.3`
+- Version: `2026.4`
 - File: `src/data/foods/usda-sr-legacy-seed.json`
 - Import helper: `scripts/import-usda-sr-legacy.py`
 - Official USDA download: https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_json_2018-04.zip

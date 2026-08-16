@@ -9,6 +9,8 @@ describe('food diet', () => {
     expect(isVegetarianFood(getFoodById('chicken-curry')!)).toBe(false);
     expect(isVegetarianFood(getFoodById('egg-boiled')!)).toBe(false);
     expect(isVegetarianFood(getFoodById('hamburger')!)).toBe(false);
+    expect(isVegetarianFood(getFoodById('prawns-cooked')!)).toBe(false);
+    expect(isVegetarianFood(getFoodById('fish-cooked')!)).toBe(false);
     expect(foods.some((food) => food.id === 'chicken-biryani' && !isVegetarianFood(food))).toBe(true);
   });
 });

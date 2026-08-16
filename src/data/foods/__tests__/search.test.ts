@@ -50,4 +50,13 @@ describe('food search', () => {
     expect(searchFoods('పాలు').some((food) => food.id === 'milk-whole')).toBe(true);
     expect(searchFoods('నెయ్యి').some((food) => food.id === 'ghee')).toBe(true);
   });
+
+  test('cooked fish and prawns copy official USDA energy', () => {
+    const prawns = searchFoods('royyalu').find((food) => food.id === 'prawns-cooked');
+    const fish = searchFoods('chepa').find((food) => food.id === 'fish-cooked');
+    expect(prawns?.nutrition.energyKcal).toBe(119);
+    expect(prawns?.fdcId).toBe(171971);
+    expect(fish?.nutrition.energyKcal).toBe(105);
+    expect(fish?.fdcId).toBe(171956);
+  });
 });

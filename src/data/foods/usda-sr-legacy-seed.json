@@ -1,5 +1,5 @@
 {
-  "foodDatabaseVersion": "2026.3",
+  "foodDatabaseVersion": "2026.4",
   "importedAt": "2026-08-16",
   "dataset": "USDA FoodData Central SR Legacy (April 2018) and Survey FNDDS records accessed 2026-08-16",
   "datasetFile": "FoodData_Central_sr_legacy_food_json_2018-04.json",
@@ -8258,6 +8258,164 @@
         "verifiedDate": null,
         "url": "https://www.nin.res.in/",
         "importStatus": "No official USDA dry vegetable-fry record was found. Values are not invented. Log vegetable curry or pakora for a verified cooked/fried vegetable estimate."
+      }
+    },
+    {
+      "id": "prawns-cooked",
+      "nameEn": "Shrimp / prawns, cooked (moist heat)",
+      "nameTe": "రొయ్యలు (ఉడికినవి)",
+      "category": "fish",
+      "subcategory": "shrimp",
+      "state": "cooked",
+      "searchTerms": [
+        "prawns",
+        "royyalu",
+        "shrimp",
+        "jhinga"
+      ],
+      "usdaDescription": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
+      "scientificName": null,
+      "fdcId": 171971,
+      "ndbNumber": 15151,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Finfish and Shellfish Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 119,
+        "proteinG": 22.8,
+        "carbohydrateG": 1.52,
+        "fatG": 1.7,
+        "fiberG": 0.0,
+        "sugarG": 0.0,
+        "calciumMg": 91.0,
+        "ironMg": 0.32,
+        "magnesiumMg": 37.0,
+        "phosphorusMg": 306,
+        "potassiumMg": 170,
+        "sodiumMg": 947,
+        "zincMg": 1.63,
+        "vitaminAMcg": 90.0,
+        "vitaminCMg": 0.0,
+        "vitaminDMcg": 0.1,
+        "vitaminEMg": 2.2,
+        "vitaminKMcg": 0.4,
+        "thiaminMg": 0.032,
+        "riboflavinMg": 0.024,
+        "niacinMg": 2.68,
+        "vitaminB6Mg": 0.242,
+        "folateMcg": 24.0,
+        "vitaminB12Mcg": 1.66
+      },
+      "portions": [
+        {
+          "labelEn": "oz",
+          "grams": 85.0,
+          "amount": 3.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "large",
+          "grams": 22.0,
+          "amount": 4.0,
+          "modifier": "large"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 85.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "85 g"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 171971",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/171971/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
+      }
+    },
+    {
+      "id": "fish-cooked",
+      "nameEn": "Fish, Atlantic cod, cooked",
+      "nameTe": "చేప (ఉడికినది)",
+      "category": "fish",
+      "subcategory": "cod",
+      "state": "cooked",
+      "searchTerms": [
+        "chepa",
+        "fish",
+        "cod",
+        "cooked fish"
+      ],
+      "usdaDescription": "Fish, cod, Atlantic, cooked, dry heat",
+      "scientificName": null,
+      "fdcId": 171956,
+      "ndbNumber": 15016,
+      "publicationDate": "4/1/2019",
+      "usdaCategory": "Finfish and Shellfish Products",
+      "nutritionAvailable": true,
+      "confidence": "HIGH",
+      "nutrition": {
+        "energyKcal": 105,
+        "proteinG": 22.8,
+        "carbohydrateG": 0.0,
+        "fatG": 0.86,
+        "fiberG": 0.0,
+        "sugarG": 0.0,
+        "calciumMg": 14.0,
+        "ironMg": 0.49,
+        "magnesiumMg": 42.0,
+        "phosphorusMg": 138,
+        "potassiumMg": 244,
+        "sodiumMg": 78.0,
+        "zincMg": 0.58,
+        "vitaminAMcg": 14.0,
+        "vitaminCMg": 1.0,
+        "vitaminDMcg": 1.2,
+        "vitaminEMg": 0.81,
+        "vitaminKMcg": 0.1,
+        "thiaminMg": 0.088,
+        "riboflavinMg": 0.079,
+        "niacinMg": 2.51,
+        "vitaminB6Mg": 0.283,
+        "folateMcg": 8.0,
+        "vitaminB12Mcg": 1.05
+      },
+      "portions": [
+        {
+          "labelEn": "oz",
+          "grams": 85.0,
+          "amount": 3.0,
+          "modifier": "oz"
+        },
+        {
+          "labelEn": "fillet",
+          "grams": 180.0,
+          "amount": 1.0,
+          "modifier": "fillet"
+        }
+      ],
+      "serving": {
+        "defaultAmount": 85.0,
+        "unit": "g",
+        "basis": "per_100g",
+        "commonLabelEn": "85 g"
+      },
+      "source": {
+        "organization": "U.S. Department of Agriculture, Agricultural Research Service",
+        "database": "USDA FoodData Central, SR Legacy",
+        "reference": "FDC ID 171956",
+        "year": 2018,
+        "country": "United States",
+        "dataBasis": "per 100 g",
+        "verifiedDate": "2026-08-16",
+        "url": "https://fdc.nal.usda.gov/food-details/171956/nutrients",
+        "importStatus": "Copied from official USDA SR Legacy. Values are not invented."
       }
     }
   ]

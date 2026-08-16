@@ -89,6 +89,11 @@ export const LUNCH_FOOD_IDS = [
   'ghee',
   'chicken-curry',
   'mutton-gravy',
+  'fish-cooked',
+  'prawns-cooked',
+  'egg-boiled',
+  'egg-omelet',
+  'chicken-breast-roasted',
   'vegetable-curry',
   'vegetable-fry',
   'chicken-biryani',
@@ -96,6 +101,19 @@ export const LUNCH_FOOD_IDS = [
   'vegetable-biryani',
   'roti-chapati',
   'lentil-curry',
+] as const;
+
+export const NON_VEG_DIARY_FOOD_IDS = [
+  'chicken-curry',
+  'chicken-biryani',
+  'chicken-breast-roasted',
+  'fried-chicken-pieces',
+  'mutton-gravy',
+  'meat-biryani',
+  'fish-cooked',
+  'prawns-cooked',
+  'egg-boiled',
+  'egg-omelet',
 ] as const;
 
 export const SNACK_FOOD_IDS = [
@@ -134,6 +152,10 @@ export const COMMON_MEAL_FOOD_IDS = [
 
 function foodsForIds(ids: readonly string[]): FoodRecord[] {
   return ids.map((id) => foods.find((food) => food.id === id)).filter((food): food is FoodRecord => Boolean(food));
+}
+
+export function nonVegDiaryFoods(): FoodRecord[] {
+  return foodsForIds(NON_VEG_DIARY_FOOD_IDS);
 }
 
 export function commonMealFoods(meal?: MealSlot, dietType: DietType = 'vegetarian'): FoodRecord[] {

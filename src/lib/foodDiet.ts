@@ -17,6 +17,8 @@ const NON_VEG_FOOD_IDS = new Set([
   'chicken-breast-raw',
   'chicken-breast-roasted',
   'salmon-atlantic-farmed-raw',
+  'prawns-cooked',
+  'fish-cooked',
 ]);
 
 export function isVegetarianFood(food: FoodRecord): boolean {

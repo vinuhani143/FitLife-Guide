@@ -1,6 +1,6 @@
 import type { NutrientKey, NutritionValues } from '@/src/types/food';
 
-export const FOOD_DATABASE_VERSION = '2026.3';
+export const FOOD_DATABASE_VERSION = '2026.4';
 
 export const NUTRIENT_KEYS: NutrientKey[] = [
   'energyKcal',

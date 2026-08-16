@@ -70,7 +70,7 @@ export const SOURCES: SourceEntry[] = [
     reference: 'FoodData Central SR Legacy April 2018 release file: FoodData_Central_sr_legacy_food_json_2018-04.json',
     year: 2018,
     url: 'https://fdc.nal.usda.gov/',
-    usedFor: 'Default food nutrient values copied from SR Legacy in seed 2026.1+, including cooked oats, eggs, bakery, and snack foods in seed 2026.3.',
+    usedFor: 'Default food nutrient values copied from SR Legacy in seed 2026.1+, including cooked oats, eggs, bakery, snack foods, cooked shrimp/prawns (FDC 171971), and cooked Atlantic cod (FDC 171956) in seed 2026.4.',
   },
   {
     id: 'usda-fndds',
