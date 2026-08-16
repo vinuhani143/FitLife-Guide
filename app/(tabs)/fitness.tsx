@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import React, { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { ACTIVITIES } from '@/src/data/activities';
 import { WHO_ACTIVITY_SOURCE, estimateActivityKcal } from '@/src/lib/calculations/fitness';
 import { Card } from '@/src/components/Card';
@@ -60,7 +60,19 @@ export default function FitnessScreen() {
         <Field label={t('fitness.sitToStand')} value={draft.sitToStandReps} onChange={(n) => setDraft({ ...draft, sitToStandReps: n })} />
         <Field label={t('fitness.flexibility')} value={draft.flexibilitySelfScore} onChange={(n) => setDraft({ ...draft, flexibilitySelfScore: n })} />
         <Field label={t('fitness.balance')} value={draft.balanceSelfScore} onChange={(n) => setDraft({ ...draft, balanceSelfScore: n })} />
-        <Pressable style={[styles.save, { backgroundColor: colors.primary }]} onPress={() => void setFitnessInputs(draft)}>
+        <Pressable
+          style={[styles.save, { backgroundColor: colors.primary }]}
+          onPress={() => {
+            void (async () => {
+              try {
+                await setFitnessInputs(draft);
+                Alert.alert(t('body.savedTitle'), t('fitness.savedMessage'));
+              } catch {
+                Alert.alert(t('body.saveErrorTitle'), t('body.saveErrorMessage'));
+              }
+            })();
+          }}
+        >
           <Text style={styles.saveText}>{t('common.save')}</Text>
         </Pressable>
       </Card>

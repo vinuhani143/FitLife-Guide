@@ -2,21 +2,32 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { translate } from '@/src/lib/i18n';
 import { useApp } from '@/src/store/AppProvider';
+import type { LanguageCode } from '@/src/types/profile';
 
-export function LanguageSwitch() {
+export function LanguageSwitch({
+  value,
+  onChange,
+}: {
+  value?: LanguageCode;
+  onChange?: (language: LanguageCode) => void;
+}) {
   const { colors, language, setLanguage } = useApp();
+  const current = value ?? language;
   return (
     <View style={[styles.row, { borderColor: colors.border }]}>
       {(['en', 'te'] as const).map((code) => {
-        const active = language === code;
+        const active = current === code;
         return (
           <Pressable
             key={code}
-            onPress={() => void setLanguage(code)}
+            onPress={() => {
+              if (onChange) onChange(code);
+              else void setLanguage(code);
+            }}
             style={[styles.btn, active && { backgroundColor: colors.primary }]}
           >
             <Text style={[styles.label, { color: active ? '#fff' : colors.text }]}>
-              {translate(language, `lang.${code}`)}
+              {translate(current, `lang.${code}`)}
             </Text>
           </Pressable>
         );

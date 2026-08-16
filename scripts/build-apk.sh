@@ -29,10 +29,11 @@ if [[ -z "$APK" ]]; then
   exit 1
 fi
 
+VERSION="$(node -p "require('./package.json').version")"
 DEST_DIR="${FITLIFE_APK_OUT:-/opt/cursor/artifacts}"
 mkdir -p "$DEST_DIR" "$ROOT/dist"
-OUT="$DEST_DIR/FitLife-Guide-1.0.0.apk"
+OUT="$DEST_DIR/FitLife-Guide-$VERSION.apk"
 cp "$APK" "$OUT"
-cp "$APK" "$ROOT/dist/FitLife-Guide-1.0.0.apk"
+cp "$APK" "$ROOT/dist/FitLife-Guide-$VERSION.apk"
 echo "APK ready: $OUT"
-ls -lh "$OUT" "$ROOT/dist/FitLife-Guide-1.0.0.apk"
+ls -lh "$OUT" "$ROOT/dist/FitLife-Guide-$VERSION.apk"

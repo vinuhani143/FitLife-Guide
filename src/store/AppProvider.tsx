@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useColorScheme } from 'react-native';
 import type { ActivityEntry, DiaryEntry, WaterEntry } from '@/src/types/diary';
 import type { FitnessInputs, LanguageCode, UserProfile, WaistLog, WeightLog } from '@/src/types/profile';
@@ -148,12 +148,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     await storage.writeJson(storage.keys.compare, next);
   }, []);
 
-  const setLanguage = useCallback(
-    async (language: LanguageCode) => {
-      await setProfile({ ...profile, language });
-    },
-    [profile, setProfile],
-  );
+  const profileRef = useRef(profile);
+  profileRef.current = profile;
+
+  const setLanguage = useCallback(async (language: LanguageCode) => {
+    const next = { ...profileRef.current, language };
+    await setProfile(next);
+  }, [setProfile]);
 
   const value = useMemo<AppContextValue>(
     () => ({

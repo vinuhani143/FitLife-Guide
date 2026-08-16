@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
+import React, { useCallback, useRef, useState } from 'react';
+import { ActivityIndicator, Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Disclaimer } from '@/src/components/Disclaimer';
 import { LanguageSwitch } from '@/src/components/LanguageSwitch';
 import { Screen } from '@/src/components/Screen';
 import { translate } from '@/src/lib/i18n';
+import { buildProfileFromForm, profileToFormState, type ProfileFormState } from '@/src/lib/profileForm';
 import { useApp } from '@/src/store/AppProvider';
 import type { ActivityLevel, Goal, Sex } from '@/src/types/profile';
 
@@ -13,42 +15,97 @@ const ACTIVITIES: ActivityLevel[] = ['sedentary', 'lightly_active', 'moderately_
 const GOALS: Goal[] = ['weight_loss', 'weight_maintenance', 'weight_gain', 'muscle_strength', 'general_fitness'];
 
 export default function ProfileScreen() {
-  const { language, colors, profile, setProfile, addWeight, addWaist } = useApp();
-  const [draft, setDraft] = useState(profile);
-  const t = (key: string) => translate(language, key);
+  const { language, colors, profile, setProfile, addWeight, addWaist, ready } = useApp();
+  const [form, setForm] = useState<ProfileFormState>(() => profileToFormState(profile));
+  const [saving, setSaving] = useState(false);
+  const router = useRouter();
+  const uiLanguage = form.language || language;
+  const t = (key: string) => translate(uiLanguage, key);
+  const profileRef = useRef(profile);
+  profileRef.current = profile;
+
+  useFocusEffect(
+    useCallback(() => {
+      if (ready) setForm(profileToFormState(profileRef.current));
+    }, [ready]),
+  );
+
+  const setField = <K extends keyof ProfileFormState>(key: K, value: ProfileFormState[K]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const onSave = async () => {
+    if (saving) return;
+    const result = buildProfileFromForm(form, profile);
+    if (!result.ok) {
+      Alert.alert(t('body.saveErrorTitle'), t(result.errorKey));
+      return;
+    }
+
+    setSaving(true);
+    try {
+      await setProfile(result.profile);
+      if (result.profile.weightKg) await addWeight(result.profile.weightKg);
+      if (result.profile.waistCm) await addWaist(result.profile.waistCm);
+      Alert.alert(t('body.savedTitle'), t('body.savedMessage'), [
+        { text: t('common.ok'), onPress: () => router.back() },
+      ]);
+    } catch {
+      Alert.alert(t('body.saveErrorTitle'), t('body.saveErrorMessage'));
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
-    <Screen>
+    <Screen
+      footer={
+        <View style={[styles.footer, { borderTopColor: colors.border, backgroundColor: colors.bg }]}>
+          <Pressable
+            accessibilityRole="button"
+            disabled={saving}
+            hitSlop={8}
+            style={[styles.save, { backgroundColor: colors.primary, opacity: saving ? 0.7 : 1 }]}
+            onPress={() => {
+              void onSave();
+            }}
+          >
+            {saving ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.saveText}>{t('body.save')}</Text>
+            )}
+          </Pressable>
+        </View>
+      }
+    >
       <Card title={t('body.edit')}>
-        <LanguageSwitch />
+        <LanguageSwitch value={form.language} onChange={(next) => setField('language', next)} />
         <Label text={t('body.name')} />
-        <TextInput value={draft.name} onChangeText={(name) => setDraft({ ...draft, name })} style={input(colors)} />
+        <TextInput value={form.name} onChangeText={(name) => setField('name', name)} style={input(colors)} />
         <Label text={t('body.dob')} />
-        <TextInput value={draft.dateOfBirth ?? ''} onChangeText={(dateOfBirth) => setDraft({ ...draft, dateOfBirth: dateOfBirth || null })} placeholder="YYYY-MM-DD" placeholderTextColor={colors.muted} style={input(colors)} />
+        <TextInput
+          value={form.dateOfBirth}
+          onChangeText={(dateOfBirth) => setField('dateOfBirth', dateOfBirth)}
+          placeholder={t('body.dobHint')}
+          placeholderTextColor={colors.muted}
+          style={input(colors)}
+        />
         <Label text={t('body.sex')} />
-        <Chips values={SEXES} selected={draft.sex} onSelect={(sex) => setDraft({ ...draft, sex })} label={(v) => t(`body.sex.${v}`)} />
+        <Chips values={SEXES} selected={form.sex} onSelect={(sex) => setField('sex', sex)} label={(v) => t(`body.sex.${v}`)} />
+        {form.sex === 'unspecified' ? <Text style={{ color: colors.muted, fontSize: 12 }}>{t('body.sexHint')}</Text> : null}
         <Label text={`${t('body.height')} (cm)`} />
-        <TextInput value={draft.heightCm == null ? '' : String(draft.heightCm)} onChangeText={(v) => setDraft({ ...draft, heightCm: v ? Number(v) : null })} keyboardType="numeric" style={input(colors)} />
+        <TextInput value={form.heightCm} onChangeText={(v) => setField('heightCm', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={`${t('body.weight')} (kg)`} />
-        <TextInput value={draft.weightKg == null ? '' : String(draft.weightKg)} onChangeText={(v) => setDraft({ ...draft, weightKg: v ? Number(v) : null })} keyboardType="numeric" style={input(colors)} />
+        <TextInput value={form.weightKg} onChangeText={(v) => setField('weightKg', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={`${t('body.waist')} (cm)`} />
-        <TextInput value={draft.waistCm == null ? '' : String(draft.waistCm)} onChangeText={(v) => setDraft({ ...draft, waistCm: v ? Number(v) : null })} keyboardType="numeric" style={input(colors)} />
+        <TextInput value={form.waistCm} onChangeText={(v) => setField('waistCm', v)} keyboardType="decimal-pad" style={input(colors)} />
         <Label text={t('body.activity')} />
-        <Chips values={ACTIVITIES} selected={draft.activityLevel} onSelect={(activityLevel) => setDraft({ ...draft, activityLevel })} label={(v) => t(`activity.${v}`)} />
+        <Chips values={ACTIVITIES} selected={form.activityLevel} onSelect={(activityLevel) => setField('activityLevel', activityLevel)} label={(v) => t(`activity.${v}`)} />
         <Label text={t('body.goal')} />
-        <Chips values={GOALS} selected={draft.goal} onSelect={(goal) => setDraft({ ...draft, goal })} label={(v) => t(`goal.${v}`)} />
+        <Chips values={GOALS} selected={form.goal} onSelect={(goal) => setField('goal', goal)} label={(v) => t(`goal.${v}`)} />
         <Label text={`${t('water.goal')} (ml)`} />
-        <TextInput value={String(draft.waterGoalMl)} onChangeText={(v) => setDraft({ ...draft, waterGoalMl: Number(v) || 2000 })} keyboardType="numeric" style={input(colors)} />
-        <Pressable
-          style={[styles.save, { backgroundColor: colors.primary }]}
-          onPress={() => {
-            void setProfile(draft);
-            if (draft.weightKg) void addWeight(draft.weightKg);
-            if (draft.waistCm) void addWaist(draft.waistCm);
-          }}
-        >
-          <Text style={styles.saveText}>{t('body.save')}</Text>
-        </Pressable>
+        <TextInput value={form.waterGoalMl} onChangeText={(v) => setField('waterGoalMl', v)} keyboardType="number-pad" style={input(colors)} />
       </Card>
       <Text style={{ color: colors.muted }}>{t('app.medicalCaution')}</Text>
       <Disclaimer />
@@ -79,7 +136,14 @@ function Chips<T extends string>({
         <Pressable
           key={value}
           onPress={() => onSelect(value)}
-          style={{ borderWidth: 1, borderColor: colors.border, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, backgroundColor: value === selected ? colors.primarySoft : 'transparent' }}
+          style={{
+            borderWidth: 1,
+            borderColor: colors.border,
+            borderRadius: 999,
+            paddingHorizontal: 10,
+            paddingVertical: 6,
+            backgroundColor: value === selected ? colors.primarySoft : 'transparent',
+          }}
         >
           <Text style={{ color: colors.text }}>{label(value)}</Text>
         </Pressable>
@@ -93,6 +157,7 @@ function input(colors: { text: string; border: string }) {
 }
 
 const styles = StyleSheet.create({
-  save: { borderRadius: 12, padding: 12, alignItems: 'center', marginTop: 8 },
-  saveText: { color: '#fff', fontWeight: '700' },
+  footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 16, borderTopWidth: 1 },
+  save: { borderRadius: 12, minHeight: 52, alignItems: 'center', justifyContent: 'center' },
+  saveText: { color: '#fff', fontWeight: '700', fontSize: 16 },
 });

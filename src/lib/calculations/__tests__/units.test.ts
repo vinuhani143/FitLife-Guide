@@ -1,4 +1,13 @@
-import { ageFromDateOfBirth, cmToFeetInches, feetInchesToCm, kgToLb, lbToKg, lifeStageFromAge } from '../units';
+import {
+  ageFromDateOfBirth,
+  cmToFeetInches,
+  feetInchesToCm,
+  kgToLb,
+  lbToKg,
+  lifeStageFromAge,
+  normalizeDateOfBirth,
+  parseLocaleNumber,
+} from '../units';
 
 describe('units', () => {
   test('mass conversion', () => {
@@ -15,9 +24,27 @@ describe('units', () => {
 
   test('age and life stage', () => {
     expect(ageFromDateOfBirth('2000-01-01', new Date('2026-01-01'))).toBe(26);
+    expect(ageFromDateOfBirth('01/01/2000', new Date('2026-01-01'))).toBe(26);
+    expect(ageFromDateOfBirth('01-01-2000', new Date('2026-01-01'))).toBe(26);
     expect(lifeStageFromAge(8)).toBe('child');
     expect(lifeStageFromAge(15)).toBe('adolescent');
     expect(lifeStageFromAge(30)).toBe('adult');
     expect(lifeStageFromAge(70)).toBe('older_adult');
+  });
+
+  test('normalizes common date formats', () => {
+    expect(normalizeDateOfBirth('1995-08-15')).toBe('1995-08-15');
+    expect(normalizeDateOfBirth('15/08/1995')).toBe('1995-08-15');
+    expect(normalizeDateOfBirth('15-8-1995')).toBe('1995-08-15');
+    expect(normalizeDateOfBirth('32/01/1995')).toBeNull();
+    expect(normalizeDateOfBirth('not-a-date')).toBeNull();
+  });
+
+  test('parses locale numbers', () => {
+    expect(parseLocaleNumber('162,5')).toBe(162.5);
+    expect(parseLocaleNumber('1,250')).toBe(1250);
+    expect(parseLocaleNumber('58.2')).toBe(58.2);
+    expect(parseLocaleNumber('')).toBeNull();
+    expect(parseLocaleNumber('abc')).toBeNull();
   });
 });
