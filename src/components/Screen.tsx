@@ -1,6 +1,6 @@
 import React from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, type ViewStyle } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '@/src/store/AppProvider';
 
 export function Screen({
@@ -15,6 +15,8 @@ export function Screen({
   footer?: React.ReactNode;
 }) {
   const { colors } = useApp();
+  const insets = useSafeAreaInsets();
+  const footerLift = Math.max(insets.bottom, 12) + 8;
   const body = <View style={[styles.inner, style]}>{children}</View>;
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.bg }]} edges={['top', 'left', 'right']}>
@@ -34,7 +36,9 @@ export function Screen({
         ) : (
           body
         )}
-        {footer}
+        {footer ? (
+          <View style={{ paddingBottom: footerLift, backgroundColor: colors.bg }}>{footer}</View>
+        ) : null}
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

@@ -1,7 +1,7 @@
 {
   "name": "fitlife-guide",
   "main": "expo-router/entry",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": true,
   "scripts": {
     "start": "expo start",

@@ -162,7 +162,7 @@ function input(colors: { text: string; border: string }) {
 }
 
 const styles = StyleSheet.create({
-  footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 16, borderTopWidth: 1 },
+  footer: { paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4, borderTopWidth: 1 },
   save: { borderRadius: 12, minHeight: 52, alignItems: 'center', justifyContent: 'center' },
   saveText: { color: '#fff', fontWeight: '700', fontSize: 16 },
 });
