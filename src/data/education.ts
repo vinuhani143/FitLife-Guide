@@ -11,7 +11,7 @@ export const EDUCATION_ARTICLES: EducationArticle[] = [
   { slug: 'fiber', titleKey: 'edu.fiber.title', sources: ['usda-sr-legacy'] },
   { slug: 'vitamins', titleKey: 'edu.vitamins.title', sources: ['usda-sr-legacy'] },
   { slug: 'minerals', titleKey: 'edu.minerals.title', sources: ['usda-sr-legacy'] },
-  { slug: 'calories', titleKey: 'edu.calories.title', sources: ['fao-who-unu-2004'] },
+  { slug: 'calories', titleKey: 'edu.calories.title', sources: ['usda-sr-legacy', 'atwater-general', 'fao-who-unu-2004'] },
   { slug: 'bmr', titleKey: 'edu.bmr.title', sources: ['mifflin-1990'] },
   { slug: 'tdee', titleKey: 'edu.tdee.title', sources: ['fao-who-unu-2004', 'mifflin-1990'] },
   { slug: 'bmi', titleKey: 'edu.bmi.title', sources: ['who-bmi-2000', 'who-child-bmi'] },

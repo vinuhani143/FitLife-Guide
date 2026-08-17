@@ -4,6 +4,7 @@ import { Text, TextInput } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Screen } from '@/src/components/Screen';
 import { SourceBadge } from '@/src/components/SourceBadge';
+import { AtwaterCard } from '@/src/components/AtwaterCard';
 import { getFoodById } from '@/src/data/foods';
 import { MACRO_KEYS, MINERAL_KEYS, VITAMIN_KEYS, calculateNutrition } from '@/src/lib/calculations/nutrition';
 import { formatNumber } from '@/src/lib/format';
@@ -103,6 +104,10 @@ export default function FoodDetailScreen() {
             ))
           : null}
       </Card>
+
+      {scaled?.available ? (
+        <AtwaterCard values={scaled.values} usdaKcal={scaled.values.energyKcal} />
+      ) : null}
 
       <Card title={t('foods.source')}>
         <SourceBadge food={food} />

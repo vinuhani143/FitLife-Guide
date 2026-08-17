@@ -37,7 +37,7 @@ export function calculateNutrition(food: FoodRecord, amountGrams: number): Scale
   const note =
     energy == null
       ? `Values scaled from ${food.source.dataBasis}. Energy is not available in the source record.`
-      : `How this value was calculated: 100 g = ${energy} kcal, so ${amountGrams} g = ${(energy * amountGrams) / 100} kcal.`;
+      : `How this value was calculated: 100 g = ${energy} kcal, so ${amountGrams} g = ${(energy * amountGrams) / 100} kcal. This is USDA published Energy, scaled by weight, not rebuilt from 4×protein + 4×carbs + 9×fat.`;
   return {
     values,
     grams: amountGrams,

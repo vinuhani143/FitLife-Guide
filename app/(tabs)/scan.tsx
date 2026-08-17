@@ -4,6 +4,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Image, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from '@/src/components/Card';
 import { Screen } from '@/src/components/Screen';
+import { AtwaterCard } from '@/src/components/AtwaterCard';
 import { getFoodById, searchFoods } from '@/src/data/foods';
 import { MACRO_KEYS } from '@/src/lib/calculations/nutrition';
 import { todayIsoDate } from '@/src/lib/calculations/units';
@@ -320,6 +321,7 @@ export default function ScanScreen() {
           <Text style={{ color: colors.muted }}>{t('scan.needSizes')}</Text>
         )}
         {totals.skipped > 0 ? <Text style={{ color: colors.warning }}>{t('foods.unavailable')} ({totals.skipped})</Text> : null}
+        {totals.counted > 0 ? <AtwaterCard values={totals.values} usdaKcal={totals.values.energyKcal} /> : null}
         <Pressable
           style={[styles.button, { backgroundColor: colors.primary, opacity: totals.counted ? 1 : 0.5 }]}
           onPress={() => void logPlate()}

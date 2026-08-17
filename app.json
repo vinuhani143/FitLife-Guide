@@ -2,7 +2,7 @@
   "expo": {
     "name": "FitLife Guide",
     "slug": "fitlife-guide",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "fitlifeguide",
@@ -23,7 +23,7 @@
         "backgroundColor": "#0F766E"
       },
       "package": "com.fitlifeguide.app",
-      "versionCode": 9,
+      "versionCode": 10,
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "softwareKeyboardLayoutMode": "resize"

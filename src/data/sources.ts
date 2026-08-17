@@ -84,6 +84,17 @@ export const SOURCES: SourceEntry[] = [
     usedFor: 'Prepared Indian breakfast, lunch, and snack items added in seed 2026.2 and 2026.3. Values are copied, not invented.',
   },
   {
+    id: 'atwater-general',
+    category: 'equation',
+    name: 'Atwater general factors (4 / 4 / 9)',
+    organization: 'USDA / FAO food-energy conversion',
+    reference:
+      'Textbook factors: protein 4 kcal/g, available carbohydrate 4 kcal/g, fat 9 kcal/g, water 0, fiber 0 in this app’s school-rule check. USDA published Energy can differ because carbohydrate-by-difference includes fiber, and some records use Atwater specific factors. FAO Food and Nutrition Paper 77 (2003) discusses conversion factors; FAO often assigns about 2 kcal/g to dietary fiber, which this school-rule check does not use.',
+    year: 2003,
+    url: 'https://www.fao.org/4/y5022e/y5022e00.htm',
+    usedFor: 'Educational 4-4-9 calorie check shown next to USDA Energy. The diary still logs USDA published Energy, never an invented substitute.',
+  },
+  {
     id: 'wishnofsky-1958',
     category: 'equation',
     name: 'Wishnofsky caloric equivalent of weight change',

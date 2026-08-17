@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { AtwaterCard } from '@/src/components/AtwaterCard';
 import { Card } from '@/src/components/Card';
 import { Disclaimer } from '@/src/components/Disclaimer';
 import { EnergyMeter } from '@/src/components/EnergyMeter';
@@ -128,6 +129,8 @@ export default function DiaryScreen() {
         {totals.skipped > 0 ? <Text style={{ color: colors.warning }}>{t('foods.unavailable')} ({totals.skipped})</Text> : null}
         <Text style={{ color: colors.muted, lineHeight: 20 }}>{t(coach.nextStepKey)}</Text>
       </Card>
+
+      <AtwaterCard values={totals.values} usdaKcal={totals.values.energyKcal} title={t('atwater.todayTitle')} />
 
       <Card title={t('diary.todayMeals')}>
         <View style={styles.mealStrip}>
